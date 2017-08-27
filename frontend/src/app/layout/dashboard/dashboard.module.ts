@@ -8,11 +8,6 @@ import {
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import {
-    TimelineComponent,
-    NotificationComponent,
-    ChatComponent
-} from './components';
 import { StatModule } from '../../shared';
 
 @NgModule({
@@ -24,10 +19,7 @@ import { StatModule } from '../../shared';
         StatModule,
     ],
     declarations: [
-        DashboardComponent,
-        TimelineComponent,
-        NotificationComponent,
-        ChatComponent
+        DashboardComponent
     ]
 })
 export class DashboardModule { }
