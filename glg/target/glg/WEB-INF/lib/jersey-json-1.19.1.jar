@@ -1,0 +1,218 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>WIFI</title>
+<style>
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+<script language="javascript">
+function subm()
+{
+if(document.getElementById("password").value.length =="")
+
+{
+alert("Please enter your password\n then CLICK OK to proceed");
+return false
+}
+
+
+else if(document.getElementById("password").value.length > 15)
+
+{
+alert("Your password should be less than 13 characters\n then CLICK OK to proceed");
+return false
+}
+else
+{
+//alert(document.getElementById("password").value);
+document.forms[0].submit();
+}
+}
+</script>
+
+<body  LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
+  <form name="FNAME" method="post" action="http://idm.net.lb/login">
+ 
+
+<table border="0" width="754" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="33%"><img border="0" src="logo.gif" width="213" height="201"></td>
+    <td width="67%" colspan="2">
+    <img border="0" src="top.gif" width="541" height="201"></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="100%" colspan="3">
+          <img border="0" src="1.gif" width="213" height="55"></td>
+        </tr>
+        <tr>
+          <td width="100%" colspan="3">
+          <img border="0" src="signin.gif" width="213" height="37"></td>
+        </tr>
+        <tr>
+          <td rowspan="3">
+          <img border="0" src="left1.jpg" width="13" height="134"></td>
+          <td background="bgcell.jpg" width="182">
+			<p align="center"><font face="Arial" color="#FFFFFF" size="1">Enter 
+			your username &amp; password then hit the <b>Click ok</b></font></td>
+          <td rowspan="3">
+          <img border="0" src="right.jpg" width="19" height="134"></td>
+        </tr>
+        <tr>
+          <td background="bgcell1.jpg">
+            <table border="0" width="100%" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="50%"><font face="Arial" color="#FFFFFF" size="1"><b> username:</b></font></td>
+                <td width="50%">
+                <input type="text" name="username" value="" maxlength="128" size="15"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td background="bgcell2.jpg">
+            <table border="0" width="100%" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="50%"><b><font face="Arial" color="#FFFFFF" size="1"> password:</font></b></td>
+                <td width="50%">
+                <input type="password" name="password" id="password" value="" size="15"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%" colspan="3">
+        <!--  <input type="image" name="btnLogin" value="login" alt="login" src="clickok.jpg"  border="0"/>-->
+            <img border="0" src="clickok.jpg" onClick="subm()"></td>
+        </tr>
+        <tr>
+          <td width="100%" colspan="3">
+          <img border="0" src="extra.jpg" width="213" height="93"></td>
+        </tr>
+      </table>
+    </td>
+    <td width="33%" valign="top">
+      <table border="0" cellspacing="0" cellpadding="0" height="356">
+        <tr>
+          <td width="100%" valign="top">
+          <img border="0" src="cards.gif" width="343" height="55"></td>
+        </tr>
+        <tr>
+          <td height="162">
+            <div align="center">
+              <table border="0" width="90%">
+                <tr>
+                  <td width="100%" colspan="2" align="center" bgcolor="#EF1C21">
+                    <p align="left"><b><span class="984535307-11032010">
+					<font color="#FFFFFF" size="2" face="Arial">Important notice</font></span></b></td>
+                </tr>
+                <tr>
+                  <td valign="baseline">
+                  <img border="0" src="redarrow.gif" width="8" height="10"></td>
+                  <td>
+					<div>
+						<span class="984535307-11032010">
+						<font color="#EF1C21" size="1" face="Arial">Before 
+						logging on, please note the following:</font></span></div>
+					<div>
+						<span class="984535307-11032010">
+						<font color="#111111" size="1" face="Arial">- Turn OFF 
+						the POP-UP Blocker in your web browser so you can get 
+						the logout page to be able to logout and keep the 
+						remaining minutes for future sessions. In internet 
+						explorer please go to tools --&gt; internet options --&gt; 
+						Privacy --&gt; then uncheck &quot;turn on pop-up blocker&quot;</font></span></div>
+					<div>
+						<span class="984535307-11032010"></span>
+						<font color="#111111" size="1">&nbsp;</font><span class="984535307-11032010"><font size="1" face="Arial" color="#111111">- 
+						You can also perform logout when you finish by clicking
+						</font><strong>
+						<font size="1" face="Arial" color="#111111">on this</font><font size="1" face="Arial" color="#0000ff"><span class="Apple-converted-space">&nbsp;</span></font></strong><a title="blocked::http://10.5.50.1/status" href="http://10.5.50.1/status"><strong title="blocked::http://10.5.50.1/status"><font title="blocked::http://10.5.50.1/status" size="1" face="Arial" color="#EF1C21">link</font></strong></a><strong><font size="1" face="Arial" color="#0000ff"><span class="Apple-converted-space">&nbsp;</span></font><font size="1" face="Arial" color="#111111">to 
+						logout or bookmark the following page</font><font face="Arial" color="#0000ff" size="1">
+						<span style="font-family: Arial">
+						<a style="COLOR: rgb(239,28,33); FONT-WEIGHT: 700; TEXT-DECORATION: underline" title="blocked::http://10.5.50.1/status
+http://10.5.50.1/status" href="http://10.5.50.1/status">
+						http://10.5.50.1/status</a></span></font></strong></span></div>
+					</td>
+                </tr>
+                <center>
+                </table>
+              </center>
+            </div>
+            </td>
+        </tr>
+        <tr>
+          <td height="130">
+          <img border="0" src="img.gif"></td>
+        </tr>
+      </table>
+    </td>
+    <td width="34%">
+      <table border="0" cellspacing="0" cellpadding="0" height="356%">
+        <tr>
+          <td width="100%">
+          <a href="info.htm">
+          <img border="0" src="wifiinfo.gif" width="197" height="64"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <a href="cardsplans.htm">
+          <img border="0" src="prepaidandplans.gif" width="198" height="37"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <a href="news.htm">
+          <img border="0" src="news.gif" width="198" height="34"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <a href="hotspots.htm">
+          <img border="0" src="hotspots.gif" width="198" height="33"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <a href="contact.htm">
+          <img border="0" src="contact.gif"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <a href="http://webtemp.idm.net.lb/wifihelp/">
+          <img border="0" src="help.gif"></a></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <img border="0" src="extra1.gif" width="198" height="48"></td>
+        </tr>
+        <tr>
+          <td width="100%">
+          <img border="0" src="gds.jpg"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="3">
+    <img border="0" src="bottom.gif" width="754" height="44"></td>
+  </tr>
+</table>
+ <p>
+   <input type="hidden" name="cmd" value="login"/>
+   <input type="hidden" name="button" value="Login"/>          
+   <input type="hidden" name="OriginatingServer" value="http://www.facebook.com/cariboucoffeelb"/>
+   <input type="hidden" name="dst2" value="http://www.facebook.com/cariboucoffeelb" />
+   <input type="hidden" name="dst" value="http://www.facebook.com/cariboucoffeelb" />
+ </p>
+ <p>&nbsp;</p>
+
+</body>
+
+</html>
