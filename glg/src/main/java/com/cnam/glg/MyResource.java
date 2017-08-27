@@ -1,5 +1,5 @@
 
-package com.george.cnam.glg;
+package com.cnam.glg;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
