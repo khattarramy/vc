@@ -1,1 +1,3 @@
 **/.DS_Store
+glg/target/glg.war
+glg/target/glg/WEB-INF/lib/*.jar
