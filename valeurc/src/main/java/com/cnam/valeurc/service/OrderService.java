@@ -18,31 +18,20 @@ import java.util.*;
  */
 public class OrderService {
     
-      public  List<Order> getAllOrders2() {
-      
-         
-        Order o1 = new Order(1,1,1);
-        Order o2 = new Order(2,2,2);
-
-        List<Order> listOrders = new ArrayList();
-        listOrders.add(o1);
-        listOrders.add(o2);
-        
-           return listOrders;
-
-       }
-     
+        public DB init() throws UnknownHostException{
+            
+                MongoClient mongo = new MongoClient( "localhost" , 27017 );
+                DB db = mongo.getDB("valeurc");
+                return db;
+        }
+    
         public  List<Order> getAllOrders() throws UnknownHostException {
             
                 List<Order> orders =new ArrayList();
-                MongoClient mongo = new MongoClient( "localhost" , 27017 );
-                DB db = mongo.getDB("valeurc");
+                DB db = init();
                 DBCollection table = db.getCollection("order");
 
-                BasicDBObject searchQuery = new BasicDBObject();
-                searchQuery.put("id", 2);
-
-                DBCursor cursor = table.find(searchQuery);
+                DBCursor cursor = table.find();
 
                 while (cursor.hasNext()) { 
                        orders.add((Order) AppUtils.fromDBObject(cursor.next(),Order.class));
@@ -52,10 +41,9 @@ public class OrderService {
        }
         
          public  List<Order> getOrderById(int id_order) throws UnknownHostException {
-            
+             
                 List<Order> orders =new ArrayList();
-                MongoClient mongo = new MongoClient( "localhost" , 27017 );
-                DB db = mongo.getDB("valeurc");
+                DB db = init();
                 DBCollection table = db.getCollection("order");
 
                 BasicDBObject searchQuery = new BasicDBObject();
@@ -69,6 +57,15 @@ public class OrderService {
                 return orders;
 
        }
+         
+          
+    public Order addOrder(Order order) throws UnknownHostException {
+     
+        DB db = init();
+        DBCollection orderCollection = db.getCollection("order");
+       orderCollection.insert(AppUtils.toDBObject(order));
+       return order;
+    }
       
     
      

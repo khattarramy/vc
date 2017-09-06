@@ -33,10 +33,20 @@ public class OrderResource {
         return orderService.getAllOrders();
      }
     
+    @GET 
+    @Path("/{orderId}")
+    @Produces(MediaType.APPLICATION_JSON)
+     public  List<Order> getOrder(@PathParam("orderId") String orderId ) throws UnknownHostException {
+      
+         return orderService.getOrderById(Integer.parseInt(orderId));
+     }
+    
+     
     @POST    
     @Produces(MediaType.APPLICATION_JSON)
-     public String addOrder() throws UnknownHostException {
-        return null;
+    @Consumes(MediaType.APPLICATION_JSON)
+     public Order addOrder(Order order) throws UnknownHostException {
+        return orderService.addOrder(order);
        
          
      }
