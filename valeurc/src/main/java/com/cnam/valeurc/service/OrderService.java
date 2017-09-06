@@ -5,6 +5,7 @@
  */
 package com.cnam.valeurc.service;
 
+import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
 import com.mongodb.*;
 import com.mongodb.MongoClient;
@@ -17,7 +18,7 @@ import java.util.*;
  */
 public class OrderService {
     
-      public  List<Order> getAllOrders() {
+      public  List<Order> getAllOrders2() {
       
          
         Order o1 = new Order(1,1,1);
@@ -30,15 +31,45 @@ public class OrderService {
            return listOrders;
 
        }
+     
+        public  List<Order> getAllOrders() throws UnknownHostException {
+            
+                List<Order> orders =new ArrayList();
+                MongoClient mongo = new MongoClient( "localhost" , 27017 );
+                DB db = mongo.getDB("valeurc");
+                DBCollection table = db.getCollection("order");
+
+                BasicDBObject searchQuery = new BasicDBObject();
+                searchQuery.put("id", 2);
+
+                DBCursor cursor = table.find(searchQuery);
+
+                while (cursor.hasNext()) { 
+                       orders.add((Order) AppUtils.fromDBObject(cursor.next(),Order.class));
+                }
+                return orders;
+
+       }
+        
+         public  List<Order> getOrderById(int id_order) throws UnknownHostException {
+            
+                List<Order> orders =new ArrayList();
+                MongoClient mongo = new MongoClient( "localhost" , 27017 );
+                DB db = mongo.getDB("valeurc");
+                DBCollection table = db.getCollection("order");
+
+                BasicDBObject searchQuery = new BasicDBObject();
+                searchQuery.put("id", id_order);
+
+                DBCursor cursor = table.find(searchQuery);
+
+                while (cursor.hasNext()) { 
+                       orders.add((Order) AppUtils.fromDBObject(cursor.next(),Order.class));
+                }
+                return orders;
+
+       }
       
-      public  List<String> getDBs() throws UnknownHostException{
-          MongoClient mongo = new MongoClient( "localhost" , 27017 );
-        
-        
-           DB db = mongo.getDB("valeurc");    
-           List<String> dbs = mongo.getDatabaseNames();
-         
-             return dbs;
-        }
+    
      
 }

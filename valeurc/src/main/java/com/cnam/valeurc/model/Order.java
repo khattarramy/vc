@@ -6,16 +6,18 @@
 package com.cnam.valeurc.model;
 
 import java.util.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author KHATT
  */
+@XmlRootElement
 public class Order {
     
-    private long id;
-    private long userId;
-    private long statusId;
+    private int id;
+    private int userId;
+    private int statusId;
     private Date dateInitialized;
     private Date dateFinished;
 
@@ -24,7 +26,7 @@ public class Order {
         
     }
 
-    public Order(long id, long userId, long statusId) {
+    public Order(int id, int userId, int statusId) {
         this.id = id;
         this.userId = userId;
         this.statusId = statusId;
@@ -32,27 +34,27 @@ public class Order {
     }
 
     
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public long getStatusId() {
+    public int getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(long statusId) {
+    public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
 
