@@ -8,7 +8,6 @@ package com.cnam.valeurc.service;
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
 import com.mongodb.*;
-import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
 import java.util.*;
 
@@ -18,17 +17,12 @@ import java.util.*;
  */
 public class OrderService {
     
-        public DB init() throws UnknownHostException{
-            
-                MongoClient mongo = new MongoClient( "localhost" , 27017 );
-                DB db = mongo.getDB("valeurc");
-                return db;
-        }
+        DbConnect dbConnect=new DbConnect();
     
         public  List<Order> getAllOrders() throws UnknownHostException {
             
                 List<Order> orders =new ArrayList();
-                DB db = init();
+                DB db = dbConnect.init();
                 DBCollection table = db.getCollection("order");
 
                 DBCursor cursor = table.find();
@@ -43,7 +37,7 @@ public class OrderService {
          public  List<Order> getOrderById(int id_order) throws UnknownHostException {
              
                 List<Order> orders =new ArrayList();
-                DB db = init();
+                DB db = dbConnect.init();
                 DBCollection table = db.getCollection("order");
 
                 BasicDBObject searchQuery = new BasicDBObject();
@@ -61,7 +55,7 @@ public class OrderService {
           
     public Order addOrder(Order order) throws UnknownHostException {
      
-        DB db = init();
+        DB db = dbConnect.init();
         DBCollection orderCollection = db.getCollection("order");
        orderCollection.insert(AppUtils.toDBObject(order));
        return order;
