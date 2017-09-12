@@ -4,22 +4,20 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.service;
-
 import com.cnam.valeurc.AppUtils;
-import com.cnam.valeurc.model.Order;
+import com.cnam.valeurc.model.User;
 import com.mongodb.*;
 import java.net.UnknownHostException;
 import java.util.*;
-
 /**
  *
- * @author KHATT
+ * @author George Harik
  */
-public class OrderService {
+public class UserService {
     
         DbConnect dbConnect=new DbConnect();
     
-        public  List<Order> getAllOrders() throws UnknownHostException {
+       /* public  List<Order> getAllUsers() throws UnknownHostException {
             
                 List<Order> orders =new ArrayList();
                 DB db = dbConnect.init();
@@ -52,15 +50,12 @@ public class OrderService {
 
        }
          
-          
-    public Order addOrder(Order order) throws UnknownHostException {
+        */  
+    public User addUser(User user) throws UnknownHostException {
      
         DB db = dbConnect.init();
-        DBCollection orderCollection = db.getCollection("order");
-       orderCollection.insert(AppUtils.toDBObject(order));
-       return order;
+        DBCollection userCollection = db.getCollection("users");
+       userCollection.insert(AppUtils.toDBObject(user));
+       return user;
     }
-      
-    
-     
 }
