@@ -6,7 +6,8 @@ const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' }
+            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'createorder', loadChildren: './create-order/create-order.module#CreateOrderModule' }
         ]
     }
 ];
