@@ -9,7 +9,9 @@ const routes: Routes = [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'createorder', loadChildren: './create-order/create-order.module#CreateOrderModule' },
             { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
-            { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' }
+            { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' },
+            { path: 'items', loadChildren: './items/items.module#ItemsModule' }
+
         ]
     }
 ];
