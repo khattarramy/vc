@@ -34,7 +34,7 @@ public class ItemResource {
     
     public Item getItem(@PathParam("itemId") String itemId) throws UnknownHostException {
 
-        return itemService.getItemById(Integer.parseInt(itemId));
+        return itemService.getItemById(itemId);
     }
 
     @POST

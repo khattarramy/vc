@@ -5,33 +5,39 @@
  */
 package com.cnam.valeurc.model;
 
+import java.util.UUID;
+
 /**
  *
  * @author George Harik
  */
 public class Item {
-    private int ItemId;
+    private String ItemId;
     private String Name;
     private String Description;
     private String ModelNumber;
     private int DistributorId;
-    private int ManufaturerId;
+    private int ManufacturerId;
 
        
     public Item() {
+        this.ItemId = UUID.randomUUID().toString();
+    }
+    public Item(String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
+        
+        this.ItemId = UUID.randomUUID().toString();
+        this.Name = Name;
+        this.Description = Description;
+        this.ModelNumber = ModelNumber;
+        this.DistributorId = DistributorId;
+        this.ManufacturerId = ManufacturerId;
         
     }
-    public Item(int itemId, int distributorId, int manufaturerId) {
-        this.ItemId = itemId;
-        this.DistributorId = distributorId;
-        this.ManufaturerId = manufaturerId;
-        
-    }
-    public int getItemId() {
+    public String getItemId() {
         return ItemId;
     }
 
-    public void setItemId(int id) {
+    public void setItemId(String id) {
         this.ItemId = id;
     }
     
@@ -68,11 +74,11 @@ public class Item {
     }
     
     public int getManufacturerId() {
-        return ManufaturerId;
+        return ManufacturerId;
     }
     
     public void setManufacturerId(int id) {
-        this.ManufaturerId = id;
+        this.ManufacturerId = id;
     }
     
 }

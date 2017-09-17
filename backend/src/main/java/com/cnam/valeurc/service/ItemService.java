@@ -38,7 +38,7 @@ public class ItemService {
 
     }
 
-    public Item getItemById(int itemId) throws UnknownHostException {
+    public Item getItemById(String itemId) throws UnknownHostException {
 
         Item item = new Item();
         DB db = dbConnect.init();
