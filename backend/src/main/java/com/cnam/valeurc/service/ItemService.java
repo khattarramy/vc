@@ -61,4 +61,25 @@ public class ItemService {
         return item;
     }
 
+    public Item updateItem(Item item, int itemId) throws UnknownHostException {
+
+        Item oldItem = new Item();
+        DB db = dbConnect.init();
+        DBCollection table = db.getCollection("item");
+
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put("ItemId", itemId);
+
+        DBCursor cursor = table.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            oldItem = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
+        }
+
+
+        table.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
+
+        return item;
+    }
+
 }

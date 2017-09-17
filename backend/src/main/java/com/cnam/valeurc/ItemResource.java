@@ -53,6 +53,17 @@ public class ItemResource {
          
      }
      
+     
+         @PUT    
+         @Path("/{itemId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+     public Item updateItem(Item item,@PathParam("itemId") int itemId ) throws UnknownHostException {
+        return itemService.updateItem(item,itemId);
+       
+         
+     }
+     
     
     
 }
