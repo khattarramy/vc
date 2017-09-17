@@ -12,7 +12,7 @@ import java.util.UUID;
  * @author George Harik
  */
 public class Item {
-    private String ItemId;
+    private UUID ItemId;
     private String Name;
     private String Description;
     private String ModelNumber;
@@ -23,7 +23,7 @@ public class Item {
     public Item() {
 
     }
-    public Item(String ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
+    public Item(UUID ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
         
         this.ItemId=ItemId;
         this.Name = Name;
@@ -33,11 +33,11 @@ public class Item {
         this.ManufacturerId = ManufacturerId;
         
     }
-    public String getItemId() {
+    public UUID getItemId() {
         return ItemId;
     }
 
-    public void setItemId(String id) {
+    public void setItemId(UUID id) {
         this.ItemId = id;
     }
     

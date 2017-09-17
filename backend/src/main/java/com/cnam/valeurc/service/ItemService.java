@@ -64,7 +64,7 @@ public class ItemService {
 
     public Item addItem(Item item) throws UnknownHostException {
 
-        item.setItemId(UUID.randomUUID().toString());
+        item.setItemId(UUID.randomUUID());
 
         itemCollection.insert(AppUtils.toDBObject(item));
 
@@ -86,7 +86,7 @@ public class ItemService {
         }
 
         itemCollection.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
-
+        
         return item;
     }
 
