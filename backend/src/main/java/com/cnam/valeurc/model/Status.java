@@ -4,28 +4,29 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
+import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class Status {
-    private int statusId;
+    private UUID statusId;
     private String description;
     
     public Status() {
         
     }
-    public Status(int statusId, String description) {
+    public Status(UUID statusId, String description) {
         this.statusId = statusId;
         this.description = description;
         
     }
-    public int getStatusId() {
+    public UUID getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int id) {
+    public void setStatusId(UUID id) {
         this.statusId = id;
     }
     

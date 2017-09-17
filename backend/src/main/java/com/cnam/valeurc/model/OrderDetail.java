@@ -4,66 +4,67 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
+import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class OrderDetail {
-    private int orderDetailId;
-    private int orderId;
-    private int itemId;
-    private int statusId;
-    private int userId;
+    private UUID OrderDetailId;
+    private int OrderId;
+    private int ItemId;
+    private int StatusId;
+    private int UserId;
        
     public OrderDetail() {
         
     }
-    public OrderDetail(int orderDetailId, int orderId, int itemId, int statusId, int userId) {
-        this.orderDetailId = orderDetailId;
-        this.itemId = itemId;
-        this.itemId = itemId;
-        this.statusId = statusId;
-        this.userId = userId;
+    public OrderDetail(UUID orderDetailId, int orderId, int itemId, int statusId, int userId) {
+        this.OrderDetailId = orderDetailId;
+        this.ItemId = itemId;
+        this.ItemId = itemId;
+        this.StatusId = statusId;
+        this.UserId = userId;
     }
     
-    public int getOrderDetailId() {
-        return orderDetailId;
+    public UUID getOrderDetailId() {
+        return OrderDetailId;
     }
 
-    public void setOrderDetailId(int id) {
-        this.orderDetailId = id;
+    public void setOrderDetailId(UUID id) {
+        this.OrderDetailId = id;
     }
     
     public int getOrderId() {
-        return orderId;
+        return OrderId;
     }
 
     public void setOrderId(int id) {
-        this.orderId = id;
+        this.OrderId = id;
     }
     
     public int getItemId() {
-        return itemId;
+        return ItemId;
     }
 
     public void setItemId(int id) {
-        this.itemId = id;
+        this.ItemId = id;
     }
     
     public int getStatusId() {
-        return statusId;
+        return StatusId;
     }
 
     public void setStatusId(int id) {
-        this.statusId = id;
+        this.StatusId = id;
     }
     
     public int getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(int id) {
-        this.userId = id;
+        this.UserId = id;
     }
 }

@@ -7,6 +7,7 @@ package com.cnam.valeurc.model;
 
 import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.UUID;
 
 /**
  *
@@ -15,63 +16,63 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Order {
     
-    private int id;
-    private int userId;
-    private int statusId;
-    private Date dateInitialized;
-    private Date dateFinished;
+    private UUID OrderId;
+    private int UserId;
+    private int StatusId;
+    private Date DateInitialized;
+    private Date DateFinished;
 
        
     public Order() {
         
     }
 
-    public Order(int id, int userId, int statusId) {
-        this.id = id;
-        this.userId = userId;
-        this.statusId = statusId;
-        this.dateInitialized = new Date();
+    public Order(UUID id, int userId, int statusId) {
+        this.OrderId = id;
+        this.UserId = userId;
+        this.StatusId = statusId;
+        this.DateInitialized = new Date();
     }
 
     
-    public int getId() {
-        return id;
+    public UUID getOrderId() {
+        return OrderId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderId(UUID id) {
+        this.OrderId = id;
     }
 
     public int getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.UserId = userId;
     }
 
     public int getStatusId() {
-        return statusId;
+        return StatusId;
     }
 
     public void setStatusId(int statusId) {
-        this.statusId = statusId;
+        this.StatusId = statusId;
     }
 
     public Date getDateInitialized() {
-        return dateInitialized;
+        return DateInitialized;
     }
 
     public void setDateInitialized(Date dateInitialized) {
-        this.dateInitialized = dateInitialized;
+        this.DateInitialized = dateInitialized;
     }
 
     public Date getDateFinished() {
-        return dateFinished;
+        return DateFinished;
     }
 
     public void setDateFinished(Date dateFinished) {
-        this.dateFinished = dateFinished;
+        this.DateFinished = dateFinished;
     }
     
 }

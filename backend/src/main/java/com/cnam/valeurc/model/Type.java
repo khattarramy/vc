@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
+import java.util.UUID;
 
 /**
  *
@@ -11,22 +12,22 @@ package com.cnam.valeurc.model;
  */
 public class Type {
     
-    private int typeId;
+    private UUID typeId;
     private String description;
     
     public Type() {
         
     }
-    public Type(int typeId, String description) {
+    public Type(UUID typeId, String description) {
         this.typeId = typeId;
         this.description = description;
         
     }
-    public int getTypeId() {
+    public UUID getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(int id) {
+    public void setTypeId(UUID id) {
         this.typeId = id;
     }
     
