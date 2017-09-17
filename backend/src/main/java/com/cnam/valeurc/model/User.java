@@ -9,86 +9,86 @@ package com.cnam.valeurc.model;
  * @author George Harik
  */
 public class User {
-    private int userId;
-    private int typeId;
-    private String name;
-    private String address;
-    private int phone;
-    private String email;
-    private String username;
-    private String password;
+    private int UserId;
+    private int TypeId;
+    private String Name;
+    private String Address;
+    private int Phone;
+    private String Email;
+    private String Username;
+    private String Password;
 
        
     public User() {
         
     }
     public User(int userId, int typeId) {
-        this.userId = userId;
-        this.typeId = typeId;
+        this.UserId = userId;
+        this.TypeId = typeId;
         
     }
     public int getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(int id) {
-        this.userId = id;
+        this.UserId = id;
     }
 
     public int getTypeId() {
-        return typeId;
+        return TypeId;
     }
     
     public void setTypeId(int id) {
-        this.typeId = id;
+        this.TypeId = id;
     }
     
     public String getName() {
-        return name;
+        return Name;
     }
     
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
     
     public String getAddress() {
-        return address;
+        return Address;
     }
     
     public void setAddress(String address) {
-        this.address = address;
+        this.Address = address;
     }
     
     public int getPhone() {
-        return phone;
+        return Phone;
     }
     
     public void setPhone(int phone) {
-        this.phone = phone;
+        this.Phone = phone;
     }
     
     public String getEmail() {
-        return email;
+        return Email;
     }
     
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
     
     public String getUserName() {
-        return username;
+        return Username;
     }
     
     public void setUserName(String username) {
-        this.username = username;
+        this.Username = username;
     }
     
     public String getPassword() {
-        return password;
+        return Password;
     }
     
     public void setPassword(String password) {
-        this.password = password;
+        this.Password = password;
     }
     
 }

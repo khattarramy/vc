@@ -4,58 +4,97 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.service;
+
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.model.User;
+import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.mongodb.*;
 import java.net.UnknownHostException;
 import java.util.*;
+
 /**
  *
  * @author George Harik
  */
 public class UserService {
-    
-        DbConnect dbConnect=new DbConnect();
-    
-       /* public  List<Order> getAllUsers() throws UnknownHostException {
-            
-                List<Order> orders =new ArrayList();
-                DB db = dbConnect.init();
-                DBCollection table = db.getCollection("order");
 
-                DBCursor cursor = table.find();
+    DbConnect dbConnect = new DbConnect();
+    DBCollection userCollection;
+    DB db;
 
-                while (cursor.hasNext()) { 
-                       orders.add((Order) AppUtils.fromDBObject(cursor.next(),Order.class));
-                }
-                return orders;
+    public UserService() throws UnknownHostException {
+        db = dbConnect.init();
+        if (!db.collectionExists("users")) {
+            db.createCollection("users", null);
+        }
 
-       }
-        
-         public  List<Order> getOrderById(int id_order) throws UnknownHostException {
-             
-                List<Order> orders =new ArrayList();
-                DB db = dbConnect.init();
-                DBCollection table = db.getCollection("order");
+        userCollection = db.getCollection("users");
+    }
 
-                BasicDBObject searchQuery = new BasicDBObject();
-                searchQuery.put("id", id_order);
-
-                DBCursor cursor = table.find(searchQuery);
-
-                while (cursor.hasNext()) { 
-                       orders.add((Order) AppUtils.fromDBObject(cursor.next(),Order.class));
-                }
-                return orders;
-
-       }
-         
-        */  
     public User addUser(User user) throws UnknownHostException {
-     
-        DB db = dbConnect.init();
-        DBCollection userCollection = db.getCollection("users");
-       userCollection.insert(AppUtils.toDBObject(user));
-       return user;
+        userCollection.insert(AppUtils.toDBObject(user));
+        return user;
+    }
+
+    public User getUserById(String userId) {
+
+        User user = new User();
+
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("UserId", userId);
+
+        DBCursor cursor = userCollection.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
+        }
+
+        return user;
+
+    }
+
+    public List<User> getAllUsers() throws UnknownHostException {
+        List<User> users = new ArrayList();
+        DBCursor cursor = userCollection.find();
+        while (cursor.hasNext()) {
+            users.add((User) AppUtils.fromDBObject(cursor.next(), User.class));
+        }
+        return users;
+    }
+
+    public User updateUser(User user, String userId) {
+        User oldUser = new User();
+
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("UserId", user.getUserId());
+
+        DBCursor cursor = userCollection.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            oldUser = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
+        }
+
+        userCollection.update(AppUtils.toDBObject(oldUser), AppUtils.toDBObject(user));
+
+        return user;
+    }
+
+    public void deleteUser(String userId) {
+        User user = new User();
+
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("UserId", userId);
+
+        DBCursor cursor = userCollection.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
+        }
+
+        userCollection.remove(AppUtils.toDBObject(user));
     }
 }
