@@ -18,16 +18,22 @@ import java.util.*;
 public class ItemService {
 
     DbConnect dbConnect = new DbConnect();
+    DBCollection itemCollection;
+    DB db;
 
-    public List<Item> getAllItems() throws UnknownHostException {
-
-        List<Item> items = new ArrayList();
-        DB db = dbConnect.init();
+    public ItemService() throws UnknownHostException {
+        db = dbConnect.init();
         if (!db.collectionExists("item")) {
             db.createCollection("item", null);
         }
 
-        DBCollection itemCollection = db.getCollection("item");
+        itemCollection = db.getCollection("item");
+
+    }
+
+    public List<Item> getAllItems() throws UnknownHostException {
+
+        List<Item> items = new ArrayList();
         DBCursor cursor = itemCollection.find();
 
         while (cursor.hasNext()) {
@@ -41,12 +47,7 @@ public class ItemService {
     public Item getItemById(String itemId) throws UnknownHostException {
 
         Item item = new Item();
-        DB db = dbConnect.init();
-        if (!db.collectionExists("item")) {
-            db.createCollection("item", null);
-        }
 
-        DBCollection itemCollection = db.getCollection("item");
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("ItemId", itemId);
@@ -63,13 +64,7 @@ public class ItemService {
 
     public Item addItem(Item item) throws UnknownHostException {
 
-        DB db = dbConnect.init();
-
-        if (!db.collectionExists("item")) {
-            db.createCollection("item", null);
-        }
         item.setItemId(UUID.randomUUID().toString());
-        DBCollection itemCollection = db.getCollection("item");
 
         itemCollection.insert(AppUtils.toDBObject(item));
 
@@ -77,18 +72,12 @@ public class ItemService {
     }
 
     public Item updateItem(Item item, String itemId) throws UnknownHostException {
-
-        DB db = dbConnect.init();
+        
         Item oldItem = new Item();
-        if (!db.collectionExists("item")) {
-            db.createCollection("item", null);
-        }
-
-        DBCollection itemCollection = db.getCollection("item");
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("ItemId", itemId);
+        searchQuery.put("ItemId", item.getItemId());
 
         DBCursor cursor = itemCollection.find(searchQuery);
 
@@ -103,13 +92,7 @@ public class ItemService {
 
     public void deleteItem(String itemId) throws UnknownHostException {
 
-        DB db = dbConnect.init();
         Item item = new Item();
-        if (!db.collectionExists("item")) {
-            db.createCollection("item", null);
-        }
-
-        DBCollection itemCollection = db.getCollection("item");
 
         BasicDBObject searchQuery = new BasicDBObject();
 

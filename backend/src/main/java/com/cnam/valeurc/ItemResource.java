@@ -19,7 +19,11 @@ import javax.ws.rs.core.*;
 @Path("items")
 public class ItemResource {
 
-    ItemService itemService = new ItemService();
+    ItemService itemService;
+
+    public ItemResource() throws UnknownHostException {
+        this.itemService = new ItemService();
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
