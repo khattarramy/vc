@@ -1,0 +1,29 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ item?.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div
+      class="btn-group"
+      appDropdown>
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        Manage Item <span class="caret"></span>
+      </button>
+      <ul>
+        <li><a style="cursor: pointer;" (click)="onEditItem()">Edit Item</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeleteItem()">Delete Item</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{ item?.description }}
+  </div>
+</div>
+

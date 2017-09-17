@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!itemForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="itemId">itemId</label>
+              <input
+                type="text"
+                id="itemId"
+                formControlName="itemId"
+                class="form-control">
+            </div>
+          </div>
+        </div>
+            <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">description</label>
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="modelNumber">modelNumber</label>
+            <input
+              type="text"
+              id="modelNumber"
+              formControlName="modelNumber"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="distributorId">distributorId</label>
+            <input
+              type="text"
+              id="distributorId"
+              formControlName="distributorId"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="manufacturerId">manufacturerId</label>
+            <input
+              type="text"
+              id="manufacturerId"
+              formControlName="manufacturerId"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
