@@ -12,30 +12,30 @@ import java.util.UUID;
  */
 public class Type {
     
-    private UUID typeId;
-    private String description;
+    private UUID TypeId;
+    private String Description;
     
     public Type() {
         
     }
     public Type(UUID typeId, String description) {
-        this.typeId = typeId;
-        this.description = description;
+        this.TypeId = typeId;
+        this.Description = description;
         
     }
     public UUID getTypeId() {
-        return typeId;
+        return TypeId;
     }
 
     public void setTypeId(UUID id) {
-        this.typeId = id;
+        this.TypeId = id;
     }
     
     public String getDescription() {
-        return description;
+        return Description;
     }
     
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
 }

@@ -13,59 +13,59 @@ import java.util.UUID;
  * @author George Harik
  */
 public class OrderDetailHistory {
-    private UUID orderDetailHistoryId;
-    private int orderDetailId;
-    private Date dateTime;
-    private int statusId;
-    private int userId;
+    private UUID OrderDetailHistoryId;
+    private int OrderDetailId;
+    private Date DateTime;
+    private int StatusId;
+    private int UserId;
     
     public OrderDetailHistory() {
         
     }
     public OrderDetailHistory(UUID orderDetailHistoryId, int orderDetailId, int statusId,int userId) {
-        this.orderDetailHistoryId = orderDetailHistoryId;
-        this.orderDetailId = orderDetailId;
-        this.statusId = statusId;
-        this.userId = userId;
+        this.OrderDetailHistoryId = orderDetailHistoryId;
+        this.OrderDetailId = orderDetailId;
+        this.StatusId = statusId;
+        this.UserId = userId;
         
     }
     public UUID getOrderDetailHistoryId() {
-        return orderDetailHistoryId;
+        return OrderDetailHistoryId;
     }
 
     public void setOrderDetailHistoryId(UUID id) {
-        this.orderDetailHistoryId = id;
+        this.OrderDetailHistoryId = id;
     }
     
     public int getOrderDetailId() {
-        return orderDetailId;
+        return OrderDetailId;
     }
 
     public void setOrderDetailId(int id) {
-        this.orderDetailId = id;
+        this.OrderDetailId = id;
     }
     
     public Date getDateTime() {
-        return dateTime;
+        return DateTime;
     }
 
     public void setDateTime(Date date) {
-        this.dateTime = date;
+        this.DateTime = date;
     }
     
     public int getStatusId() {
-        return statusId;
+        return StatusId;
     }
 
     public void setStatusId(int id) {
-        this.statusId = id;
+        this.StatusId = id;
     }
     
     public int getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(int id) {
-        this.userId = id;
+        this.UserId = id;
     }
 }

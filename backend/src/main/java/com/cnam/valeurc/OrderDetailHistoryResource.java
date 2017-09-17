@@ -16,7 +16,7 @@ import javax.ws.rs.core.*;
  *
  * @author KHATT
  */
-@Path("orderDetailHistorys")
+@Path("orderdetailhistory")
 public class OrderDetailHistoryResource {
 
     OrderDetailHistoryService orderDetailHistoryService;

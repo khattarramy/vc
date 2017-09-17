@@ -11,30 +11,30 @@ import java.util.UUID;
  * @author George Harik
  */
 public class Status {
-    private UUID statusId;
-    private String description;
+    private UUID StatusId;
+    private String Description;
     
     public Status() {
         
     }
     public Status(UUID statusId, String description) {
-        this.statusId = statusId;
-        this.description = description;
+        this.StatusId = statusId;
+        this.Description = description;
         
     }
     public UUID getStatusId() {
-        return statusId;
+        return StatusId;
     }
 
     public void setStatusId(UUID id) {
-        this.statusId = id;
+        this.StatusId = id;
     }
     
     public String getDescription() {
-        return description;
+        return Description;
     }
     
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
 }
 }
