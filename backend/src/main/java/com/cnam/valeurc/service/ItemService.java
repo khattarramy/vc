@@ -7,7 +7,6 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Item;
-import com.cnam.valeurc.model.Order;
 import com.mongodb.*;
 import java.net.UnknownHostException;
 import java.util.*;
@@ -25,12 +24,12 @@ public class ItemService {
         List<Item> items = new ArrayList();
         DB db = dbConnect.init();
         DBCollection table = db.getCollection("item");
-
         DBCursor cursor = table.find();
 
         while (cursor.hasNext()) {
             items.add((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
+
         return items;
 
     }
@@ -40,8 +39,8 @@ public class ItemService {
         Item item = new Item();
         DB db = dbConnect.init();
         DBCollection table = db.getCollection("item");
-
         BasicDBObject searchQuery = new BasicDBObject();
+
         searchQuery.put("ItemId", itemId);
 
         DBCursor cursor = table.find(searchQuery);
@@ -49,6 +48,7 @@ public class ItemService {
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
+
         return item;
 
     }
@@ -57,17 +57,19 @@ public class ItemService {
 
         DB db = dbConnect.init();
         DBCollection itemCollection = db.getCollection("item");
+
         itemCollection.insert(AppUtils.toDBObject(item));
+
         return item;
     }
 
     public Item updateItem(Item item, int itemId) throws UnknownHostException {
 
-        Item oldItem = new Item();
         DB db = dbConnect.init();
+        Item oldItem = new Item();
         DBCollection table = db.getCollection("item");
-
         BasicDBObject searchQuery = new BasicDBObject();
+
         searchQuery.put("ItemId", itemId);
 
         DBCursor cursor = table.find(searchQuery);
@@ -76,10 +78,27 @@ public class ItemService {
             oldItem = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
 
-
         table.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
 
         return item;
     }
 
+    public void deleteItem(int itemId) throws UnknownHostException {
+
+        DB db = dbConnect.init();
+        Item item = new Item();
+        DBCollection table = db.getCollection("item");
+
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("ItemId", itemId);
+
+        DBCursor cursor = table.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
+        }
+
+        table.remove(AppUtils.toDBObject(item));
+    }
 }
