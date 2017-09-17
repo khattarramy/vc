@@ -39,8 +39,6 @@ public class ItemService {
         while (cursor.hasNext()) {
             items.add((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
-        
-        cursor.close();
 
         return items;
 
@@ -59,8 +57,6 @@ public class ItemService {
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
-        
-        cursor.close();
 
         return item;
 
@@ -90,7 +86,7 @@ public class ItemService {
         }
 
         itemCollection.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
-        cursor.close();
+        
         return item;
     }
 
@@ -109,6 +105,5 @@ public class ItemService {
         }
 
         itemCollection.remove(AppUtils.toDBObject(item));
-        cursor.close();
     }
 }
