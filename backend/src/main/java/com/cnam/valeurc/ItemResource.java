@@ -38,7 +38,7 @@ public class ItemResource {
     @GET 
     @Path("/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
-     public  List<Item> getItem(@PathParam("itemId") String itemId ) throws UnknownHostException {
+     public  Item getItem(@PathParam("itemId") String itemId ) throws UnknownHostException {
       
          return itemService.getItemById(Integer.parseInt(itemId));
      }
