@@ -87,6 +87,26 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Update Item",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/items/item-id",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ItemId\":\"item-id\",\"description\":\"ali4\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
