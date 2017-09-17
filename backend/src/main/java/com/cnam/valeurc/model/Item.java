@@ -10,69 +10,69 @@ package com.cnam.valeurc.model;
  * @author George Harik
  */
 public class Item {
-    private int itemId;
-    private String name;
-    private String description;
-    private String modelNumber;
-    private int distributorId;
-    private int manufaturerId;
+    private int ItemId;
+    private String Name;
+    private String Description;
+    private String ModelNumber;
+    private int DistributorId;
+    private int ManufaturerId;
 
        
     public Item() {
         
     }
     public Item(int itemId, int distributorId, int manufaturerId) {
-        this.itemId = itemId;
-        this.distributorId = distributorId;
-        this.manufaturerId = manufaturerId;
+        this.ItemId = itemId;
+        this.DistributorId = distributorId;
+        this.ManufaturerId = manufaturerId;
         
     }
     public int getItemId() {
-        return itemId;
+        return ItemId;
     }
 
     public void setItemId(int id) {
-        this.itemId = id;
+        this.ItemId = id;
     }
     
     public String getName() {
-        return name;
+        return Name;
     }
     
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
     
     public String getDescription() {
-        return description;
+        return Description;
     }
     
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
     
     public String getModelNumber() {
-        return modelNumber;
+        return ModelNumber;
     }
     
     public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
+        this.ModelNumber = modelNumber;
     }
 
     public int getDistributorId() {
-        return distributorId;
+        return DistributorId;
     }
     
     public void setDistributorId(int id) {
-        this.distributorId = id;
+        this.DistributorId = id;
     }
     
     public int getManufacturerId() {
-        return manufaturerId;
+        return ManufaturerId;
     }
     
     public void setManufacturerId(int id) {
-        this.manufaturerId = id;
+        this.ManufaturerId = id;
     }
     
 }
