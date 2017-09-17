@@ -8,11 +8,8 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'createorder', loadChildren: './create-order/create-order.module#CreateOrderModule' },
-<<<<<<< HEAD
-            { path: 'cart', loadChildren: './cart/cart.module#CartModule' }
-=======
+            { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
             { path: 'orders', loadChildren: './orders/orders.module#OrdersModule' }
->>>>>>> 01e5b228632083d18066c28771297ec9480194f8
         ]
     }
 ];
