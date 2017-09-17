@@ -39,6 +39,8 @@ public class ItemService {
         while (cursor.hasNext()) {
             items.add((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
+        
+        cursor.close();
 
         return items;
 
@@ -57,6 +59,8 @@ public class ItemService {
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
+        
+        cursor.close();
 
         return item;
 
@@ -77,8 +81,8 @@ public class ItemService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("ItemId", item.getItemId());
-
+        searchQuery.put("ItemId", itemId);
+        item.setItemId((UUID.fromString(itemId)));
         DBCursor cursor = itemCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
@@ -86,7 +90,7 @@ public class ItemService {
         }
 
         itemCollection.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
-        
+        cursor.close();
         return item;
     }
 
@@ -105,5 +109,6 @@ public class ItemService {
         }
 
         itemCollection.remove(AppUtils.toDBObject(item));
+        cursor.close();
     }
 }
