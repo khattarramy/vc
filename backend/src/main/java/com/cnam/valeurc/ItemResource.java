@@ -51,7 +51,7 @@ public class ItemResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     
-    public Item updateItem(Item item, @PathParam("itemId") int itemId) throws UnknownHostException {
+    public Item updateItem(Item item, @PathParam("itemId") String itemId) throws UnknownHostException {
         return itemService.updateItem(item, itemId);
 
     }
@@ -60,7 +60,7 @@ public class ItemResource {
     @Path("/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public void deleteItem(@PathParam("itemId") int itemId) throws UnknownHostException {
+    public void deleteItem(@PathParam("itemId") String itemId) throws UnknownHostException {
         itemService.deleteItem(itemId);
 
     }

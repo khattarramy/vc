@@ -21,11 +21,11 @@ public class Item {
 
        
     public Item() {
-        this.ItemId = UUID.randomUUID().toString();
+
     }
-    public Item(String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
+    public Item(String ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
         
-        this.ItemId = UUID.randomUUID().toString();
+        this.ItemId=ItemId;
         this.Name = Name;
         this.Description = Description;
         this.ModelNumber = ModelNumber;

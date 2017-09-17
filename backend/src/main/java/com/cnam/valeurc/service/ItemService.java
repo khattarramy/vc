@@ -68,7 +68,7 @@ public class ItemService {
         if (!db.collectionExists("item")) {
             db.createCollection("item", null);
         }
-
+        item.setItemId(UUID.randomUUID().toString());
         DBCollection itemCollection = db.getCollection("item");
 
         itemCollection.insert(AppUtils.toDBObject(item));
@@ -76,7 +76,7 @@ public class ItemService {
         return item;
     }
 
-    public Item updateItem(Item item, int itemId) throws UnknownHostException {
+    public Item updateItem(Item item, String itemId) throws UnknownHostException {
 
         DB db = dbConnect.init();
         Item oldItem = new Item();
@@ -101,7 +101,7 @@ public class ItemService {
         return item;
     }
 
-    public void deleteItem(int itemId) throws UnknownHostException {
+    public void deleteItem(String itemId) throws UnknownHostException {
 
         DB db = dbConnect.init();
         Item item = new Item();
