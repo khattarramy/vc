@@ -23,8 +23,12 @@ public class ItemService {
 
         List<Item> items = new ArrayList();
         DB db = dbConnect.init();
-        DBCollection table = db.getCollection("item");
-        DBCursor cursor = table.find();
+        if (!db.collectionExists("item")) {
+            db.createCollection("item", null);
+        }
+
+        DBCollection itemCollection = db.getCollection("item");
+        DBCursor cursor = itemCollection.find();
 
         while (cursor.hasNext()) {
             items.add((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
@@ -38,12 +42,16 @@ public class ItemService {
 
         Item item = new Item();
         DB db = dbConnect.init();
-        DBCollection table = db.getCollection("item");
+        if (!db.collectionExists("item")) {
+            db.createCollection("item", null);
+        }
+
+        DBCollection itemCollection = db.getCollection("item");
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("ItemId", itemId);
 
-        DBCursor cursor = table.find(searchQuery);
+        DBCursor cursor = itemCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
@@ -56,6 +64,11 @@ public class ItemService {
     public Item addItem(Item item) throws UnknownHostException {
 
         DB db = dbConnect.init();
+
+        if (!db.collectionExists("item")) {
+            db.createCollection("item", null);
+        }
+
         DBCollection itemCollection = db.getCollection("item");
 
         itemCollection.insert(AppUtils.toDBObject(item));
@@ -67,18 +80,23 @@ public class ItemService {
 
         DB db = dbConnect.init();
         Item oldItem = new Item();
-        DBCollection table = db.getCollection("item");
+        if (!db.collectionExists("item")) {
+            db.createCollection("item", null);
+        }
+
+        DBCollection itemCollection = db.getCollection("item");
+
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("ItemId", itemId);
 
-        DBCursor cursor = table.find(searchQuery);
+        DBCursor cursor = itemCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
             oldItem = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
 
-        table.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
+        itemCollection.update(AppUtils.toDBObject(oldItem), AppUtils.toDBObject(item));
 
         return item;
     }
@@ -87,18 +105,22 @@ public class ItemService {
 
         DB db = dbConnect.init();
         Item item = new Item();
-        DBCollection table = db.getCollection("item");
+        if (!db.collectionExists("item")) {
+            db.createCollection("item", null);
+        }
+
+        DBCollection itemCollection = db.getCollection("item");
 
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("ItemId", itemId);
 
-        DBCursor cursor = table.find(searchQuery);
+        DBCursor cursor = itemCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDBObject(cursor.next(), Item.class));
         }
 
-        table.remove(AppUtils.toDBObject(item));
+        itemCollection.remove(AppUtils.toDBObject(item));
     }
 }
