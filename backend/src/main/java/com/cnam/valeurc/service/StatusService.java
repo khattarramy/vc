@@ -79,6 +79,8 @@ public class StatusService {
 
         searchQuery.put("StatusId", status.getStatusId());
 
+        status.setStatusId((UUID.fromString(statusId)));
+        
         DBCursor cursor = statusCollection.find(searchQuery);
 
         while (cursor.hasNext()) {

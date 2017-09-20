@@ -71,6 +71,8 @@ public class UserService {
 
         searchQuery.put("UserId", user.getUserId());
 
+        user.setUserId((UUID.fromString(userId)));
+        
         DBCursor cursor = userCollection.find(searchQuery);
 
         while (cursor.hasNext()) {

@@ -72,12 +72,14 @@ public class OrderService {
     }
 
     public Order updateOrder(Order order, String orderId) throws UnknownHostException {
-        
+
         Order oldOrder = new Order();
 
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("OrderId", order.getOrderId());
+
+        order.setOrderId((UUID.fromString(orderId)));
 
         DBCursor cursor = orderCollection.find(searchQuery);
 
@@ -86,7 +88,7 @@ public class OrderService {
         }
 
         orderCollection.update(AppUtils.toDBObject(oldOrder), AppUtils.toDBObject(order));
-        
+
         return order;
     }
 

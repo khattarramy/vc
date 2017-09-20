@@ -79,6 +79,8 @@ public class OrderDetailService {
 
         searchQuery.put("OrderDetailId", orderDetail.getOrderDetailId());
 
+        orderDetail.setOrderDetailId((UUID.fromString(orderDetailId)));
+        
         DBCursor cursor = orderDetailCollection.find(searchQuery);
 
         while (cursor.hasNext()) {

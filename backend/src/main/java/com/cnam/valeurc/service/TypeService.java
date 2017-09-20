@@ -79,6 +79,8 @@ public class TypeService {
 
         searchQuery.put("TypeId", type.getTypeId());
 
+        type.setTypeId((UUID.fromString(typeId)));
+        
         DBCursor cursor = typeCollection.find(searchQuery);
 
         while (cursor.hasNext()) {

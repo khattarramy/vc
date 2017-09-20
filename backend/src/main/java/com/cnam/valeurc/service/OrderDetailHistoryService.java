@@ -79,6 +79,8 @@ public class OrderDetailHistoryService {
 
         searchQuery.put("OrderDetailHistoryId", orderDetailHistory.getOrderDetailHistoryId());
 
+        orderDetailHistory.setOrderDetailHistoryId((UUID.fromString(orderDetailHistoryId)));
+        
         DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
