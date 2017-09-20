@@ -77,7 +77,7 @@ public class OrderService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("OrderId", order.getOrderId());
+        searchQuery.put("OrderId", orderId);
 
         order.setOrderId((UUID.fromString(orderId)));
 

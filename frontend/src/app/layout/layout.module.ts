@@ -17,6 +17,15 @@ import { ItemStartComponent } from './items/item-start/item-start.component';
 import { ItemEditComponent } from './items/item-edit/item-edit.component';
 import { ItemService } from './items/item.service';
 
+import { OrdersComponent } from './orders/orders.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+
+import { OrderStartComponent } from './orders/order-start/order-start.component';
+import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { OrderService } from './orders/order.service';
+
+
 @NgModule({
     imports: [
         CommonModule,
@@ -36,10 +45,16 @@ import { ItemService } from './items/item.service';
         ItemsComponent,
         ItemListComponent,
         ItemDetailComponent,
+        OrdersComponent,
+        OrderListComponent,
+        OrderDetailComponent,
+
         DropdownDirective,
         ItemStartComponent,
-        ItemEditComponent
+        ItemEditComponent,
+        OrderStartComponent,
+        OrderEditComponent
     ],
-    providers: [ ItemService]
+    providers: [ ItemService, OrderService]
 })
 export class LayoutModule { }
