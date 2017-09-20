@@ -5,11 +5,37 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
-    <app-item-item
-      *ngFor="let itemEl of items; let i = index"
-      [item]="itemEl"
-      [index]="i"></app-item-item>
-  </div>
-</div>
 
+
+  <div class="col col-xl-12 col-lg-12">
+    <div class="card mb-12">
+        <div class="card-header">Items</div>
+        <div class="card-block table-responsive">
+
+            <table class="table">
+                <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let itemEl of items; let i = index" style="cursor: pointer;"
+                        [routerLink]="[itemEl.itemId]"
+                        routerLinkActive="table-warning"                        >
+                            <th scope="row">1</th>
+                            <td>{{ itemEl.name }}</td>
+                            <td>{{ itemEl.description }}</td>
+                            <td>@mdo</td>
+                        </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>

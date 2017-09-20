@@ -12,7 +12,6 @@ import { HeaderComponent, SidebarComponent } from '../shared';
 import { ItemsComponent } from './items/items.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { ItemItemComponent } from './items/item-list/item-item/item-item.component';
 import { DropdownDirective } from '../shared/dropdown.directive';
 import { ItemStartComponent } from './items/item-start/item-start.component';
 import { ItemEditComponent } from './items/item-edit/item-edit.component';
@@ -37,7 +36,6 @@ import { ItemService } from './items/item.service';
         ItemsComponent,
         ItemListComponent,
         ItemDetailComponent,
-        ItemItemComponent,
         DropdownDirective,
         ItemStartComponent,
         ItemEditComponent

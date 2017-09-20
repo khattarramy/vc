@@ -5,25 +5,28 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <div
-      class="btn-group"
-      appDropdown>
-      <button
-        type="button"
-        class="btn btn-primary dropdown-toggle">
-        Manage Item <span class="caret"></span>
-      </button>
-      <ul>
-        <li><a style="cursor: pointer;" (click)="onEditItem()">Edit Item</a></li>
-        <li><a style="cursor: pointer;" (click)="onDeleteItem()">Delete Item</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+        <div class="col-xs-12">
+          {{ item?.description }}
+        </div>
+      </div>
 <div class="row">
   <div class="col-xs-12">
-    {{ item?.description }}
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onEditItem()">
+        Edit Item
+      </button>
+      <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onDeleteItem()">
+      Delete Item
+    </button>
+
+
   </div>
 </div>
+
 
