@@ -36,7 +36,7 @@ public class OrdersByUserResource {
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     
-    public List<Order> getOrdersByUserId(@PathParam("userId") int userId) throws UnknownHostException {
+    public List<Order> getOrdersByUserId(@PathParam("userId") String userId) throws UnknownHostException {
 
         return orderService.getOrdersByUserId(userId);
     }

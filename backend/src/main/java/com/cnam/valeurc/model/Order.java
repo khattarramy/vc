@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Order {
     
     private UUID OrderId;
-    private int UserId;
+    private String UserId;
     private int StatusId;
     private Date DateInitialized;
     private Date DateFinished;
@@ -27,7 +27,7 @@ public class Order {
         
     }
 
-    public Order(UUID id, int userId, int statusId) {
+    public Order(UUID id, String userId, int statusId) {
         this.OrderId = id;
         this.UserId = userId;
         this.StatusId = statusId;
@@ -43,11 +43,11 @@ public class Order {
         this.OrderId = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.UserId = userId;
     }
 

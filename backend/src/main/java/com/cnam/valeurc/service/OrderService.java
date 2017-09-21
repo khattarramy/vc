@@ -44,7 +44,7 @@ public class OrderService {
 
     }
 
-        public List<Order> getOrdersByUserId(int userId) throws UnknownHostException {
+        public List<Order> getOrdersByUserId(String userId) throws UnknownHostException {
 
         List<Order> orders = new ArrayList();
         
