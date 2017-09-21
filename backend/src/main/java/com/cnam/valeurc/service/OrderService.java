@@ -44,6 +44,24 @@ public class OrderService {
 
     }
 
+        public List<Order> getOrdersByUserId(int userId) throws UnknownHostException {
+
+        List<Order> orders = new ArrayList();
+        
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("UserId", userId);
+
+        DBCursor cursor = orderCollection.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            orders.add((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
+        }
+
+        return orders;
+
+    }
+        
     public Order getOrderById(String orderId) throws UnknownHostException {
 
         Order order = new Order();
