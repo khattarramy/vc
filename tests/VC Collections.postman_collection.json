@@ -410,6 +410,87 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Create Status",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/status",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"test1\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/status/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/status/107af18e-d91d-4d2d-acfc-a9543c171e2c",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Status By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/status/5c354e2f-97d9-47de-b750-0175589f1d0f",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
