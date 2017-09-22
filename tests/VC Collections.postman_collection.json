@@ -491,6 +491,127 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Update Stauts",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/status/107af18e-d91d-4d2d-acfc-a9543c171e2c",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"test12\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Types",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/types",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"test1\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Types",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/types/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Types By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Types By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Types",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"test12\"}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
