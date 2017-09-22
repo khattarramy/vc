@@ -309,6 +309,107 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Create Order Detail History",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"orderDetailId\":123,\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":1234,\"userId\":12345}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order Detail History",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order Detail History By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/15e4d7da-2532-4d38-add9-e201bbb8aeec",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order Detail History By Id",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/5c354e2f-97d9-47de-b750-0175589f1d0f",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order Detail History",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/15e4d7da-2532-4d38-add9-e201bbb8aeec",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"orderDetailId\":1234,\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":1234,\"userId\":12345}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
