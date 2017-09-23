@@ -24,9 +24,15 @@ public class User {
     public User() {
         
     }
-    public User(UUID userId, int typeId) {
+    public User(UUID userId, int typeId,String name,String address,int phone,String email,String username,String password) {
         this.UserId = userId;
         this.TypeId = typeId;
+        this.Name=name;
+        this.Address=address;
+        this.Phone=phone;
+        this.Email=email;
+        this.Username=username;
+        this.Password=password;
         
     }
     public UUID getUserId() {
