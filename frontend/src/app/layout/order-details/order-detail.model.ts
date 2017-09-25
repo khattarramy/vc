@@ -8,7 +8,7 @@ export class OrderDetail {
 
 
 
-  constructor(orderDetailId: string,orderId: string, itemId: Number, statusId: Number, userId: Number) {
+  constructor(orderDetailId: string, orderId: string, itemId: Number, statusId: Number, userId: Number) {
     this.orderId = orderId;
     this.userId = userId;
     this.statusId = statusId;

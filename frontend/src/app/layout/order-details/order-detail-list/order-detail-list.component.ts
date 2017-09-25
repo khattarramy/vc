@@ -11,7 +11,7 @@ import { OrderDetailService } from '../order-detail.service';
   styleUrls: ['./order-detail-list.component.css']
 })
 export class OrderDetailListComponent implements OnInit, OnDestroy {
-  orders: OrderDetail[];
+  orderDetails: OrderDetail[];
   subscription: Subscription;
 
   constructor(private orderDetailService: OrderDetailService,
@@ -22,15 +22,15 @@ export class OrderDetailListComponent implements OnInit, OnDestroy {
   ngOnInit() {
         this.subscription = this.orderDetailService.ordersChanged
       .subscribe(
-        (orders: OrderDetail[]) => {
-          this.orders = orders;
+        (orderDetails: OrderDetail[]) => {
+          this.orderDetails = orderDetails;
         }
       );
-    this.orderDetailService.getOrders()
-      .subscribe(response => { this.orders = response; });
+    this.orderDetailService.getOrderDetails()
+      .subscribe(response => { this.orderDetails = response; });
   }
 
-  onNewOrder() {
+  onNewOrderDetail() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 

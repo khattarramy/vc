@@ -14,50 +14,50 @@ export class OrderDetailService {
 
   constructor(private http: Http) {}
 
-  getOrders(): Observable<OrderDetail[]> {
+  getOrderDetails(): Observable<OrderDetail[]> {
     return this.http
-      .get("http://localhost:8080/valeurc/glg/orders")
+      .get("http://localhost:8080/valeurc/glg/orderdetails")
       .map((response: Response) => {
         const orderDetail: OrderDetail[] = response.json();
         return orderDetail;
       });
   }
 
-  getOrder(index: string): Observable<OrderDetail> {
+  getOrderDetail(index: string): Observable<OrderDetail> {
     return this.http
-      .get("http://localhost:8080/valeurc/glg/orders/" + index)
+      .get("http://localhost:8080/valeurc/glg/orderdetails/" + index)
       .map((response: Response) => {
         const orderDetail: OrderDetail = response.json();
         return orderDetail;
       });
   }
 
-  addOrder(order: OrderDetail) {
+  addOrderDetail(order: OrderDetail) {
     console.log(JSON.stringify(order));
     return this.http
-      .post("http://localhost:8080/valeurc/glg/orders", order)
+      .post("http://localhost:8080/valeurc/glg/orderdetails", order)
       .map((response: Response) => {
-        this.getOrders().subscribe(response => {
+        this.getOrderDetails().subscribe(response => {
           this.ordersChanged.next(response);
         });
       });
   }
 
-  updateOrder(index: string, newOrder: OrderDetail) {
-    const x: string = "http://localhost:8080/valeurc/glg/orders/" + index;
+  updateOrderDetail(index: string, newOrder: OrderDetail) {
+    const x: string = "http://localhost:8080/valeurc/glg/orderdetails/" + index;
     console.log(x);
     return this.http.put(x, newOrder).map((response: Response) => {
-      this.getOrders().subscribe(response => {
+      this.getOrderDetails().subscribe(response => {
         this.ordersChanged.next(response);
       });
     });
   }
 
-  deleteOrder(index: string) {
+  deleteOrderDetail(index: string) {
     return this.http
-      .delete("http://localhost:8080/valeurc/glg/orders/" + index)
+      .delete("http://localhost:8080/valeurc/glg/orderdetails/" + index)
       .map((response: Response) => {
-        this.getOrders().subscribe(response => {
+        this.getOrderDetails().subscribe(response => {
           this.ordersChanged.next(response);
         });
       });

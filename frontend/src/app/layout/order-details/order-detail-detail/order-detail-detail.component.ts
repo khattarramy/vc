@@ -23,22 +23,22 @@ export class OrderDetailDetailComponent implements OnInit {
       .subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.orderDetailService.getOrder(this.id)
+        this.orderDetailService.getOrderDetail(this.id)
           .subscribe(response => { this.orderDetail = response; });
       }
       );
   }
 
 
-  onEditOrder() {
+  onEditOrderDetail() {
     this.router.navigate(['edit'], { relativeTo: this.route });
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
-  onDeleteOrder() {
-    this.orderDetailService.deleteOrder(this.id)
+  onDeleteOrderDetail() {
+    this.orderDetailService.deleteOrderDetail(this.id)
       .subscribe(x => console.log(x));  ;
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/orderdetails']);
   }
 
 }

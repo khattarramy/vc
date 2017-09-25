@@ -1,12 +1,12 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{ orderDetail?.userId }}</h1>
+    <h1>{{ orderDetail?.orderDetailId }}</h1>
   </div>
 </div>
 <div class="row">
         <div class="col-xs-12">
-          {{ orderDetail?.statusId }}
+          {{ orderDetail?.orderId }}
         </div>
       </div>
 <div class="row">
@@ -15,14 +15,14 @@
       <button
         type="button"
         class="btn btn-primary"
-        (click)="onEditOrder()">
-        Edit Order
+        (click)="onEditOrderDetail()">
+        Edit Order Detail
       </button>
       <button
       type="button"
       class="btn btn-primary"
-      (click)="onDeleteOrder()">
-      Delete Order
+      (click)="onDeleteOrderDetail()">
+      Delete Order Detail
     </button>
 
 

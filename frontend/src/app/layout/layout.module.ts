@@ -24,12 +24,12 @@ import { OrderStartComponent } from './orders/order-start/order-start.component'
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderService } from './orders/order.service';
 
-// import { OrderDetailComponent } from './order-detail/order-detail.component';
-// import { OrderDetailListComponent } from './order-detail/order-detail-list/order-detail-list.component';
-// import { OrderDetailDetailComponent } from './order-detail/order-detail-detail/order-detail-detail.component';
-// import { OrderDetailStartComponent } from './order-detail/order-detail-start/order-detail-start.component';
-// import { OrderDetailEditComponent } from './order-detail/order-detail-edit/order-detail-edit.component';
-// import { OrderDetailService } from './order-detail/order-detail.service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDetailListComponent } from './order-details/order-detail-list/order-detail-list.component';
+import { OrderDetailDetailComponent } from './order-details/order-detail-detail/order-detail-detail.component';
+import { OrderDetailStartComponent } from './order-details/order-detail-start/order-detail-start.component';
+import { OrderDetailEditComponent } from './order-details/order-detail-edit/order-detail-edit.component';
+import { OrderDetailService } from './order-details/order-detail.service';
 
 
 @NgModule({
@@ -60,14 +60,13 @@ import { OrderService } from './orders/order.service';
         ItemEditComponent,
         OrderStartComponent,
         OrderEditComponent,
-        
-        // OrderDetailComponent,
-        // OrderDetailDetailComponent,
-        // OrderDetailEditComponent,
-        // OrderDetailListComponent,
-        // OrderDetailService,
-        // OrderDetailStartComponent
+
+        OrderDetailsComponent,
+        OrderDetailDetailComponent,
+        OrderDetailEditComponent,
+        OrderDetailListComponent,
+        OrderDetailStartComponent
     ],
-    providers: [ ItemService, OrderService]
+    providers: [ ItemService, OrderService ,OrderDetailService]
 })
 export class LayoutModule { }

@@ -15,7 +15,7 @@ export class OrderDetailEditComponent implements OnInit {
   editMode = false;
 
   orderDetail: OrderDetail;
-  orderForm: FormGroup = new FormGroup({
+  orderDetailForm: FormGroup = new FormGroup({
     orderDetailId: new FormControl(''),
     orderId: new FormControl(''),
     userId: new FormControl(''),
@@ -40,13 +40,13 @@ export class OrderDetailEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      console.log(this.orderForm.value);
+      console.log(this.orderDetailForm.value);
       //console.log(this.id);
-        this.orderDetailService.updateOrder(this.id, this.orderForm.value)
+        this.orderDetailService.updateOrderDetail(this.id, this.orderDetailForm.value)
           .subscribe(x => console.log(x));
     } else {
      // console.log(<Order>this.orderForm.value);
-      this.orderDetailService.addOrder(this.orderForm.value)
+      this.orderDetailService.addOrderDetail(this.orderDetailForm.value)
        .subscribe(x => console.log(x));
     }
     this.onCancel();
@@ -58,11 +58,11 @@ export class OrderDetailEditComponent implements OnInit {
   private initForm() {
 
     if (this.editMode) {
-      this.orderDetailService.getOrder(this.id)
+      this.orderDetailService.getOrderDetail(this.id)
         .subscribe(response => {
 
       this.orderDetail = response;
-          this.orderForm.setValue({
+          this.orderDetailForm.setValue({
             orderId: this.orderDetail.orderId,
             userId: this.orderDetail.userId,
             statusId: this.orderDetail.statusId,

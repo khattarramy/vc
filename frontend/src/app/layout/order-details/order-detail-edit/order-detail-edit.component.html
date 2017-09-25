@@ -1,19 +1,34 @@
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="orderDetailForm" (ngSubmit)="onSubmit()">
         <div class="col-xs-12">
                 <button
                   type="submit"
                   class="btn btn-success"
-                  [disabled]="!orderForm.valid">Save</button>
+                  [disabled]="!orderDetailForm.valid">Save</button>
                 <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
               </div>
         <fieldset class="form-group">
-                <label for="orderId">orderId</label>
+                <label for="orderDetailId">orderDetailId</label>
                 <input
-                id="orderId"
-                formControlName="orderId"
+                id="orderDetailId"
+                formControlName="orderDetailId"
                 class="form-control">
 
             </fieldset>
+            <fieldset class="form-group">
+                    <label for="orderId">orderId</label>
+                    <input class="form-control"
+                    id="orderId"
+                    formControlName="orderId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="itemId">itemId</label>
+                        <input class="form-control"
+                        id="itemId"
+                        formControlName="itemId">
+
+                    </fieldset>
             <fieldset class="form-group">
                     <label for="userId">userId</label>
                     <input class="form-control"
@@ -29,20 +44,8 @@
                         formControlName="statusId">
 
                     </fieldset>
-                    <fieldset class="form-group">
-                            <label for="dateInitialized">dateInitialized</label>
-                            <input class="form-control"
-                            id="dateInitialized"
-                            formControlName="dateInitialized">
 
-                        </fieldset>
-                        <fieldset class="form-group">
-                                <label for="dateFinished">dateFinished</label>
-                                <input class="form-control"
-                                id="dateFinished"
-                                formControlName="dateFinished">
 
-                            </fieldset>
 
 
 </form>
