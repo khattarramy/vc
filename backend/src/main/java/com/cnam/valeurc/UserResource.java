@@ -27,7 +27,7 @@ public class UserResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    
+
     public List<User> getUsers() throws UnknownHostException {
         return userService.getAllUsers();
     }
@@ -35,7 +35,7 @@ public class UserResource {
     @GET
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    
+
     public User getUser(@PathParam("userId") String userId) throws UnknownHostException {
 
         return userService.getUserById(userId);
@@ -44,8 +44,11 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
+
     public User addUser(User user) throws UnknownHostException {
+        
+        user.setUserId(UUID.randomUUID());
+
         return userService.addUser(user);
 
     }
@@ -54,7 +57,7 @@ public class UserResource {
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
+
     public User updateUser(User user, @PathParam("userId") String userId) throws UnknownHostException {
         return userService.updateUser(user, userId);
 

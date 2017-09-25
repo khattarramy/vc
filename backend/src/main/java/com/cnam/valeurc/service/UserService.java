@@ -69,7 +69,7 @@ public class UserService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("UserId", user.getUserId());
+        searchQuery.put("UserId", userId);
 
         user.setUserId((UUID.fromString(userId)));
         
