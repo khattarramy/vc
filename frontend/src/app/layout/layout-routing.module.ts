@@ -9,6 +9,12 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderStartComponent } from './orders/order-start/order-start.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+
+// import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { OrderDetailStartComponent } from './order-detail/order-detail-start/order-detail-start.component';
+import { OrderDetailDetailComponent } from './order-detail/order-detail-detail/order-detail-detail.component';
+import { OrderDetailEditComponent } from './order-detail/order-detail-edit/order-detail-edit.component';
+
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
@@ -16,6 +22,7 @@ const routes: Routes = [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'createorder', loadChildren: './create-order/create-order.module#CreateOrderModule' },
             { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
+            { path: 'orderdetail', loadChildren: './order-detail/order-detail.module#OrderDetailModule' },
             { path: 'orders', component: OrdersComponent, children: [
                 { path: '', component: OrderStartComponent },
                 { path: 'new', component: OrderEditComponent },

@@ -1,0 +1,51 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div class="col-xs-12">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!orderForm.valid">Save</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+              </div>
+        <fieldset class="form-group">
+                <label for="orderId">orderId</label>
+                <input
+                id="orderId"
+                formControlName="orderId"
+                class="form-control">
+
+            </fieldset>
+            <fieldset class="form-group">
+                    <label for="userId">userId</label>
+                    <input class="form-control"
+                    id="userId"
+                    formControlName="userId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="statusId">statusId</label>
+                        <input class="form-control"
+                        id="statusId"
+                        formControlName="statusId">
+
+                    </fieldset>
+                    <fieldset class="form-group">
+                            <label for="dateInitialized">dateInitialized</label>
+                            <input class="form-control"
+                            id="dateInitialized"
+                            formControlName="dateInitialized">
+
+                        </fieldset>
+                        <fieldset class="form-group">
+                                <label for="dateFinished">dateFinished</label>
+                                <input class="form-control"
+                                id="dateFinished"
+                                formControlName="dateFinished">
+
+                            </fieldset>
+
+
+</form>
+
+
+

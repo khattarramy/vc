@@ -20,10 +20,16 @@ import { ItemService } from './items/item.service';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
-
 import { OrderStartComponent } from './orders/order-start/order-start.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderService } from './orders/order.service';
+
+// import { OrderDetailComponent } from './order-detail/order-detail.component';
+// import { OrderDetailListComponent } from './order-detail/order-detail-list/order-detail-list.component';
+// import { OrderDetailDetailComponent } from './order-detail/order-detail-detail/order-detail-detail.component';
+// import { OrderDetailStartComponent } from './order-detail/order-detail-start/order-detail-start.component';
+// import { OrderDetailEditComponent } from './order-detail/order-detail-edit/order-detail-edit.component';
+// import { OrderDetailService } from './order-detail/order-detail.service';
 
 
 @NgModule({
@@ -53,7 +59,14 @@ import { OrderService } from './orders/order.service';
         ItemStartComponent,
         ItemEditComponent,
         OrderStartComponent,
-        OrderEditComponent
+        OrderEditComponent,
+        
+        // OrderDetailComponent,
+        // OrderDetailDetailComponent,
+        // OrderDetailEditComponent,
+        // OrderDetailListComponent,
+        // OrderDetailService,
+        // OrderDetailStartComponent
     ],
     providers: [ ItemService, OrderService]
 })

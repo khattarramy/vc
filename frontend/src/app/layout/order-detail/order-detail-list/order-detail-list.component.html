@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewOrder()">New Order</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+
+
+  <div class="col col-xl-12 col-lg-12">
+    <div class="card mb-12">
+        <div class="card-header">Orders</div>
+        <div class="card-block table-responsive">
+
+            <table class="table">
+                <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>User Id</th>
+                    <th>Status Id</th>
+                    <th>Date Initialized</th>
+                </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let orderEl of orders; let i = index" style="cursor: pointer;"
+                        [routerLink]="[orderEl.orderId]"
+                        routerLinkActive="table-warning"                        >
+                            <th scope="row">1</th>
+                            <td>{{ orderEl.userId }}</td>
+                            <td>{{ orderEl.statusId }}</td>
+                            <td>{{orderEl.dateInitialized}}</td>
+                        </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</div>
