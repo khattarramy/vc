@@ -712,6 +712,26 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "Login user",
+			"request": {
+				"url": "http://localhost:8080/valeurc/glg/login/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\"username\":\"username\",\"password\":\"password\"}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
