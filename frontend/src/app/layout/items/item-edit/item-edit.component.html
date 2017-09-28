@@ -1,57 +1,45 @@
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-        <div class="col-xs-12">
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  [disabled]="!itemForm.valid">Save</button>
-                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-              </div>
-        <fieldset class="form-group">
-                <label for="itemId">itemId</label>
-                <input
-                id="itemId"
-                formControlName="itemId"
-                class="form-control">
+    <div class="col-xs-12">
+        <button type="submit" class="btn btn-success" [disabled]="!itemForm.valid">Save</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </div>
+    <fieldset class="form-group">
+        <label for="itemId">itemId</label>
+        <input id="itemId" formControlName="itemId" class="form-control">
 
-            </fieldset>
-            <fieldset class="form-group">
-                    <label for="name">name</label>
-                    <input class="form-control"
-                    id="name"
-                    formControlName="name"
-                    >
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="name">name</label>
+        <input class="form-control" id="name" formControlName="name">
 
-                </fieldset>
-                <fieldset class="form-group">
-                        <label for="description">description</label>
-                        <input class="form-control"
-                        id="description"
-                        formControlName="description">
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="description">description</label>
+        <input class="form-control" id="description" formControlName="description">
 
-                    </fieldset>
-                    <fieldset class="form-group">
-                            <label for="modelNumber">modelNumber</label>
-                            <input class="form-control"
-                            id="modelNumber"
-                            formControlName="modelNumber">
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="modelNumber">modelNumber</label>
+        <input class="form-control" id="modelNumber" formControlName="modelNumber">
 
-                        </fieldset>
-                        <fieldset class="form-group">
-                                <label for="distributorId">distributorId</label>
-                                <input class="form-control"
-                                id="distributorId"
-                                formControlName="distributorId">
+    </fieldset>
 
-                            </fieldset>
-                            <fieldset class="form-group">
-                                    <label for="manufacturerId">manufacturerId</label>
-                                    <input class="form-control"
-                                    id="manufacturerId"
-                                    formControlName="manufacturerId">
+    <fieldset class="form-group">
+        <label for="distributorId">distributorId</label>
 
-                                </fieldset>
+        <select class="form-control" id="distributorId" formControlName="distributorId">
+            <option *ngFor="let userEl of users; let i = index"
+            value="{{userEl.userId}}">{{userEl.name}}</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="manufacturerId">manufacturerId</label>
+        <select class="form-control" id="manufacturerId" formControlName="manufacturerId">
+                <option *ngFor="let userEl of users; let i = index"
+                value="{{userEl.userId}}">{{userEl.name}}</option>
+            </select>
+
+
+    </fieldset>
 
 </form>
-
-
-

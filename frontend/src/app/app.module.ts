@@ -1,3 +1,4 @@
+import { UserService } from './login/user.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
@@ -32,7 +33,7 @@ export function HttpLoaderFactory(http: Http) {
             }
         })
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard,UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
