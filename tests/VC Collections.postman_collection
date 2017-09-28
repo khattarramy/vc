@@ -324,7 +324,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"orderDetailId\":123,\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":1234,\"userId\":12345}"
+					"raw": "{\"orderDetailId\":\"123\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":\"1234\",\"userId\":\"12345\"}"
 				},
 				"description": ""
 			},
@@ -394,7 +394,7 @@
 		{
 			"name": "Update Order Detail History",
 			"request": {
-				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/15e4d7da-2532-4d38-add9-e201bbb8aeec",
+				"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/021d3714-b4f9-4bda-b9e6-4de8bc5d3e14",
 				"method": "PUT",
 				"header": [
 					{
@@ -405,7 +405,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"orderDetailId\":1234,\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":1234,\"userId\":12345}"
+					"raw": "{\"orderDetailId\":\"111111\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":\"2222222\",\"userId\":\"33333\"}"
 				},
 				"description": ""
 			},

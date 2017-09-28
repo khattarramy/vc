@@ -14,15 +14,15 @@ import java.util.UUID;
  */
 public class OrderDetailHistory {
     private UUID OrderDetailHistoryId;
-    private int OrderDetailId;
+    private String OrderDetailId;
     private Date DateTime;
-    private int StatusId;
-    private int UserId;
+    private String StatusId;
+    private String UserId;
     
     public OrderDetailHistory() {
         
     }
-    public OrderDetailHistory(UUID orderDetailHistoryId, int orderDetailId, int statusId,int userId) {
+    public OrderDetailHistory(UUID orderDetailHistoryId, String orderDetailId, String statusId,String userId) {
         this.OrderDetailHistoryId = orderDetailHistoryId;
         this.OrderDetailId = orderDetailId;
         this.StatusId = statusId;
@@ -37,11 +37,11 @@ public class OrderDetailHistory {
         this.OrderDetailHistoryId = id;
     }
     
-    public int getOrderDetailId() {
+    public String getOrderDetailId() {
         return OrderDetailId;
     }
 
-    public void setOrderDetailId(int id) {
+    public void setOrderDetailId(String id) {
         this.OrderDetailId = id;
     }
     
@@ -53,19 +53,19 @@ public class OrderDetailHistory {
         this.DateTime = date;
     }
     
-    public int getStatusId() {
+    public String getStatusId() {
         return StatusId;
     }
 
-    public void setStatusId(int id) {
+    public void setStatusId(String id) {
         this.StatusId = id;
     }
     
-    public int getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(int id) {
+    public void setUserId(String id) {
         this.UserId = id;
     }
 }
