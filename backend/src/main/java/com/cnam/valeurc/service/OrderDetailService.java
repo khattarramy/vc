@@ -43,7 +43,27 @@ public class OrderDetailService {
         return orderDetails;
 
     }
+    
+    public List<OrderDetail> getOrderDetailByOrderId(String orderId) throws UnknownHostException {
 
+        List<OrderDetail> orderDetails = new ArrayList();
+        
+        BasicDBObject searchQuery = new BasicDBObject();
+
+        searchQuery.put("OrderId", orderId);
+
+        DBCursor cursor = orderDetailCollection.find(searchQuery);
+
+        while (cursor.hasNext()) {
+            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+        }
+
+        return orderDetails;
+
+    }
+
+    
+    
     public OrderDetail getOrderDetailById(String orderDetailId) throws UnknownHostException {
 
         OrderDetail orderDetail = new OrderDetail();

@@ -25,13 +25,7 @@ public class OrdersByUserResource {
         this.orderService = new OrderService();
     }
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    
-    public List<Order> getOrders() throws UnknownHostException {
-        return orderService.getAllOrders();
-    }
-
+  
     @GET
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
