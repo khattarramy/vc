@@ -627,7 +627,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
+					"raw": "    {\"typeId\":\"124124\",\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"password\":\"password\"}"
 				},
 				"description": ""
 			},
@@ -676,7 +676,7 @@
 		{
 			"name": "Update user by id",
 			"request": {
-				"url": "http://localhost:8080/valeurc/glg/users/fafb962f-ef61-48ea-be9e-30831c639769",
+				"url": "http://localhost:8080/valeurc/glg/users/528d0021-74fa-48d8-a34f-97082fedd159",
 				"method": "PUT",
 				"header": [
 					{
@@ -687,7 +687,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\"typeId\":11,\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"email1\",\"username\":\"username1\",\"password\":\"password1\"}"
+					"raw": "    {\"typeId\":\"a32gsdg\",\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"ali\",\"password\":\"pass\"}"
 				},
 				"description": ""
 			},

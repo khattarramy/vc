@@ -12,10 +12,10 @@ import java.util.UUID;
  */
 public class User {
     private UUID UserId;
-    private int TypeId;
+    private String TypeId;
     private String Name;
     private String Address;
-    private int Phone;
+    private String Phone;
     private String Email;
     private String Password;
 
@@ -23,7 +23,7 @@ public class User {
     public User() {
         
     }
-    public User(UUID userId, int typeId,String name,String address,int phone,String email,String password) {
+    public User(UUID userId, String typeId,String name,String address,String phone,String email,String password) {
         this.UserId = userId;
         this.TypeId = typeId;
         this.Name=name;
@@ -41,11 +41,11 @@ public class User {
         this.UserId = id;
     }
 
-    public int getTypeId() {
+    public String getTypeId() {
         return TypeId;
     }
     
-    public void setTypeId(int id) {
+    public void setTypeId(String id) {
         this.TypeId = id;
     }
     
@@ -65,11 +65,11 @@ public class User {
         this.Address = address;
     }
     
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
     
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.Phone = phone;
     }
     
