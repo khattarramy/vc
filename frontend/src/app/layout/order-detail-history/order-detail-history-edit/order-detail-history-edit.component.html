@@ -1,0 +1,54 @@
+<form [formGroup]="orderDetailHistoryForm" (ngSubmit)="onSubmit()">
+        <div class="col-xs-12">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!orderDetailHistoryForm.valid">Save</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+              </div>
+        <fieldset class="form-group">
+                <label for="orderDetailHistoryId">orderDetailId</label>
+                <input
+                id="orderDetailHistoryId"
+                formControlName="orderDetailHistoryId"
+                class="form-control">
+
+            </fieldset>
+            <fieldset class="form-group">
+                    <label for="orderDetailId">orderId</label>
+                    <input class="form-control"
+                    id="orderDetailId"
+                    formControlName="orderDetailId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="dateTime">itemId</label>
+                        <input class="form-control"
+                        id="dateTime"
+                        formControlName="dateTime">
+
+                    </fieldset>
+            <fieldset class="form-group">
+                    <label for="userId">userId</label>
+                    <input class="form-control"
+                    id="userId"
+                    formControlName="userId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="statusId">statusId</label>
+                        <input class="form-control"
+                        id="statusId"
+                        formControlName="statusId">
+
+                    </fieldset>
+
+
+
+
+</form>
+
+
+
