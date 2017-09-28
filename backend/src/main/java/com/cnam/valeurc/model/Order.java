@@ -18,7 +18,7 @@ public class Order {
     
     private UUID OrderId;
     private String UserId;
-    private int StatusId;
+    private String StatusId;
     private Date DateInitialized;
     private Date DateFinished;
 
@@ -27,7 +27,7 @@ public class Order {
         
     }
 
-    public Order(UUID id, String userId, int statusId) {
+    public Order(UUID id, String userId, String statusId) {
         this.OrderId = id;
         this.UserId = userId;
         this.StatusId = statusId;
@@ -51,11 +51,11 @@ public class Order {
         this.UserId = userId;
     }
 
-    public int getStatusId() {
+    public String getStatusId() {
         return StatusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(String statusId) {
         this.StatusId = statusId;
     }
 

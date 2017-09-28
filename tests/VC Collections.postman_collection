@@ -122,7 +122,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"userId\":\"ljflkafh\",\"statusId\":123,\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+					"raw": "{\"userId\":\"ljflkafh\",\"statusId\":\"123\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 				},
 				"description": ""
 			},
@@ -203,7 +203,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"userId\":\"ljflkafh\",\"statusId\":1234,\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+					"raw": "{\"userId\":\"ljflkafh\",\"statusId\":\"1234\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 				},
 				"description": ""
 			},
