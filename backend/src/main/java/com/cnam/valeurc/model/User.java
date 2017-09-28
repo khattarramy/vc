@@ -17,21 +17,19 @@ public class User {
     private String Address;
     private int Phone;
     private String Email;
-    private String Username;
     private String Password;
 
        
     public User() {
         
     }
-    public User(UUID userId, int typeId,String name,String address,int phone,String email,String username,String password) {
+    public User(UUID userId, int typeId,String name,String address,int phone,String email,String password) {
         this.UserId = userId;
         this.TypeId = typeId;
         this.Name=name;
         this.Address=address;
         this.Phone=phone;
         this.Email=email;
-        this.Username=username;
         this.Password=password;
         
     }
@@ -81,14 +79,6 @@ public class User {
     
     public void setEmail(String email) {
         this.Email = email;
-    }
-    
-    public String getUserName() {
-        return Username;
-    }
-    
-    public void setUserName(String username) {
-        this.Username = username;
     }
     
     public String getPassword() {

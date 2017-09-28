@@ -11,25 +11,25 @@ import java.util.UUID;
  * @author riidaali
  */
 public class Login {
-    private String Username;
+    private String Email;
     private String Password;
 
        
     public Login() {
         
     }
-    public Login(String username,String password) {
+    public Login(String email,String password) {
         
-        this.Username=username;
+        this.Email=email;
         this.Password=password;
         
     }
-    public String getUserName() {
-        return Username;
+    public String getEmail() {
+        return Email;
     }
     
-    public void setUserName(String username) {
-        this.Username = username;
+    public void setEmail(String email) {
+        this.Email = email;
     }
     
     public String getPassword() {

@@ -36,10 +36,10 @@ public class LoginService {
     public User loginUser(Login login) {
 
         User user = new User();
-        user.setUserName("");
+        
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("Username", login.getUserName());
+        searchQuery.put("Email", login.getEmail());
         searchQuery.put("Password", login.getPassword());
 
         DBCursor cursor = userCollection.find(searchQuery);
