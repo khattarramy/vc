@@ -4,13 +4,13 @@ export class Item {
   public name: string;
   public description: string;
   public modelNumber: string;
-  public distributorId: Number;
-  public manufacturerId: Number;
+  public distributorId: string;
+  public manufacturerId: string;
 
 
 
-  constructor(itemId: string, name: string, description: string, modelNumber: string, distributorId: Number,
-    manufacturerId: Number) {
+  constructor(itemId: string, name: string, description: string, modelNumber: string, distributorId: string,
+    manufacturerId: string) {
     this.itemId = itemId;
     this.name = name;
     this.description = description;
