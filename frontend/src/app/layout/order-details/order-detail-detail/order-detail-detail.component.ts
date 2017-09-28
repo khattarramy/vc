@@ -38,7 +38,7 @@ export class OrderDetailDetailComponent implements OnInit {
   onDeleteOrderDetail() {
     this.orderDetailService.deleteOrderDetail(this.id)
       .subscribe(x => console.log(x));  ;
-    this.router.navigate(['/orderdetails']);
+    this.router.navigate(['/order-details']);
   }
 
 }
