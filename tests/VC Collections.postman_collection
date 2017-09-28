@@ -727,7 +727,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\"username\":\"username\",\"password\":\"password\"}"
+					"raw": "    {\"email\":\"email\",\"password\":\"password\"}"
 				},
 				"description": ""
 			},
