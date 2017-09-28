@@ -223,7 +223,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"orderId\":123,\"itemId\":1234,\"statusId\":12345,\"userId\":123456}"
+					"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"statusId\":\"12345\",\"userId\":\"123456\"}"
 				},
 				"description": ""
 			},
@@ -293,7 +293,7 @@
 		{
 			"name": "Update Order Details",
 			"request": {
-				"url": "http://localhost:8080/valeurc/glg/orderdetails/5c354e2f-97d9-47de-b750-0175589f1d0f",
+				"url": "http://localhost:8080/valeurc/glg/orderdetails/4cf9cff4-2a3f-4a6a-8dbb-3ee6ba1bd36a",
 				"method": "PUT",
 				"header": [
 					{
@@ -304,7 +304,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"orderId\":123,\"itemId\":12344,\"statusId\":12345,\"userId\":123456}"
+					"raw": "{\"orderId\":\"2222\",\"itemId\":\"3333\",\"statusId\":\"4444\",\"userId\":\"5555\"}"
 				},
 				"description": ""
 			},

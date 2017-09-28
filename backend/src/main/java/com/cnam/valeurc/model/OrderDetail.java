@@ -12,15 +12,15 @@ import java.util.UUID;
  */
 public class OrderDetail {
     private UUID OrderDetailId;
-    private int OrderId;
-    private int ItemId;
-    private int StatusId;
-    private int UserId;
+    private String OrderId;
+    private String ItemId;
+    private String StatusId;
+    private String UserId;
        
     public OrderDetail() {
         
     }
-    public OrderDetail(UUID orderDetailId, int orderId, int itemId, int statusId, int userId) {
+    public OrderDetail(UUID orderDetailId, String orderId, String itemId, String statusId, String userId) {
         this.OrderDetailId = orderDetailId;
         this.ItemId = itemId;
         this.ItemId = itemId;
@@ -36,35 +36,35 @@ public class OrderDetail {
         this.OrderDetailId = id;
     }
     
-    public int getOrderId() {
+    public String getOrderId() {
         return OrderId;
     }
 
-    public void setOrderId(int id) {
+    public void setOrderId(String id) {
         this.OrderId = id;
     }
     
-    public int getItemId() {
+    public String getItemId() {
         return ItemId;
     }
 
-    public void setItemId(int id) {
+    public void setItemId(String id) {
         this.ItemId = id;
     }
     
-    public int getStatusId() {
+    public String getStatusId() {
         return StatusId;
     }
 
-    public void setStatusId(int id) {
+    public void setStatusId(String id) {
         this.StatusId = id;
     }
     
-    public int getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(int id) {
+    public void setUserId(String id) {
         this.UserId = id;
     }
 }
