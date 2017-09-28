@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+					"raw": "{\"description\":\"desc\",\"distributorId\":\"1231\",\"manufacturerId\":\"10\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
 				},
 				"description": ""
 			},
@@ -91,7 +91,7 @@
 		{
 			"name": "Update Item",
 			"request": {
-				"url": "http://localhost:8080/valeurc/glg/items/870fb9cc-fc56-4a2a-a22b-9c282228a677",
+				"url": "http://localhost:8080/valeurc/glg/items/52796ddf-3e7b-4774-87f6-fe64e8f5aa16",
 				"method": "PUT",
 				"header": [
 					{
@@ -102,7 +102,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"ItemId\":\"item-id\",\"description\":\"ali4\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+					"raw": "{\"ItemId\":\"item-id\",\"description\":\"ali4\",\"distributorId\":\"12\",\"manufacturerId\":\"10\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
 				},
 				"description": ""
 			},
