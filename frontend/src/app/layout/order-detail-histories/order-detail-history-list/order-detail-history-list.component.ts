@@ -11,7 +11,7 @@ import { OrderDetailHistoryService } from '../order-detail-history.service';
   styleUrls: ['./order-detail-history-list.component.css']
 })
 export class OrderDetailHistoryListComponent implements OnInit, OnDestroy {
-  orderDetailsHistory: OrderDetailHistory[];
+  orderDetailHistories: OrderDetailHistory[];
   subscription: Subscription;
 
   constructor(private orderDetailHistoryService: OrderDetailHistoryService,
@@ -22,12 +22,13 @@ export class OrderDetailHistoryListComponent implements OnInit, OnDestroy {
   ngOnInit() {
         this.subscription = this.orderDetailHistoryService.ordersChanged
       .subscribe(
-        (orderDetailsHistory: OrderDetailHistory[]) => {
-          this.orderDetailsHistory = orderDetailsHistory;
+        (orderDetailHistories: OrderDetailHistory[]) => {
+          this.orderDetailHistories = orderDetailHistories;
+          
         }
       );
     this.orderDetailHistoryService.getOrdersDetailHistory()
-      .subscribe(response => { this.orderDetailsHistory = response; });
+      .subscribe(response => { this.orderDetailHistories = response; });
   }
 
   onNewOrderDetailHistory() {

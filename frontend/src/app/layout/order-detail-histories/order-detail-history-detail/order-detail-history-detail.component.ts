@@ -38,7 +38,7 @@ export class OrderDetailHistoryDetailComponent implements OnInit {
   onDeleteOrderDetailHistory() {
     this.orderDetailHistoryService.deleteOrderDetailHistory(this.id)
       .subscribe(x => console.log(x));  ;
-    this.router.navigate(['/order-details']);
+    this.router.navigate(['/order-detail-histories']);
   }
 
 }

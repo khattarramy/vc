@@ -31,6 +31,13 @@ import { OrderDetailStartComponent } from './order-details/order-detail-start/or
 import { OrderDetailEditComponent } from './order-details/order-detail-edit/order-detail-edit.component';
 import { OrderDetailService } from './order-details/order-detail.service';
 
+import { OrderDetailHistoriesComponent } from './order-detail-histories/order-detail-histories.component';
+import { OrderDetailHistoryListComponent } from './order-detail-histories/order-detail-history-list/order-detail-history-list.component';
+import { OrderDetailHistoryDetailComponent } from './order-detail-histories/order-detail-history-detail/order-detail-history-detail.component';
+import { OrderDetailHistoryStartComponent } from './order-detail-histories/order-detail-history-start/order-detail-history-start.component';
+import { OrderDetailHistoryEditComponent } from './order-detail-histories/order-detail-history-edit/order-detail-history-edit.component';
+import { OrderDetailHistoryService } from './order-detail-histories/order-detail-history.service';
+
 
 @NgModule({
     imports: [
@@ -65,8 +72,15 @@ import { OrderDetailService } from './order-details/order-detail.service';
         OrderDetailDetailComponent,
         OrderDetailEditComponent,
         OrderDetailListComponent,
-        OrderDetailStartComponent
+        OrderDetailStartComponent,
+
+
+        OrderDetailHistoriesComponent,
+        OrderDetailHistoryDetailComponent,
+        OrderDetailHistoryEditComponent,
+        OrderDetailHistoryListComponent,
+        OrderDetailHistoryStartComponent
     ],
-    providers: [ ItemService, OrderService ,OrderDetailService]
+    providers: [ ItemService, OrderService , OrderDetailService, OrderDetailHistoryService]
 })
 export class LayoutModule { }

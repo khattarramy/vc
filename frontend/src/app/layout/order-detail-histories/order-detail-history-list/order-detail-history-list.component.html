@@ -9,25 +9,25 @@
 
   <div class="col col-xl-12 col-lg-12">
     <div class="card mb-12">
-        <div class="card-header">Order Details</div>
+        <div class="card-header">Order Detail Histories</div>
         <div class="card-block table-responsive">
 
             <table class="table">
                 <thead class="thead-default">
                 <tr>
                     <th>#</th>
+                    <th>Order Detail History Id</th>
                     <th>Order Detail Id</th>
-                    <th>Order Id</th>
                     <th>Status Id</th>
                 </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let orderEl of orderDetails; let i = index" style="cursor: pointer;"
-                        [routerLink]="[orderEl.orderDetailId]"
+                        <tr *ngFor="let orderEl of orderDetailHistories; let i = index" style="cursor: pointer;"
+                        [routerLink]="[orderEl.orderDetailHistoryId]"
                         routerLinkActive="table-warning"                        >
                             <th scope="row">1</th>
+                            <td>{{ orderEl.orderDetailHistoryId }}</td>
                             <td>{{ orderEl.orderDetailId }}</td>
-                            <td>{{ orderEl.orderId }}</td>
                             <td>{{orderEl.statusId}}</td>
                         </tr>
 

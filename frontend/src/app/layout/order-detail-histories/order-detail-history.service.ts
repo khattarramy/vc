@@ -32,10 +32,13 @@ export class OrderDetailHistoryService {
       });
   }
 
-  addOrderDetailHistory(order: OrderDetailHistory) {
-    console.log(JSON.stringify(order));
+  addOrderDetailHistory(orderDetailHistory: OrderDetailHistory) {
+    console.log(JSON.stringify(orderDetailHistory));
     return this.http
-      .post("http://localhost:8080/valeurc/glg/orderdetailhistory", order)
+      .post(
+        "http://localhost:8080/valeurc/glg/orderdetailhistory",
+        orderDetailHistory
+      )
       .map((response: Response) => {
         this.getOrdersDetailHistory().subscribe(response => {
           this.ordersChanged.next(response);
@@ -43,10 +46,11 @@ export class OrderDetailHistoryService {
       });
   }
 
-  updateOrderDetailHistory(index: string, newOrder: OrderDetailHistory) {
-    const x: string = "http://localhost:8080/valeurc/glg/orderdetailhistory/" + index;
+  updateOrderDetailHistory(index: string, newOrderDetailHistory: OrderDetailHistory) {
+    const x: string =
+      "http://localhost:8080/valeurc/glg/orderdetailhistory/" + index;
     console.log(x);
-    return this.http.put(x, newOrder).map((response: Response) => {
+    return this.http.put(x, newOrderDetailHistory).map((response: Response) => {
       this.getOrdersDetailHistory().subscribe(response => {
         this.ordersChanged.next(response);
       });

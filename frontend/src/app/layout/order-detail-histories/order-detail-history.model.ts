@@ -4,11 +4,11 @@ export class OrderDetailHistory {
   public orderDetailId: string;
   public userId: string;
   public statusId: string;
-  public dateTime: Date;
+  public dateTime: string;
 
 
 
-  constructor(orderDetailHistoryId: string, orderDetailId: string, dateTime: Date, statusId: string, userId: string) {
+  constructor(orderDetailHistoryId: string, orderDetailId: string, userId: string, statusId: string, dateTime: string) {
     this.orderDetailHistoryId = orderDetailHistoryId;
     this.userId = userId;
     this.statusId = statusId;
