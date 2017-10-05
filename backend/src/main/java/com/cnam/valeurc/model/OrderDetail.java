@@ -16,6 +16,8 @@ public class OrderDetail {
     private String ItemId;
     private String StatusId;
     private String UserId;
+    private int Quantity;
+    private int QuantityDistributor;
        
     public OrderDetail() {
         
@@ -66,5 +68,19 @@ public class OrderDetail {
 
     public void setUserId(String id) {
         this.UserId = id;
+    }
+    public int getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.Quantity = quantity;
+    }
+    public int getQuantityDistributor() {
+        return QuantityDistributor;
+    }
+
+    public void setQuantityDistributor(int quantityDistributor) {
+        this.QuantityDistributor = quantityDistributor;
     }
 }
