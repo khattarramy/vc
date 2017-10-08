@@ -15,7 +15,8 @@ public class OrderDetail {
     private String OrderId;
     private String ItemId;
     private String StatusId;
-    private String UserId;
+    private String RetailerId;
+    private String DistributorId;
     private int Quantity;
     private int QuantityDistributor;
        
@@ -27,7 +28,7 @@ public class OrderDetail {
         this.ItemId = itemId;
         this.ItemId = itemId;
         this.StatusId = statusId;
-        this.UserId = userId;
+        this.RetailerId = userId;
     }
     
     public UUID getOrderDetailId() {
@@ -62,12 +63,19 @@ public class OrderDetail {
         this.StatusId = id;
     }
     
-    public String getUserId() {
-        return UserId;
+    public String getDistributorId() {
+        return DistributorId;
     }
 
-    public void setUserId(String id) {
-        this.UserId = id;
+    public void setDistributorId(String id) {
+        this.DistributorId = id;
+    }
+    public String getRetailerId() {
+        return RetailerId;
+    }
+
+    public void setRetailerId(String id) {
+        this.RetailerId = id;
     }
     public int getQuantity() {
         return Quantity;

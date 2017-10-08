@@ -27,24 +27,23 @@ public class OrderDetailResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public List<OrderDetail> getOrderDetails() throws UnknownHostException {
-        return orderDetailService.getAllOrderDetails();
+
+    public List<OrderDetail> getOrderDetails(@QueryParam("retailerId") String retailerId, @QueryParam("distributorId") String distributorId, @QueryParam("statusId") String statusId) throws UnknownHostException {
+        return orderDetailService.getAllOrderDetails(retailerId,distributorId,statusId);
     }
 
     @GET
     @Path("/{orderDetailId}")
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public OrderDetail getOrderDetail(@PathParam("orderDetailId") String orderDetailId) throws UnknownHostException {
 
+    public OrderDetail getOrderDetail(@PathParam("orderDetailId") String orderDetailId) throws UnknownHostException {
         return orderDetailService.getOrderDetailById(orderDetailId);
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
+
     public OrderDetail addOrderDetail(OrderDetail orderDetail) throws UnknownHostException {
         return orderDetailService.addOrderDetail(orderDetail);
 
@@ -54,7 +53,7 @@ public class OrderDetailResource {
     @Path("/{orderDetailId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
+
     public OrderDetail updateOrderDetail(OrderDetail orderDetail, @PathParam("orderDetailId") String orderDetailId) throws UnknownHostException {
         return orderDetailService.updateOrderDetail(orderDetail, orderDetailId);
 
