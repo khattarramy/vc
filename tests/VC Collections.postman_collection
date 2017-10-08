@@ -159,6 +159,53 @@
 					"response": []
 				},
 				{
+					"name": "Get Orders by status id and user id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/valeurc/glg/orders?userId=1&statusId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valeurc",
+								"glg",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "statusId",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Get Order By Id",
 					"request": {
 						"url": "http://localhost:8080/valeurc/glg/orders/ca2b0c8a-ed06-4f87-b345-c750637f1433",
