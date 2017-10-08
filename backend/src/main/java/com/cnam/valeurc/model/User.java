@@ -11,13 +11,12 @@ package com.cnam.valeurc.model;
  */
 public class User {
     private int _id;
-    private String Type;
     private String Name;
     private String Address;
     private String Phone;
     private String Email;
     private String Password;
-
+    private String Type;
        
     public User() {
         

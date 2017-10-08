@@ -1,11 +1,15 @@
 package com.cnam.valeurc;
 
+import com.cnam.valeurc.model.User;
+import com.cnam.valeurc.service.UserService;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
 
 import com.mongodb.DBObject;
+import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.util.JSON;
+import java.net.UnknownHostException;
 import org.bson.Document;
 
 /**
@@ -23,7 +27,7 @@ public class AppUtils {
         Document doc = Document.parse(json);
         return doc;
     }
-    
+
     public static Document JSONtoDocument(String json) {
         Document doc = Document.parse(json);
         return doc;
@@ -33,7 +37,7 @@ public class AppUtils {
         String json = dbObj.toString();
         return new Gson().fromJson(json, clazz);
     }
-    
+
     public static Object fromDocument(Document dbDoc, Class clazz) {
         String json = dbDoc.toJson();
         return new Gson().fromJson(json, clazz);
@@ -43,13 +47,11 @@ public class AppUtils {
         String json = new Gson().toJson(pojo);
         return (BasicDBObject) JSON.parse(json);
     }
-
-    public static Object getNextSequence(String name, DBCollection collection) throws Exception {
-        BasicDBObject find = new BasicDBObject();
-        find.put("_id", name);
-        BasicDBObject update = new BasicDBObject();
-        update.put("$inc", new BasicDBObject("seq", 1));
-        DBObject obj = collection.findAndModify(find, update);
-        return obj.get("seq");
+ 
+    public static Object getNextSequence(String name, MongoCollection collection) throws Exception {
+        collection.updateOne(eq("_id", name),  new Document("$inc", new Document("seq", 1)) );
+        Document myDoc = (Document) collection.find(eq("_id", name)).first();
+        return myDoc.get("seq");
     }
+
 }

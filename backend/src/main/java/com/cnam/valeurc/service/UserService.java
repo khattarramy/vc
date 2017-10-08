@@ -11,6 +11,8 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.CreateCollectionOptions;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import java.net.UnknownHostException;
 import java.util.*;
@@ -29,10 +31,10 @@ public class UserService {
     public UserService() throws UnknownHostException {
         db = dbConnect.init();
         if (!dbConnect.collectionExists("users")) {
-            db.createCollection("users", null);
+            db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
          if (!dbConnect.collectionExists("counters")) { 
-            db.createCollection("counters", null); 
+            db.createCollection("counters", new CreateCollectionOptions().capped(false)); 
             counters = db.getCollection("counters"); 
             BasicDBObject searchQuery = new BasicDBObject(); 
             searchQuery.put("_id", "userid"); 
@@ -42,17 +44,20 @@ public class UserService {
                 Document doc = AppUtils.JSONtoDocument(json); 
                 counters.insertOne(doc); 
             } 
+        } else {
+            counters = db.getCollection("counters"); 
         }
         userCollection = db.getCollection("users");
     }
 
     public User addUser(User user) throws UnknownHostException, Exception {
-        user.setUserId((int) AppUtils.getNextSequence("userid", (DBCollection) counters));
+        counters = db.getCollection("counters"); 
+        user.setUserId((int) AppUtils.getNextSequence("userid", counters));
         userCollection.insertOne(AppUtils.toDocument(user));
         return user;
     }
 
-    public User getUserById(String userId) {
+    public User getUserById(int userId) {
 
         User user = new User();
 
@@ -76,13 +81,13 @@ public class UserService {
         return users;
     }
 
-    public User updateUser(User user, String userId) {
-
-        userCollection.updateOne(eq("_id", userId), AppUtils.toDocument(user));
+    public User updateUser(User user, int userId) {
+        user.setUserId(userId);
+        userCollection.updateOne(Filters.eq("_id", userId),  new Document("$set", AppUtils.toDocument(user)));
         return user;
     }
 
-    public void deleteUser(String userId) {
+    public void deleteUser(int userId) {
         userCollection.deleteOne(eq("_id", userId));
     }
 }

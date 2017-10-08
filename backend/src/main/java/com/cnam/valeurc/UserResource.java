@@ -36,7 +36,7 @@ public class UserResource {
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public User getUser(@PathParam("userId") String userId) throws UnknownHostException {
+    public User getUser(@PathParam("userId") int userId) throws UnknownHostException {
 
         return userService.getUserById(userId);
     }
@@ -55,7 +55,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
 
-    public User updateUser(User user, @PathParam("userId") String userId) throws UnknownHostException {
+    public User updateUser(User user, @PathParam("userId") int userId) throws UnknownHostException {
         return userService.updateUser(user, userId);
 
     }
@@ -64,7 +64,7 @@ public class UserResource {
     @Path("/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public void deleteUser(@PathParam("userId") String userId) throws UnknownHostException {
+    public void deleteUser(@PathParam("userId") int userId) throws UnknownHostException {
         userService.deleteUser(userId);
 
     }
