@@ -15,6 +15,7 @@ public class OrderDetail {
     private String OrderId;
     private String ItemId;
     private String StatusId;
+    private String ManufacturerId;
     private String RetailerId;
     private String DistributorId;
     private int Quantity;
@@ -76,6 +77,13 @@ public class OrderDetail {
 
     public void setRetailerId(String id) {
         this.RetailerId = id;
+    }
+    public String getManufacturerId() {
+        return ManufacturerId;
+    }
+
+    public void setManufacturerId(String id) {
+        this.ManufacturerId = id;
     }
     public int getQuantity() {
         return Quantity;
