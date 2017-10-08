@@ -18,39 +18,52 @@ import { OrderDetailHistoriesComponent } from "app/layout/order-detail-histories
 import { OrderDetailHistoryDetailComponent } from "app/layout/order-detail-histories/order-detail-history-detail/order-detail-history-detail.component";
 import { OrderDetailHistoryEditComponent } from "app/layout/order-detail-histories/order-detail-history-edit/order-detail-history-edit.component";
 import { OrderDetailHistoryStartComponent } from "app/layout/order-detail-histories/order-detail-history-start/order-detail-history-start.component";
+import { CreateOrderComponent } from 'app/layout/create-order/create-order.component';
 
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'createorder', loadChildren: './create-order/create-order.module#CreateOrderModule' },
+
             { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
-            { path: 'order-details', component: OrderDetailsComponent, children: [
-                { path: '', component: OrderDetailStartComponent },
-                { path: 'new', component: OrderDetailEditComponent },
-                { path: ':id', component: OrderDetailDetailComponent },
-                { path: ':id/edit', component: OrderDetailEditComponent },
-              ] },
-              { path: 'order-detail-histories', component: OrderDetailHistoriesComponent, children: [
-                { path: '', component: OrderDetailHistoryStartComponent },
-                { path: 'new', component: OrderDetailHistoryEditComponent },
-                { path: ':id', component: OrderDetailHistoryDetailComponent },
-                { path: ':id/edit', component: OrderDetailHistoryEditComponent },
-              ] },
-            { path: 'orders', component: OrdersComponent, children: [
-                { path: '', component: OrderStartComponent },
-                { path: 'new', component: OrderEditComponent },
-                { path: ':id', component: OrderDetailComponent },
-                { path: ':id/edit', component: OrderEditComponent },
-              ] },
+            {
+                path: 'create-order', component: CreateOrderComponent
+            },
+
+            {
+                path: 'order-details', component: OrderDetailsComponent, children: [
+                    { path: '', component: OrderDetailStartComponent },
+                    { path: 'new', component: OrderDetailEditComponent },
+                    { path: ':id', component: OrderDetailDetailComponent },
+                    { path: ':id/edit', component: OrderDetailEditComponent },
+                ]
+            },
+            {
+                path: 'order-detail-histories', component: OrderDetailHistoriesComponent, children: [
+                    { path: '', component: OrderDetailHistoryStartComponent },
+                    { path: 'new', component: OrderDetailHistoryEditComponent },
+                    { path: ':id', component: OrderDetailHistoryDetailComponent },
+                    { path: ':id/edit', component: OrderDetailHistoryEditComponent },
+                ]
+            },
+            {
+                path: 'orders', component: OrdersComponent, children: [
+                    { path: '', component: OrderStartComponent },
+                    { path: 'new', component: OrderEditComponent },
+                    { path: ':id', component: OrderDetailComponent },
+                    { path: ':id/edit', component: OrderEditComponent },
+                ]
+            },
             //{ path: 'items', loadChildren: './items/items.module#ItemsModule' }
-            { path: 'items', component: ItemsComponent, children: [
-                { path: '', component: ItemStartComponent },
-                { path: 'new', component: ItemEditComponent },
-                { path: ':id', component: ItemDetailComponent },
-                { path: ':id/edit', component: ItemEditComponent },
-              ] }
+            {
+                path: 'items', component: ItemsComponent, children: [
+                    { path: '', component: ItemStartComponent },
+                    { path: 'new', component: ItemEditComponent },
+                    { path: ':id', component: ItemDetailComponent },
+                    { path: ':id/edit', component: ItemEditComponent },
+                ]
+            }
 
         ]
     }

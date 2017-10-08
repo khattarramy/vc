@@ -37,6 +37,7 @@ import { OrderDetailHistoryDetailComponent } from './order-detail-histories/orde
 import { OrderDetailHistoryStartComponent } from './order-detail-histories/order-detail-history-start/order-detail-history-start.component';
 import { OrderDetailHistoryEditComponent } from './order-detail-histories/order-detail-history-edit/order-detail-history-edit.component';
 import { OrderDetailHistoryService } from './order-detail-histories/order-detail-history.service';
+import { CreateOrderComponent } from 'app/layout/create-order/create-order.component';
 
 
 @NgModule({
@@ -79,7 +80,9 @@ import { OrderDetailHistoryService } from './order-detail-histories/order-detail
         OrderDetailHistoryDetailComponent,
         OrderDetailHistoryEditComponent,
         OrderDetailHistoryListComponent,
-        OrderDetailHistoryStartComponent
+        OrderDetailHistoryStartComponent,
+
+        CreateOrderComponent
     ],
     providers: [ ItemService, OrderService , OrderDetailService, OrderDetailHistoryService]
 })

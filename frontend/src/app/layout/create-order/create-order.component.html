@@ -1,3 +1,54 @@
-<div>
-    <h2 class="text-muted">Create Order </h2>
-</div>
+<form [formGroup]="createOrderForm" (ngSubmit)="onSubmit()">
+        <div class="col-xs-12">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!orderDetailForm.valid">Save</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+              </div>
+        <fieldset class="form-group">
+                <label for="orderDetailId">orderDetailId</label>
+                <input
+                id="orderDetailId"
+                formControlName="orderDetailId"
+                class="form-control">
+
+            </fieldset>
+            <fieldset class="form-group">
+                    <label for="orderId">orderId</label>
+                    <input class="form-control"
+                    id="orderId"
+                    formControlName="orderId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="itemId">itemId</label>
+                        <input class="form-control"
+                        id="itemId"
+                        formControlName="itemId">
+
+                    </fieldset>
+            <fieldset class="form-group">
+                    <label for="userId">userId</label>
+                    <input class="form-control"
+                    id="userId"
+                    formControlName="userId"
+                    >
+
+                </fieldset>
+                <fieldset class="form-group">
+                        <label for="statusId">statusId</label>
+                        <input class="form-control"
+                        id="statusId"
+                        formControlName="statusId">
+
+                    </fieldset>
+
+
+
+
+</form>
+
+
+
