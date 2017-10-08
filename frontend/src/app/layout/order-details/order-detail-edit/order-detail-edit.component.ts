@@ -19,7 +19,7 @@ export class OrderDetailEditComponent implements OnInit {
     orderDetailId: new FormControl(''),
     orderId: new FormControl(''),
     retailerId: new FormControl(''),
-    statusId: new FormControl(''),
+    status: new FormControl(''),
     itemId: new FormControl(''),
     quantity: new FormControl(''),
     quantityDistributor: new FormControl('')
@@ -67,7 +67,7 @@ export class OrderDetailEditComponent implements OnInit {
           this.orderDetailForm.setValue({
             orderId: this.orderDetail.orderId,
             retailerId: this.orderDetail.retailerId,
-            statusId: this.orderDetail.statusId,
+            status: this.orderDetail.status,
             orderDetailId: this.orderDetail.orderDetailId,
             itemId: this.orderDetail.itemId,
             quantity : this.orderDetail.quantity,

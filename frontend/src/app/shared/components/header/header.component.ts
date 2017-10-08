@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
         localStorage.removeItem('email');
         localStorage.removeItem('password');
         localStorage.removeItem('userId');
-        localStorage.removeItem('typeId');
+        localStorage.removeItem('type');
         this.router.navigate(['/login']);
 
 

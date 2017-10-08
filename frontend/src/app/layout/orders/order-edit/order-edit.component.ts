@@ -18,7 +18,7 @@ export class OrderEditComponent implements OnInit {
   orderForm: FormGroup = new FormGroup({
     orderId: new FormControl(''),
     userId: new FormControl(''),
-    statusId: new FormControl(''),
+    status: new FormControl(''),
     dateInitialized: new FormControl(''),
     dateFinished: new FormControl('')
   });
@@ -65,7 +65,7 @@ export class OrderEditComponent implements OnInit {
           this.orderForm.setValue({
             orderId: this.order.orderId,
             userId: this.order.userId,
-            statusId: this.order.statusId,
+            status: this.order.status,
             dateInitialized: this.order.dateInitialized,
             dateFinished: this.order.dateFinished
         });

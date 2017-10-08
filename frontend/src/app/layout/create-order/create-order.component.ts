@@ -41,7 +41,7 @@ export class CreateOrderComponent implements OnInit {
   onSubmit() {
     this.orderDetail = this.createOrderForm.value;
 
-    this.orderDetail.statusId = "Cart";
+    this.orderDetail.status = "Cart";
     this.orderDetail.retailerId = localStorage.getItem('userId');
     this.orderDetail.quantityDistributor = 0;
 
@@ -55,7 +55,7 @@ export class CreateOrderComponent implements OnInit {
         }
         else{
         this.order.userId = localStorage.getItem("userId");
-        this.order.statusId = "Cart";
+        this.order.status = "Cart";
         this.order.dateInitialized = "2016-03-03T08:00:00+02:00";
         this.order.dateFinished = "2016-03-03T08:00:00+02:00";
           this.orderService.addOrder(this.order)
