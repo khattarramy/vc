@@ -11,82 +11,72 @@ import java.util.UUID;
  * @author George Harik
  */
 public class User {
-    private UUID UserId;
-    private String TypeId;
-    private String Name;
-    private String Address;
-    private String Phone;
-    private String Email;
-    private String Password;
+    private String type_id;
+    private String name;
+    private String address;
+    private String phone;
+    private String email;
+    private String password;
 
        
     public User() {
         
     }
-    public User(UUID userId, String typeId,String name,String address,String phone,String email,String password) {
-        this.UserId = userId;
-        this.TypeId = typeId;
-        this.Name=name;
-        this.Address=address;
-        this.Phone=phone;
-        this.Email=email;
-        this.Password=password;
+    public User(int userId, String typeId,String name,String address,String phone,String email,String password) {
+        this.type_id = typeId;
+        this.name=name;
+        this.address=address;
+        this.phone=phone;
+        this.email=email;
+        this.password=password;
         
     }
-    public UUID getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(UUID id) {
-        this.UserId = id;
-    }
-
     public String getTypeId() {
-        return TypeId;
+        return type_id;
     }
     
     public void setTypeId(String id) {
-        this.TypeId = id;
+        this.type_id = id;
     }
     
     public String getName() {
-        return Name;
+        return name;
     }
     
     public void setName(String name) {
-        this.Name = name;
+        this.name = name;
     }
     
     public String getAddress() {
-        return Address;
+        return address;
     }
     
     public void setAddress(String address) {
-        this.Address = address;
+        this.address = address;
     }
     
     public String getPhone() {
-        return Phone;
+        return phone;
     }
     
     public void setPhone(String phone) {
-        this.Phone = phone;
+        this.phone = phone;
     }
     
     public String getEmail() {
-        return Email;
+        return email;
     }
     
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
     
     public String getPassword() {
-        return Password;
+        return password;
     }
     
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
     
 }

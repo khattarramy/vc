@@ -10,6 +10,7 @@ import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.mongodb.*;
+import com.mongodb.util.JSON;
 import java.net.UnknownHostException;
 import java.util.*;
 
@@ -20,7 +21,7 @@ import java.util.*;
 public class UserService {
 
     DbConnect dbConnect = new DbConnect();
-    DBCollection userCollection;
+    DBCollection userCollection, counters;
     DB db;
 
     public UserService() throws UnknownHostException {
@@ -28,12 +29,26 @@ public class UserService {
         if (!db.collectionExists("users")) {
             db.createCollection("users", null);
         }
-
+        if (!db.collectionExists("counters")) {
+            db.createCollection("counters", null);
+            counters = db.getCollection("counters");
+            BasicDBObject searchQuery = new BasicDBObject();
+            searchQuery.put("_id", "userid");
+            DBCursor cursor = counters.find(searchQuery);
+            if(!cursor.hasNext()){
+                String json = "{'_id' : 'userid','seq' : 0}";
+                DBObject dbObject = (DBObject) JSON.parse(json);
+                counters.insert(dbObject);
+            }
+        }
         userCollection = db.getCollection("users");
+
     }
 
-    public User addUser(User user) throws UnknownHostException {
-        userCollection.insert(AppUtils.toDBObject(user));
+    public User addUser(User user) throws UnknownHostException, Exception {
+        BasicDBObject insert = AppUtils.toBasicDBObject(user);
+        insert.put("_id", AppUtils.getNextSequence("userid", counters));
+        userCollection.insert(insert);
         return user;
     }
 
@@ -71,8 +86,8 @@ public class UserService {
 
         searchQuery.put("UserId", userId);
 
-        user.setUserId((UUID.fromString(userId)));
-        
+//        user.setUserId((Integer.parseInt(userId)));
+
         DBCursor cursor = userCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
@@ -98,5 +113,9 @@ public class UserService {
         }
 
         userCollection.remove(AppUtils.toDBObject(user));
+    }
+
+    public DBCollection getUserCollection() {
+        return userCollection;
     }
 }
