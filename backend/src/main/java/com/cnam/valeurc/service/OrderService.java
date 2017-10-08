@@ -31,10 +31,17 @@ public class OrderService {
 
     }
 
-    public List<Order> getAllOrders() throws UnknownHostException {
+    public List<Order> getAllOrders(String userId, String statusId) throws UnknownHostException {
 
         List<Order> orders = new ArrayList();
-        DBCursor cursor = orderCollection.find();
+        BasicDBObject searchQuery = new BasicDBObject();
+        if (statusId != null && !"".equals(statusId)) {
+            searchQuery.put("StatusId", statusId);
+        }
+        if (userId != null && !"".equals(userId)) {
+            searchQuery.put("UserId", userId);
+        }
+        DBCursor cursor = orderCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
             orders.add((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
