@@ -45,10 +45,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
 
-    public User addUser(User user) throws UnknownHostException {
-        
-        user.setUserId(UUID.randomUUID());
-
+    public User addUser(User user) throws UnknownHostException, Exception { 
         return userService.addUser(user);
 
     }

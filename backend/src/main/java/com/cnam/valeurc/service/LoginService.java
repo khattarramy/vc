@@ -11,8 +11,12 @@ import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.net.UnknownHostException;
 import java.util.*;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -21,12 +25,12 @@ import java.util.*;
 public class LoginService {
 
     DbConnect dbConnect = new DbConnect();
-    DBCollection userCollection;
-    DB db;
+    MongoCollection userCollection;
+    MongoDatabase db;
 
     public LoginService() throws UnknownHostException {
         db = dbConnect.init();
-        if (!db.collectionExists("users")) {
+        if (!dbConnect.collectionExists("users")) {
             db.createCollection("users", null);
         }
 
@@ -42,7 +46,7 @@ public class LoginService {
         searchQuery.put("Email", login.getEmail());
         searchQuery.put("Password", login.getPassword());
 
-        DBCursor cursor = userCollection.find(searchQuery);
+        DBCursor cursor = (DBCursor) userCollection.find(searchQuery);
 
         while (cursor.hasNext()) {
             user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));

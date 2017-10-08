@@ -8,8 +8,13 @@ package com.cnam.valeurc.service;
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetail;
 import com.mongodb.*;
+import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.net.UnknownHostException;
 import java.util.*;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -18,12 +23,12 @@ import java.util.*;
 public class OrderDetailService {
 
     DbConnect dbConnect = new DbConnect();
-    DBCollection orderDetailCollection;
-    DB db;
+    MongoCollection orderDetailCollection;
+    MongoDatabase db;
 
     public OrderDetailService() throws UnknownHostException {
         db = dbConnect.init();
-        if (!db.collectionExists("orderDetail")) {
+        if (!dbConnect.collectionExists("orderDetail")) {
             db.createCollection("orderDetail", null);
         }
 
@@ -46,12 +51,27 @@ public class OrderDetailService {
         }
         if (status != null && !"".equals(status)) {
             searchQuery.put("Status", status);
-        }
-        DBCursor cursor = orderDetailCollection.find(searchQuery);
 
-        while (cursor.hasNext()) {
-            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//Bson lookup = new Document("$lookup",
+//        new Document("from", "coll_two")
+//                .append("localField", "foreign_id")
+//                .append("foreignField", "_id")
+//                .append("as", "look_coll"));
+//
+//Bson match = new Document("$match",
+//        new Document("look_coll.actif", true));
+//
+//List<Bson> filters = new ArrayList<>();
+//filters.add(lookup);
+//filters.add(match);
+//
+//AggregateIterable<Document> it = orderDetailCollection.aggregate(filters);
         }
+//        DBCursor cursor = orderDetailCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//        }
 
         return orderDetails;
 
@@ -61,15 +81,15 @@ public class OrderDetailService {
 
         List<OrderDetail> orderDetails = new ArrayList();
         
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderId", orderId);
-
-        DBCursor cursor = orderDetailCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
-        }
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderId", orderId);
+//
+//        DBCursor cursor = orderDetailCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//        }
 
         return orderDetails;
 
@@ -81,15 +101,15 @@ public class OrderDetailService {
 
         OrderDetail orderDetail = new OrderDetail();
 
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailId", orderDetailId);
-        
-        DBCursor cursor = orderDetailCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
-        }
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailId", orderDetailId);
+//        
+//        DBCursor cursor = orderDetailCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//        }
 
         return orderDetail;
 
@@ -99,7 +119,7 @@ public class OrderDetailService {
 
         orderDetail.setOrderDetailId(UUID.randomUUID());
 
-        orderDetailCollection.insert(AppUtils.toDBObject(orderDetail));
+//        orderDetailCollection.insert(AppUtils.toDBObject(orderDetail));
 
         return orderDetail;
     }
@@ -107,21 +127,21 @@ public class OrderDetailService {
     public OrderDetail updateOrderDetail(OrderDetail orderDetail, String orderDetailId) throws UnknownHostException {
         
         OrderDetail oldOrderDetail = new OrderDetail();
-
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailId", orderDetailId);
-
-        orderDetail.setOrderDetailId((UUID.fromString(orderDetailId)));
-        
-        DBCursor cursor = orderDetailCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            oldOrderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
-        }
-
-        orderDetailCollection.update(AppUtils.toDBObject(oldOrderDetail), AppUtils.toDBObject(orderDetail));
-        
+//
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailId", orderDetailId);
+//
+//        orderDetail.setOrderDetailId((UUID.fromString(orderDetailId)));
+//        
+//        DBCursor cursor = orderDetailCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            oldOrderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//        }
+//
+//        orderDetailCollection.update(AppUtils.toDBObject(oldOrderDetail), AppUtils.toDBObject(orderDetail));
+//        
         return orderDetail;
     }
 
@@ -129,16 +149,16 @@ public class OrderDetailService {
 
         OrderDetail orderDetail = new OrderDetail();
 
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailId", orderDetailId);
-
-        DBCursor cursor = orderDetailCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
-        }
-
-        orderDetailCollection.remove(AppUtils.toDBObject(orderDetail));
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailId", orderDetailId);
+//
+//        DBCursor cursor = orderDetailCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetail = ((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
+//        }
+//
+//        orderDetailCollection.remove(AppUtils.toDBObject(orderDetail));
     }
 }

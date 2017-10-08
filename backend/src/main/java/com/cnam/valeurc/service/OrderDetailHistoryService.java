@@ -8,6 +8,8 @@ package com.cnam.valeurc.service;
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetailHistory;
 import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.net.UnknownHostException;
 import java.util.*;
 
@@ -18,12 +20,12 @@ import java.util.*;
 public class OrderDetailHistoryService {
 
     DbConnect dbConnect = new DbConnect();
-    DBCollection orderDetailHistoryCollection;
-    DB db;
+    MongoCollection orderDetailHistoryCollection;
+    MongoDatabase db;
 
     public OrderDetailHistoryService() throws UnknownHostException {
         db = dbConnect.init();
-        if (!db.collectionExists("orderDetailHistory")) {
+        if (!dbConnect.collectionExists("orderDetailHistory")) {
             db.createCollection("orderDetailHistory", null);
         }
 
@@ -34,11 +36,11 @@ public class OrderDetailHistoryService {
     public List<OrderDetailHistory> getAllOrderDetailHistorys() throws UnknownHostException {
 
         List<OrderDetailHistory> orderDetailHistorys = new ArrayList();
-        DBCursor cursor = orderDetailHistoryCollection.find();
+//        DBCursor cursor = orderDetailHistoryCollection.find();
 
-        while (cursor.hasNext()) {
-            orderDetailHistorys.add((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
-        }
+//        while (cursor.hasNext()) {
+//            orderDetailHistorys.add((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
+//        }
 
         return orderDetailHistorys;
 
@@ -48,15 +50,15 @@ public class OrderDetailHistoryService {
 
         OrderDetailHistory orderDetailHistory = new OrderDetailHistory();
 
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailHistoryId", orderDetailHistoryId);
-
-        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
-        }
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailHistoryId", orderDetailHistoryId);
+//
+//        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
+//        }
 
         return orderDetailHistory;
 
@@ -66,16 +68,16 @@ public class OrderDetailHistoryService {
     public List<OrderDetailHistory> getOrderDetailHistoryByOrderDetailId(String orderDetailId) throws UnknownHostException {
 
         List<OrderDetailHistory> orderDetailHistory = new ArrayList();
-        
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailId", orderDetailId);
-
-        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetailHistory.add((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
-        }
+//        
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailId", orderDetailId);
+//
+//        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetailHistory.add((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
+//        }
 
         return orderDetailHistory;
 
@@ -86,7 +88,7 @@ public class OrderDetailHistoryService {
 
         orderDetailHistory.setOrderDetailHistoryId(UUID.randomUUID());
 
-        orderDetailHistoryCollection.insert(AppUtils.toDBObject(orderDetailHistory));
+//        orderDetailHistoryCollection.insert(AppUtils.toDBObject(orderDetailHistory));
 
         return orderDetailHistory;
     }
@@ -94,20 +96,20 @@ public class OrderDetailHistoryService {
     public OrderDetailHistory updateOrderDetailHistory(OrderDetailHistory orderDetailHistory, String orderDetailHistoryId) throws UnknownHostException {
         
         OrderDetailHistory oldOrderDetailHistory = new OrderDetailHistory();
-
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailHistoryId", orderDetailHistory.getOrderDetailHistoryId());
-
-        orderDetailHistory.setOrderDetailHistoryId((UUID.fromString(orderDetailHistoryId)));
-        
-        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            oldOrderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
-        }
-
-        orderDetailHistoryCollection.update(AppUtils.toDBObject(oldOrderDetailHistory), AppUtils.toDBObject(orderDetailHistory));
+//
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailHistoryId", orderDetailHistory.getOrderDetailHistoryId());
+//
+//        orderDetailHistory.setOrderDetailHistoryId((UUID.fromString(orderDetailHistoryId)));
+//        
+//        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            oldOrderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
+//        }
+//
+//        orderDetailHistoryCollection.update(AppUtils.toDBObject(oldOrderDetailHistory), AppUtils.toDBObject(orderDetailHistory));
         
         return orderDetailHistory;
     }
@@ -115,17 +117,17 @@ public class OrderDetailHistoryService {
     public void deleteOrderDetailHistory(String orderDetailHistoryId) throws UnknownHostException {
 
         OrderDetailHistory orderDetailHistory = new OrderDetailHistory();
+//
+//        BasicDBObject searchQuery = new BasicDBObject();
+//
+//        searchQuery.put("OrderDetailHistoryId", orderDetailHistoryId);
+//
+//        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
+//
+//        while (cursor.hasNext()) {
+//            orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
+//        }
 
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("OrderDetailHistoryId", orderDetailHistoryId);
-
-        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class));
-        }
-
-        orderDetailHistoryCollection.remove(AppUtils.toDBObject(orderDetailHistory));
+//        orderDetailHistoryCollection.remove(AppUtils.toDBObject(orderDetailHistory));
     }
 }
