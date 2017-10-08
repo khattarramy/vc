@@ -11,19 +11,18 @@ import java.util.UUID;
  * @author George Harik
  */
 public class User {
-    private String type_id;
     private String name;
     private String address;
     private String phone;
     private String email;
     private String password;
-
+    private String TypeId;
        
     public User() {
         
     }
-    public User(int userId, String typeId,String name,String address,String phone,String email,String password) {
-        this.type_id = typeId;
+    public User(String name,String address,String phone,String email,String password,String type_id) {
+        this.TypeId = type_id;
         this.name=name;
         this.address=address;
         this.phone=phone;
@@ -32,11 +31,11 @@ public class User {
         
     }
     public String getTypeId() {
-        return type_id;
+        return TypeId;
     }
     
     public void setTypeId(String id) {
-        this.type_id = id;
+        this.TypeId = id;
     }
     
     public String getName() {

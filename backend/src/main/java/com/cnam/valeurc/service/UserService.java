@@ -58,7 +58,7 @@ public class UserService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("UserId", userId);
+        searchQuery.put("_id", Integer.parseInt(userId));
 
         DBCursor cursor = userCollection.find(searchQuery);
 
@@ -84,7 +84,7 @@ public class UserService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("UserId", userId);
+        searchQuery.put("_id", Integer.parseInt(userId));
 
 //        user.setUserId((Integer.parseInt(userId)));
 
@@ -104,7 +104,7 @@ public class UserService {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
-        searchQuery.put("UserId", userId);
+        searchQuery.put("_id", Integer.parseInt(userId));
 
         DBCursor cursor = userCollection.find(searchQuery);
 
@@ -115,7 +115,4 @@ public class UserService {
         userCollection.remove(AppUtils.toDBObject(user));
     }
 
-    public DBCollection getUserCollection() {
-        return userCollection;
-    }
 }
