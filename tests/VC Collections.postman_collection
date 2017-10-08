@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "VC Collections",
-		"_postman_id": "6b07f24e-34cb-6d29-0785-86a1cb664910",
+		"_postman_id": "6c632425-e875-2e89-3c99-0a74898ff063",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -239,7 +239,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"statusId\":\"12345\",\"userId\":\"123456\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
+							"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"statusId\":\"2\",\"manufacturerId\": 4,\"retailerId\":\"3\",\"distributorId\":\"1\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
 						},
 						"description": ""
 					},
@@ -269,6 +269,147 @@
 					"name": "Get Order Details By Id",
 					"request": {
 						"url": "http://localhost:8080/valeurc/glg/orderdetails/5c354e2f-97d9-47de-b750-0175589f1d0f",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Details by status id and distributor id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&distributorId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valeurc",
+								"glg",
+								"orderdetails"
+							],
+							"query": [
+								{
+									"key": "statusId",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "distributorId",
+									"value": "4",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Details by status id and retailer id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&retailerId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valeurc",
+								"glg",
+								"orderdetails"
+							],
+							"query": [
+								{
+									"key": "statusId",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "retailerId",
+									"value": "4",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Details by status id and manufacturer Id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&manufacturerId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"valeurc",
+								"glg",
+								"orderdetails"
+							],
+							"query": [
+								{
+									"key": "statusId",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "manufacturerId",
+									"value": "4",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -388,6 +529,17 @@
 							"mode": "raw",
 							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
 						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Detail History by Order detail",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/orderdetail/5cd2d003-028d-48ca-aa3b-1e2acefcd91d",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
 					},
 					"response": []
