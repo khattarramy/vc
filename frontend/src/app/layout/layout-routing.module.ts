@@ -19,6 +19,9 @@ import { OrderDetailHistoryDetailComponent } from "app/layout/order-detail-histo
 import { OrderDetailHistoryEditComponent } from "app/layout/order-detail-histories/order-detail-history-edit/order-detail-history-edit.component";
 import { OrderDetailHistoryStartComponent } from "app/layout/order-detail-histories/order-detail-history-start/order-detail-history-start.component";
 import { CreateOrderComponent } from 'app/layout/create-order/create-order.component';
+import { CartComponent } from 'app/layout/cart/cart.component';
+import { CartDetailComponent } from 'app/layout/cart/cart-detail/cart-detail.component';
+import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.component';
 
 const routes: Routes = [
     {
@@ -26,7 +29,13 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
 
-            { path: 'cart', loadChildren: './cart/cart.module#CartModule' },
+            {
+                path: 'cart', component: CartComponent, children: [
+                    { path: '', component: CartStartComponent },
+                    
+                    { path: ':id', component: CartDetailComponent },
+                ]
+            },
             {
                 path: 'create-order', component: CreateOrderComponent
             },

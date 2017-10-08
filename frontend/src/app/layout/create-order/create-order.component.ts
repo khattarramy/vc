@@ -46,7 +46,7 @@ export class CreateOrderComponent implements OnInit {
     this.orderDetail.quantityDistributor = 0;
 
 
-    this.orderService.getOrdersByStatusAndRetailer("Cart", "a64c9945-77bd-4bf6-9ff9-be8d798f4397")
+    this.orderService.getOrdersByStatusAndRetailer("Cart", localStorage.getItem("userId"))
       .subscribe(response => {
         if (response.length > 0) {
           this.orderDetail.orderId = response[0].orderId;
