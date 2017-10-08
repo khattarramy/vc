@@ -132,7 +132,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"userId\":\"ljflkafh\",\"statusId\":\"123\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+							"raw": "{\"userId\":\"2\",\"status\":\"manufacturer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 						},
 						"description": ""
 					},
@@ -162,7 +162,7 @@
 					"name": "Get Orders by status id and user id",
 					"request": {
 						"url": {
-							"raw": "http://localhost:8080/valeurc/glg/orders?userId=1&statusId=2",
+							"raw": "http://localhost:8080/valeurc/glg/orders?userId=1&status=distributor",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -181,8 +181,8 @@
 									"description": ""
 								},
 								{
-									"key": "statusId",
-									"value": "2",
+									"key": "status",
+									"value": "distributor",
 									"equals": true,
 									"description": ""
 								}
@@ -260,7 +260,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"userId\":\"ljflkafh\",\"statusId\":\"1234\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+							"raw": "{\"userId\":\"ljflkafh\",\"status\":\"retailer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 						},
 						"description": ""
 					},
@@ -286,7 +286,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"statusId\":\"2\",\"manufacturerId\": 4,\"retailerId\":\"3\",\"distributorId\":\"1\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
+							"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"status\":\"distributor\",\"manufacturerId\": 4,\"retailerId\":\"3\",\"distributorId\":\"1\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
 						},
 						"description": ""
 					},
@@ -336,7 +336,7 @@
 					"name": "Get Order Details by status id and distributor id",
 					"request": {
 						"url": {
-							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&distributorId=4",
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?status=distributor&distributorId=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -349,8 +349,8 @@
 							],
 							"query": [
 								{
-									"key": "statusId",
-									"value": "2",
+									"key": "status",
+									"value": "distributor",
 									"equals": true,
 									"description": ""
 								},
@@ -383,7 +383,7 @@
 					"name": "Get Order Details by status id and retailer id",
 					"request": {
 						"url": {
-							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&retailerId=4",
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?status=retailer&retailerId=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -396,8 +396,8 @@
 							],
 							"query": [
 								{
-									"key": "statusId",
-									"value": "2",
+									"key": "status",
+									"value": "retailer",
 									"equals": true,
 									"description": ""
 								},
@@ -430,7 +430,7 @@
 					"name": "Get Order Details by status id and manufacturer Id",
 					"request": {
 						"url": {
-							"raw": "http://localhost:8080/valeurc/glg/orderdetails?statusId=2&manufacturerId=4",
+							"raw": "http://localhost:8080/valeurc/glg/orderdetails?status=manufacturer&manufacturerId=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -443,8 +443,8 @@
 							],
 							"query": [
 								{
-									"key": "statusId",
-									"value": "2",
+									"key": "status",
+									"value": "manufacturer",
 									"equals": true,
 									"description": ""
 								},
@@ -508,7 +508,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderId\":\"2222\",\"itemId\":\"3333\",\"statusId\":\"4444\",\"userId\":\"5555\"}"
+							"raw": "{\"orderId\":\"2222\",\"itemId\":\"3333\",\"status\":\"4444\",\"userId\":\"5555\"}"
 						},
 						"description": ""
 					},
@@ -534,7 +534,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderDetailId\":\"123\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":\"1234\",\"userId\":\"12345\"}"
+							"raw": "{\"orderDetailId\":\"123\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"status\":\"retailer\",\"userId\":\"12345\"}"
 						},
 						"description": ""
 					},
@@ -626,221 +626,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderDetailId\":\"111111\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"statusId\":\"2222222\",\"userId\":\"33333\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Status",
-			"description": "",
-			"item": [
-				{
-					"name": "Create Status",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/status",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"test1\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Status",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/status/",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Status By Id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/status/107af18e-d91d-4d2d-acfc-a9543c171e2c",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Status By Id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/status/5c354e2f-97d9-47de-b750-0175589f1d0f",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Stauts",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/status/107af18e-d91d-4d2d-acfc-a9543c171e2c",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"test12\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Type",
-			"description": "",
-			"item": [
-				{
-					"name": "Create Types",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/types",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"test1\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Types",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/types/",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Types By Id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"desc\",\"distributorId\":12,\"manufacturerId\":10,\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Types By Id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Types",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/types/00fb647c-478d-46f1-ad88-f7ff7aa2cf1e",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"description\":\"test12\"}"
+							"raw": "{\"orderDetailId\":\"111111\",\"dateTime\":\"2016-03-03T08:00:00+02:00\",\"status\":\"distributor\",\"userId\":\"33333\"}"
 						},
 						"description": ""
 					},
@@ -866,7 +652,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\"typeId\":\"124124\",\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"password\":\"password\"}"
+							"raw": "    {\"type\":\"manufacturer\",\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"password\":\"password\"}"
 						},
 						"description": ""
 					},
@@ -926,7 +712,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\"typeId\":\"a32gsdg\",\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"ali\",\"password\":\"pass\"}"
+							"raw": "    {\"type\":\"retailer\",\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"ali\",\"password\":\"pass\"}"
 						},
 						"description": ""
 					},

@@ -16,16 +16,16 @@ public class OrderDetailHistory {
     private UUID OrderDetailHistoryId;
     private String OrderDetailId;
     private Date DateTime;
-    private String StatusId;
+    private String Status;
     private String UserId;
     
     public OrderDetailHistory() {
         
     }
-    public OrderDetailHistory(UUID orderDetailHistoryId, String orderDetailId, String statusId,String userId) {
+    public OrderDetailHistory(UUID orderDetailHistoryId, String orderDetailId, String status,String userId) {
         this.OrderDetailHistoryId = orderDetailHistoryId;
         this.OrderDetailId = orderDetailId;
-        this.StatusId = statusId;
+        this.Status = status;
         this.UserId = userId;
         
     }
@@ -53,12 +53,12 @@ public class OrderDetailHistory {
         this.DateTime = date;
     }
     
-    public String getStatusId() {
-        return StatusId;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setStatusId(String id) {
-        this.StatusId = id;
+    public void setStatus(String id) {
+        this.Status = id;
     }
     
     public String getUserId() {

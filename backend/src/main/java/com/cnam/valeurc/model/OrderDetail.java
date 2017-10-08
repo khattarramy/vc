@@ -14,7 +14,7 @@ public class OrderDetail {
     private UUID OrderDetailId;
     private String OrderId;
     private String ItemId;
-    private String StatusId;
+    private String Status;
     private String ManufacturerId;
     private String RetailerId;
     private String DistributorId;
@@ -24,11 +24,11 @@ public class OrderDetail {
     public OrderDetail() {
         
     }
-    public OrderDetail(UUID orderDetailId, String orderId, String itemId, String statusId, String userId) {
+    public OrderDetail(UUID orderDetailId, String orderId, String itemId, String status, String userId) {
         this.OrderDetailId = orderDetailId;
         this.ItemId = itemId;
         this.ItemId = itemId;
-        this.StatusId = statusId;
+        this.Status = status;
         this.RetailerId = userId;
     }
     
@@ -56,12 +56,12 @@ public class OrderDetail {
         this.ItemId = id;
     }
     
-    public String getStatusId() {
-        return StatusId;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setStatusId(String id) {
-        this.StatusId = id;
+    public void setStatus(String id) {
+        this.Status = id;
     }
     
     public String getDistributorId() {

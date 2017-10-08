@@ -31,12 +31,12 @@ public class OrderService {
 
     }
 
-    public List<Order> getAllOrders(String userId, String statusId) throws UnknownHostException {
+    public List<Order> getAllOrders(String userId, String status) throws UnknownHostException {
 
         List<Order> orders = new ArrayList();
         BasicDBObject searchQuery = new BasicDBObject();
-        if (statusId != null && !"".equals(statusId)) {
-            searchQuery.put("StatusId", statusId);
+        if (status != null && !"".equals(status)) {
+            searchQuery.put("Status", status);
         }
         if (userId != null && !"".equals(userId)) {
             searchQuery.put("UserId", userId);
