@@ -31,7 +31,7 @@ public class OrderDetailService {
 
     }
 
-    public List<OrderDetail> getAllOrderDetails(String retailerId,String distributorId,String manufacturerId,String statusId) throws UnknownHostException {
+    public List<OrderDetail> getAllOrderDetails(String retailerId,String distributorId,String manufacturerId,String status) throws UnknownHostException {
 
         List<OrderDetail> orderDetails = new ArrayList();
         BasicDBObject searchQuery = new BasicDBObject();
@@ -44,8 +44,8 @@ public class OrderDetailService {
         if (manufacturerId != null && !"".equals(manufacturerId)) {
             searchQuery.put("ManufacturerId", manufacturerId);
         }
-        if (statusId != null && !"".equals(statusId)) {
-            searchQuery.put("StatusId", statusId);
+        if (status != null && !"".equals(status)) {
+            searchQuery.put("Status", status);
         }
         DBCursor cursor = orderDetailCollection.find(searchQuery);
 
