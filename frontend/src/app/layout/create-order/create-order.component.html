@@ -3,47 +3,32 @@
                 <button
                   type="submit"
                   class="btn btn-success"
-                  [disabled]="!orderDetailForm.valid">Save</button>
+                  [disabled]="!createOrderForm.valid">Save</button>
                 <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
               </div>
-        <fieldset class="form-group">
-                <label for="orderDetailId">orderDetailId</label>
-                <input
-                id="orderDetailId"
-                formControlName="orderDetailId"
-                class="form-control">
 
-            </fieldset>
-            <fieldset class="form-group">
-                    <label for="orderId">orderId</label>
-                    <input class="form-control"
-                    id="orderId"
-                    formControlName="orderId"
-                    >
 
-                </fieldset>
                 <fieldset class="form-group">
                         <label for="itemId">itemId</label>
-                        <input class="form-control"
-                        id="itemId"
-                        formControlName="itemId">
+
+                        <select class="form-control" id="itemId" formControlName="itemId">
+                                <option *ngFor="let itemEl of items; let i = index"
+                                value="{{itemEl.itemId}}">{{itemEl.name}}</option>
+                            </select>
+        
 
                     </fieldset>
+
+                    
             <fieldset class="form-group">
-                    <label for="userId">userId</label>
+                    <label for="quantity">quantity</label>
                     <input class="form-control"
-                    id="userId"
-                    formControlName="userId"
+                    id="quantity"
+                    formControlName="quantity"
                     >
 
                 </fieldset>
-                <fieldset class="form-group">
-                        <label for="statusId">statusId</label>
-                        <input class="form-control"
-                        id="statusId"
-                        formControlName="statusId">
-
-                    </fieldset>
+  
 
 
 

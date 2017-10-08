@@ -3,6 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
+import { Item } from 'app/layout/items/item.model';
+import { ItemService } from 'app/layout/items/item.service';
 
 
 @Component({
@@ -13,42 +15,34 @@ import { OrderDetailService } from 'app/layout/order-details/order-detail.servic
 export class CreateOrderComponent implements OnInit {
   id: string;
   editMode = false;
-
+  items: Item[];
   orderDetail: OrderDetail;
   createOrderForm: FormGroup = new FormGroup({
-    orderDetailId: new FormControl(''),
-    orderId: new FormControl(''),
-    userId: new FormControl(''),
-    statusId: new FormControl(''),
+    quantity: new FormControl(''),
     itemId: new FormControl('')
   });
   constructor(private route: ActivatedRoute,
     private orderDetailService: OrderDetailService,
+    private itemService: ItemService,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-      (params: Params) => {
-        this.id = params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-      }
-      );
-    }
+    this.initForm();
+    this.itemService.getItems()
+      .subscribe(response => { this.items = response; });
+  }
 
   onSubmit() {
-    if (this.editMode) {
-      console.log(this.createOrderForm.value);
-      //console.log(this.id);
-        this.orderDetailService.updateOrderDetail(this.id, this.createOrderForm.value)
-          .subscribe(x => console.log(x));
-    } else {
-     // console.log(<Order>this.orderForm.value);
-      this.orderDetailService.addOrderDetail(this.createOrderForm.value)
-       .subscribe(x => console.log(x));
-    }
+    this.orderDetail = this.createOrderForm.value;
+    this.orderDetail.orderId = "111";
+    this.orderDetail.statusId = "Cart";
+    this.orderDetail.retailerId = localStorage.getItem('userId');
+
+    this.orderDetail.quantityDistributor = 0;
+    this.orderDetailService.addOrderDetail(this.orderDetail)
+      .subscribe(x => console.log(x));
+
     this.onCancel();
   }
 
@@ -56,24 +50,6 @@ export class CreateOrderComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
   private initForm() {
-
-    if (this.editMode) {
-      this.orderDetailService.getOrderDetail(this.id)
-        .subscribe(response => {
-
-      this.orderDetail = response;
-          this.createOrderForm.setValue({
-            orderId: this.orderDetail.orderId,
-            userId: this.orderDetail.userId,
-            statusId: this.orderDetail.statusId,
-            orderDetailId: this.orderDetail.orderDetailId,
-            itemId: this.orderDetail.itemId
-        });
-
-        });
-
-
-    }
 
 
   }
