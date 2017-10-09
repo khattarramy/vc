@@ -10,6 +10,7 @@ import com.cnam.valeurc.model.OrderDetail;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.CreateCollectionOptions;
 import static com.mongodb.client.model.Filters.eq;
 import java.net.UnknownHostException;
 import java.util.*;
@@ -28,7 +29,7 @@ public class OrderDetailService {
     public OrderDetailService() throws UnknownHostException {
         db = dbConnect.init();
         if (!dbConnect.collectionExists("orderDetail")) {
-            db.createCollection("orderDetail", null);
+            db.createCollection("orderDetail", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "orderdetailid");
 

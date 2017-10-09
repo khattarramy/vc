@@ -15,14 +15,14 @@ public class Item {
     private String Name;
     private String Description;
     private String ModelNumber;
-    private String DistributorId;
-    private String ManufacturerId;
+    private int DistributorId;
+    private int ManufacturerId;
 
        
     public Item() {
 
     }
-    public Item(int ItemId,String Name, String Description,String ModelNumber, String DistributorId, String ManufacturerId) {
+    public Item(int ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
         
         this._id=ItemId;
         this.Name = Name;
@@ -64,19 +64,19 @@ public class Item {
         this.ModelNumber = modelNumber;
     }
 
-    public String getDistributorId() {
+    public int getDistributorId() {
         return DistributorId;
     }
     
-    public void setDistributorId(String id) {
+    public void setDistributorId(int id) {
         this.DistributorId = id;
     }
     
-    public String getManufacturerId() {
+    public int getManufacturerId() {
         return ManufacturerId;
     }
     
-    public void setManufacturerId(String id) {
+    public void setManufacturerId(int id) {
         this.ManufacturerId = id;
     }
     

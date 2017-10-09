@@ -13,6 +13,7 @@ import com.cnam.valeurc.model.User;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.CreateCollectionOptions;
 import java.net.UnknownHostException;
 import java.util.*;
 import org.bson.Document;
@@ -31,7 +32,7 @@ public class LoginService {
     public LoginService() throws UnknownHostException {
         db = dbConnect.init();
         if (!dbConnect.collectionExists("users")) {
-            db.createCollection("users", null);
+            db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
 
         userCollection = db.getCollection("users");
