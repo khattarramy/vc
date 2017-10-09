@@ -67,7 +67,7 @@ public class AppUtils {
             searchQuery.put("_id", counter_id);
             MongoCursor<Document> cursor = counters.find(eq("_id", counter_id)).iterator();
             if (!cursor.hasNext()) {
-                String json = "{'_id' : {" + counter_id + "},'seq' : 0}";
+                String json =  String.format("{'_id' : '%s','seq' : 0}", counter_id);
                 Document doc = AppUtils.JSONtoDocument(json);
                 counters.insertOne(doc);
             }
