@@ -7,11 +7,13 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
-import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import java.net.UnknownHostException;
 import java.util.*;
+import org.bson.Document;
 
 /**
  *
@@ -20,7 +22,7 @@ import java.util.*;
 public class OrderService {
 
     DbConnect dbConnect = new DbConnect();
-    MongoCollection orderCollection;
+    MongoCollection orderCollection, counters;
     MongoDatabase db;
 
     public OrderService() throws UnknownHostException {
@@ -28,32 +30,13 @@ public class OrderService {
         if (!dbConnect.collectionExists("order")) {
             db.createCollection("order", null);
         }
+        counters = AppUtils.checkCounters(dbConnect, db, "orderid");
 
         orderCollection = db.getCollection("order");
 
     }
 
-    public List<Order> getAllOrders(String userId, String status) throws UnknownHostException {
-
-        List<Order> orders = new ArrayList();
-//        BasicDBObject searchQuery = new BasicDBObject();
-//        if (status != null && !"".equals(status)) {
-//            searchQuery.put("Status", status);
-//        }
-//        if (userId != null && !"".equals(userId)) {
-//            searchQuery.put("UserId", userId);
-//        }
-//        DBCursor cursor = orderCollection.find(searchQuery);
-//
-//        while (cursor.hasNext()) {
-//            orders.add((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
-//        }
-
-        return orders;
-
-    }
-
-        public List<Order> getOrdersByUserId(String userId) throws UnknownHostException {
+    public List<Order> getOrdersByUserId(String userId) throws UnknownHostException {
 
         List<Order> orders = new ArrayList();
 //        
@@ -70,69 +53,47 @@ public class OrderService {
         return orders;
 
     }
-        
-    public Order getOrderById(String orderId) throws UnknownHostException {
+
+    public List<Order> getAllOrders() throws UnknownHostException {
+
+        List<Order> orders = new ArrayList();
+        MongoCursor<Document> cursor = orderCollection.find().iterator();
+
+        while (cursor.hasNext()) {
+            orders.add((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+        }
+
+        return orders;
+
+    }
+
+    public Order getOrderById(int orderId) throws UnknownHostException {
 
         Order order = new Order();
 
-//        BasicDBObject searchQuery = new BasicDBObject();
-//
-//        searchQuery.put("OrderId", orderId);
-//
-//        DBCursor cursor = orderCollection.find(searchQuery);
-//
-//        while (cursor.hasNext()) {
-//            order = ((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
-//        }
+        MongoCursor<Document> cursor = orderCollection.find(eq("_id", orderId)).iterator();
+
+        while (cursor.hasNext()) {
+            order = ((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+        }
 
         return order;
 
     }
 
-    public Order addOrder(Order order) throws UnknownHostException {
-
-        order.setOrderId(UUID.randomUUID());
-//
-//        orderCollection.insert(AppUtils.toDBObject(order));
-
+    public Order addOrder(Order order) throws UnknownHostException, Exception {
+        order.setOrderId((int) AppUtils.getNextSequence("orderid", counters));
+        orderCollection.insertOne(AppUtils.toDocument(order));
         return order;
     }
 
-    public Order updateOrder(Order order, String orderId) throws UnknownHostException {
-
-        Order oldOrder = new Order();
-//
-//        BasicDBObject searchQuery = new BasicDBObject();
-//
-//        searchQuery.put("OrderId", orderId);
-//
-//        order.setOrderId((UUID.fromString(orderId)));
-//
-//        DBCursor cursor = orderCollection.find(searchQuery);
-//
-//        while (cursor.hasNext()) {
-//            oldOrder = ((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
-//        }
-//
-//        orderCollection.update(AppUtils.toDBObject(oldOrder), AppUtils.toDBObject(order));
-
+    public Order updateOrder(Order order, int orderId) throws UnknownHostException {
+        order.setOrderId(orderId);
+        orderCollection.updateOne(eq("_id", orderId), new Document("$set", AppUtils.toDocument(order)));
         return order;
     }
 
-    public void deleteOrder(String orderId) throws UnknownHostException {
-
-        Order order = new Order();
-
-//        BasicDBObject searchQuery = new BasicDBObject();
-//
-//        searchQuery.put("OrderId", orderId);
-//
-//        DBCursor cursor = orderCollection.find(searchQuery);
-//
-//        while (cursor.hasNext()) {
-//            order = ((Order) AppUtils.fromDBObject(cursor.next(), Order.class));
-//        }
-//
-//        orderCollection.remove(AppUtils.toDBObject(order));
+    public void deleteOrder(int orderId) throws UnknownHostException {
+        orderCollection.deleteOne(eq("_id", orderId));
     }
 }

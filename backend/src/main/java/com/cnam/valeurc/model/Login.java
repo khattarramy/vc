@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
-import java.util.UUID;
 
 /**
  *

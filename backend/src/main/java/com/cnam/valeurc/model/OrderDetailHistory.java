@@ -6,14 +6,13 @@
 package com.cnam.valeurc.model;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class OrderDetailHistory {
-    private UUID OrderDetailHistoryId;
+    private int _id;
     private String OrderDetailId;
     private Date DateTime;
     private String Status;
@@ -22,19 +21,19 @@ public class OrderDetailHistory {
     public OrderDetailHistory() {
         
     }
-    public OrderDetailHistory(UUID orderDetailHistoryId, String orderDetailId, String status,String userId) {
-        this.OrderDetailHistoryId = orderDetailHistoryId;
+    public OrderDetailHistory(int orderDetailHistoryId, String orderDetailId, String status,String userId) {
+        this._id = orderDetailHistoryId;
         this.OrderDetailId = orderDetailId;
         this.Status = status;
         this.UserId = userId;
         
     }
-    public UUID getOrderDetailHistoryId() {
-        return OrderDetailHistoryId;
+    public int getOrderDetailHistoryId() {
+        return _id;
     }
 
-    public void setOrderDetailHistoryId(UUID id) {
-        this.OrderDetailHistoryId = id;
+    public void setOrderDetailHistoryId(int id) {
+        this._id = id;
     }
     
     public String getOrderDetailId() {

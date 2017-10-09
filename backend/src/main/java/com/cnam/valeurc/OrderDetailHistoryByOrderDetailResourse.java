@@ -29,7 +29,7 @@ public class OrderDetailHistoryByOrderDetailResourse {
     @Path("/{orderDetailId}")
     @Produces(MediaType.APPLICATION_JSON)
     
-    public List<OrderDetailHistory> getOrderDetailHistoryByOrderDetail(@PathParam("orderDetailId") String orderDetailId) throws UnknownHostException {
+    public List<OrderDetailHistory> getOrderDetailHistoryByOrderDetail(@PathParam("orderDetailId") int orderDetailId) throws UnknownHostException {
 
         return orderDetailHistoryService.getOrderDetailHistoryByOrderDetailId(orderDetailId);
     }

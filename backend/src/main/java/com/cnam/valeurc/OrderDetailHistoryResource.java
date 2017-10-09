@@ -27,7 +27,7 @@ public class OrderDetailHistoryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    
+
     public List<OrderDetailHistory> getOrderDetailHistorys() throws UnknownHostException {
         return orderDetailHistoryService.getAllOrderDetailHistorys();
     }
@@ -35,8 +35,8 @@ public class OrderDetailHistoryResource {
     @GET
     @Path("/{orderDetailHistoryId}")
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public OrderDetailHistory getOrderDetailHistory(@PathParam("orderDetailHistoryId") String orderDetailHistoryId) throws UnknownHostException {
+
+    public OrderDetailHistory getOrderDetailHistory(@PathParam("orderDetailHistoryId") int orderDetailHistoryId) throws UnknownHostException {
 
         return orderDetailHistoryService.getOrderDetailHistoryById(orderDetailHistoryId);
     }
@@ -44,8 +44,8 @@ public class OrderDetailHistoryResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public OrderDetailHistory addOrderDetailHistory(OrderDetailHistory orderDetailHistory) throws UnknownHostException {
+
+    public OrderDetailHistory addOrderDetailHistory(OrderDetailHistory orderDetailHistory) throws UnknownHostException, Exception {
         return orderDetailHistoryService.addOrderDetailHistory(orderDetailHistory);
 
     }
@@ -54,8 +54,8 @@ public class OrderDetailHistoryResource {
     @Path("/{orderDetailHistoryId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public OrderDetailHistory updateOrderDetailHistory(OrderDetailHistory orderDetailHistory, @PathParam("orderDetailHistoryId") String orderDetailHistoryId) throws UnknownHostException {
+
+    public OrderDetailHistory updateOrderDetailHistory(OrderDetailHistory orderDetailHistory, @PathParam("orderDetailHistoryId") int orderDetailHistoryId) throws UnknownHostException {
         return orderDetailHistoryService.updateOrderDetailHistory(orderDetailHistory, orderDetailHistoryId);
 
     }
@@ -64,7 +64,7 @@ public class OrderDetailHistoryResource {
     @Path("/{orderDetailHistoryId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public void deleteOrderDetailHistory(@PathParam("orderDetailHistoryId") String orderDetailHistoryId) throws UnknownHostException {
+    public void deleteOrderDetailHistory(@PathParam("orderDetailHistoryId") int orderDetailHistoryId) throws UnknownHostException {
         orderDetailHistoryService.deleteOrderDetailHistory(orderDetailHistoryId);
 
     }

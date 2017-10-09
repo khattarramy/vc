@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class OrderDetail {
-    private UUID OrderDetailId;
+    private int _id;
     private String OrderId;
     private String ItemId;
     private String Status;
@@ -21,19 +20,19 @@ public class OrderDetail {
     public OrderDetail() {
         
     }
-    public OrderDetail(UUID orderDetailId, String orderId, String itemId, String status) {
-        this.OrderDetailId = orderDetailId;
+    public OrderDetail(int orderDetailId, String orderId, String itemId, String status) {
+        this._id = orderDetailId;
         this.ItemId = itemId;
         this.ItemId = itemId;
         this.Status = status;
     }
     
-    public UUID getOrderDetailId() {
-        return OrderDetailId;
+    public int getOrderDetailId() {
+        return _id;
     }
 
-    public void setOrderDetailId(UUID id) {
-        this.OrderDetailId = id;
+    public void setOrderDetailId(int id) {
+        this._id = id;
     }
     
     public String getOrderId() {
