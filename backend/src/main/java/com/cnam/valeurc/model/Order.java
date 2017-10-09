@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Order {
     
     private int _id;
-    private String UserId;
+    private int UserId;
     private String Status;
     private Date DateInitialized;
     private Date DateFinished;
@@ -26,7 +26,7 @@ public class Order {
         
     }
 
-    public Order(int id, String userId, String status) {
+    public Order(int id, int userId, String status) {
         this._id = id;
         this.UserId = userId;
         this.Status = status;
@@ -42,11 +42,11 @@ public class Order {
         this._id = id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return UserId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.UserId = userId;
     }
 

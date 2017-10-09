@@ -13,15 +13,15 @@ import java.util.Date;
  */
 public class OrderDetailHistory {
     private int _id;
-    private String OrderDetailId;
+    private int OrderDetailId;
     private Date DateTime;
     private String Status;
-    private String UserId;
+    private int UserId;
     
     public OrderDetailHistory() {
         
     }
-    public OrderDetailHistory(int orderDetailHistoryId, String orderDetailId, String status,String userId) {
+    public OrderDetailHistory(int orderDetailHistoryId, int orderDetailId, String status,int userId) {
         this._id = orderDetailHistoryId;
         this.OrderDetailId = orderDetailId;
         this.Status = status;
@@ -36,11 +36,11 @@ public class OrderDetailHistory {
         this._id = id;
     }
     
-    public String getOrderDetailId() {
+    public int getOrderDetailId() {
         return OrderDetailId;
     }
 
-    public void setOrderDetailId(String id) {
+    public void setOrderDetailId(int id) {
         this.OrderDetailId = id;
     }
     
@@ -60,11 +60,11 @@ public class OrderDetailHistory {
         this.Status = id;
     }
     
-    public String getUserId() {
+    public int getUserId() {
         return UserId;
     }
 
-    public void setUserId(String id) {
+    public void setUserId(int id) {
         this.UserId = id;
     }
 }
