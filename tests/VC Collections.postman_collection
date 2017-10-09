@@ -8,6 +8,129 @@
 	},
 	"item": [
 		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"type\":\"manufacturer\",\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"password\":\"password\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/users/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/users/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by id",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/users/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"type\":\"retailer\",\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"ali\",\"password\":\"pass\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/users/3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/login/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"email\":\"email\",\"password\":\"password\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Item",
 			"description": "",
 			"item": [
@@ -25,7 +148,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"description\":\"desc\",\"distributorId\":\"1231\",\"manufacturerId\":\"10\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+							"raw": "{\"description\":\"desc\",\"distributorId\":\"12\",\"manufacturerId\":\"22\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
 						},
 						"description": ""
 					},
@@ -54,7 +177,7 @@
 				{
 					"name": "Get Item By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/items/338dde79-443e-4c1c-b7ac-f9d69e2c8b3e",
+						"url": "http://localhost:8080/valeurc/glg/items/2",
 						"method": "GET",
 						"header": [
 							{
@@ -72,9 +195,29 @@
 					"response": []
 				},
 				{
+					"name": "Update Item",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/items/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ItemId\":\"item-id\",\"description\":\"ali4\",\"distributorId\":\"12\",\"manufacturerId\":\"10\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Item By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/items/338dde79-443e-4c1c-b7ac-f9d69e2c8b3e",
+						"url": "http://localhost:8080/valeurc/glg/items/2",
 						"method": "DELETE",
 						"header": [
 							{
@@ -87,26 +230,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Item",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/items/52796ddf-3e7b-4774-87f6-fe64e8f5aa16",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"ItemId\":\"item-id\",\"description\":\"ali4\",\"distributorId\":\"12\",\"manufacturerId\":\"10\",\"modelNumber\":\"model-123124\",\"name\":\"test name\"}"
 						},
 						"description": ""
 					},
@@ -132,7 +255,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"userId\":\"2\",\"status\":\"manufacturer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+							"raw": "{\"userId\":\"3\",\"status\":\"manufacturer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 						},
 						"description": ""
 					},
@@ -208,7 +331,7 @@
 				{
 					"name": "Get Order By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orders/ca2b0c8a-ed06-4f87-b345-c750637f1433",
+						"url": "http://localhost:8080/valeurc/glg/orders/2",
 						"method": "GET",
 						"header": [
 							{
@@ -226,9 +349,29 @@
 					"response": []
 				},
 				{
+					"name": "Update Order",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/orders/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":\"1\",\"status\":\"retailer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Order By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orders/ca2b0c8a-ed06-4f87-b345-c750637f1433",
+						"url": "http://localhost:8080/valeurc/glg/orders/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -241,26 +384,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Order",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orders/ca2b0c8a-ed06-4f87-b345-c750637f1433",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"userId\":\"ljflkafh\",\"status\":\"retailer\",\"dateInitialized\":\"2016-03-03T08:00:00+02:00\",\"dateFinished\":\"2016-06-03T08:00:00+02:00\"}"
 						},
 						"description": ""
 					},
@@ -286,7 +409,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"orderId\":\"123\",\"itemId\":\"1234\",\"status\":\"distributor\",\"manufacturerId\": 4,\"retailerId\":\"3\",\"distributorId\":\"1\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
+							"raw": "{\"orderId\":\"1\",\"itemId\":\"2\",\"status\":\"distributor\",\"manufacturerId\": 4,\"retailerId\":\"3\",\"distributorId\":\"1\",\"quantity\":\"5\",\"quantityDistributor\":\"3\"}"
 						},
 						"description": ""
 					},
@@ -315,7 +438,7 @@
 				{
 					"name": "Get Order Details By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetails/5c354e2f-97d9-47de-b750-0175589f1d0f",
+						"url": "http://localhost:8080/valeurc/glg/orderdetails/1",
 						"method": "GET",
 						"header": [
 							{
@@ -474,9 +597,29 @@
 					"response": []
 				},
 				{
+					"name": "Update Order Details",
+					"request": {
+						"url": "http://localhost:8080/valeurc/glg/orderdetails/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"orderId\":\"2222\",\"itemId\":\"3333\",\"status\":\"draft\",\"userId\":\"5555\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Order Details By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetails/5c354e2f-97d9-47de-b750-0175589f1d0f",
+						"url": "http://localhost:8080/valeurc/glg/orderdetails/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -489,26 +632,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update Order Details",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetails/4cf9cff4-2a3f-4a6a-8dbb-3ee6ba1bd36a",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"orderId\":\"2222\",\"itemId\":\"3333\",\"status\":\"4444\",\"userId\":\"5555\"}"
 						},
 						"description": ""
 					},
@@ -563,7 +686,7 @@
 				{
 					"name": "Get Order Detail History By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/15e4d7da-2532-4d38-add9-e201bbb8aeec",
+						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/1",
 						"method": "GET",
 						"header": [
 							{
@@ -592,30 +715,9 @@
 					"response": []
 				},
 				{
-					"name": "Delete Order Detail History By Id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/5c354e2f-97d9-47de-b750-0175589f1d0f",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Update Order Detail History",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/021d3714-b4f9-4bda-b9e6-4de8bc5d3e14",
+						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/2",
 						"method": "PUT",
 						"header": [
 							{
@@ -631,128 +733,23 @@
 						"description": ""
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Users",
-			"description": "",
-			"item": [
-				{
-					"name": "Create user",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/users/",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\"type\":\"manufacturer\",\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"password\":\"password\"}"
-						},
-						"description": ""
-					},
-					"response": []
 				},
 				{
-					"name": "Get users",
+					"name": "Delete Order Detail History By Id",
 					"request": {
-						"url": "http://localhost:8080/valeurc/glg/users/",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get user by id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/users/fafb962f-ef61-48ea-be9e-30831c639769",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Update user by id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/users/528d0021-74fa-48d8-a34f-97082fedd159",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\"type\":\"retailer\",\"name\":\"name1\",\"address\":\"address1\",\"phone\":\"1234451\",\"email\":\"ali\",\"password\":\"pass\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete user by id",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/users/fafb962f-ef61-48ea-be9e-30831c639769",
+						"url": "http://localhost:8080/valeurc/glg/orderdetailhistory/2",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"description": ""
+								"description": "",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\"typeId\":1,\"name\":\"name\",\"address\":\"address\",\"phone\":\"123445\",\"email\":\"email\",\"username\":\"username\",\"password\":\"password\"}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Login user",
-					"request": {
-						"url": "http://localhost:8080/valeurc/glg/login/",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\"email\":\"email\",\"password\":\"password\"}"
+							"raw": ""
 						},
 						"description": ""
 					},
