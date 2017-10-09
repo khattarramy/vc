@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
+import { OrderService } from 'app/layout/orders/order.service';
+import { Order } from 'app/layout/orders/order.model';
 
 
 
@@ -13,8 +15,10 @@ import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 })
 export class CartListComponent implements OnInit, OnDestroy {
   orderDetails: OrderDetail[];
+  order : Order;
   
   constructor(private orderDetailService: OrderDetailService,
+    private orderService: OrderService,
     private router: Router,
     private route: ActivatedRoute) {
   }
@@ -32,7 +36,17 @@ export class CartListComponent implements OnInit, OnDestroy {
       .subscribe(x => console.log(x));
      
    } 
-   this.router.navigate(['/cart']);
+
+   this.orderService.getOrdersByStatusAndRetailer("Cart", localStorage.getItem("userId"))
+   .subscribe(response => {
+     if (response.length > 0) {
+       this.order = response[0];
+       this.order.status="Sent";
+       this.orderService.updateOrder(this.order.orderId,this.order)
+         .subscribe(x => console.log(x));
+     }
+   });
+   this.router.navigate(['/create-order']);
    
   }
 
