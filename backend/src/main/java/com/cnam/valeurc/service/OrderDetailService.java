@@ -7,6 +7,7 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetail;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -15,6 +16,7 @@ import static com.mongodb.client.model.Filters.eq;
 import java.net.UnknownHostException;
 import java.util.*;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -37,27 +39,28 @@ public class OrderDetailService {
 
     }
 
-    public List<OrderDetail> getOrderDetailByOrderId(String orderId) throws UnknownHostException {
+
+    public List<OrderDetail> getAllOrderDetails(int orderId,int retailerId,int distributorId,int manufacturerId,String status) throws UnknownHostException {
 
         List<OrderDetail> orderDetails = new ArrayList();
+        BasicDBObject searchQuery = new BasicDBObject(); 
 
-//        BasicDBObject searchQuery = new BasicDBObject();
-//
-//        searchQuery.put("OrderId", orderId);
-//
-//        DBCursor cursor = orderDetailCollection.find(searchQuery);
-//
-//        while (cursor.hasNext()) {
-//            orderDetails.add((OrderDetail) AppUtils.fromDBObject(cursor.next(), OrderDetail.class));
-//        }
-        return orderDetails;
+        if (status != null && !"".equals(status)) {
+            searchQuery.put("Status", status);
+        }
+        if (orderId > 0) {
+            searchQuery.put("OrderId", orderId);
+        }
+        if (retailerId > 0) {
+//      
+        }
+        if (manufacturerId > 0) {
 
-    }
-
-    public List<OrderDetail> getAllOrderDetails() throws UnknownHostException {
-
-        List<OrderDetail> orderDetails = new ArrayList();
-        MongoCursor<Document> cursor = orderDetailCollection.find().iterator();
+        }
+        if (distributorId > 0) {
+            
+        }
+        MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
 
         while (cursor.hasNext()) {
             orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
