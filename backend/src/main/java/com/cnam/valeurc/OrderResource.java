@@ -29,9 +29,7 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
 
     public List<Order> getOrders(@QueryParam("userId") int userId, @QueryParam("status") String status) throws UnknownHostException {
-        return orderService.getAllOrders();
-//        return orderService.getAllOrders(userId, status);
-
+        return orderService.getAllOrders(userId, status);
     }
 
     @GET

@@ -7,6 +7,7 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -55,10 +56,16 @@ public class OrderService {
 
     }
 
-    public List<Order> getAllOrders() throws UnknownHostException {
-
+    public List<Order> getAllOrders(int userId, String status) throws UnknownHostException {
+        BasicDBObject searchQuery = new BasicDBObject(); 
         List<Order> orders = new ArrayList();
-        MongoCursor<Document> cursor = orderCollection.find().iterator();
+        if (status != null && !"".equals(status)) { 
+            searchQuery.put("Status", status); 
+        } 
+        if (userId > 0){ 
+            searchQuery.put("UserId", userId);
+        }
+        MongoCursor<Document> cursor = orderCollection.find(searchQuery).iterator();
 
         while (cursor.hasNext()) {
             orders.add((Order) AppUtils.fromDocument(cursor.next(), Order.class));
