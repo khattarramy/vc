@@ -22,7 +22,7 @@ public class OrderDetail {
     }
     public OrderDetail(int orderDetailId, int orderId, int itemId, String status) {
         this._id = orderDetailId;
-        this.ItemId = itemId;
+        this.OrderId = orderId;
         this.ItemId = itemId;
         this.Status = status;
     }
