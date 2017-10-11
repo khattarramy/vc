@@ -7,11 +7,13 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Login;
+import com.cnam.valeurc.model.OrderDetail;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.CreateCollectionOptions;
 import java.net.UnknownHostException;
@@ -47,13 +49,19 @@ public class LoginService {
         searchQuery.put("Email", login.getEmail());
         searchQuery.put("Password", login.getPassword());
 
-        DBCursor cursor = (DBCursor) userCollection.find(searchQuery);
+       
+        MongoCursor<Document> cursor = userCollection.find(searchQuery).iterator();
+        
+                
 
         while (cursor.hasNext()) {
-            user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
+           user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
+     
         }
 
+
         return user;
+
 
     }
 
