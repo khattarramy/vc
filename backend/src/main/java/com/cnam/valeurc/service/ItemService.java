@@ -7,6 +7,7 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Item;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -46,6 +47,26 @@ public class ItemService {
         }
 
         return items;
+
+    }
+    
+    public List<Integer> getAllItemsIds(int distributorId, int manufacturerId) throws UnknownHostException {
+
+        List<Integer> ids = new ArrayList();
+        BasicDBObject searchQuery = new BasicDBObject(); 
+        if (manufacturerId > 0) {
+            searchQuery.put("ManufacturerId", manufacturerId);
+        }
+        if (distributorId > 0) {
+            searchQuery.put("DistributorId", distributorId);
+        }
+        MongoCursor<Document> cursor = itemCollection.find(searchQuery).iterator();
+
+        while (cursor.hasNext()) {
+            ids.add((Integer) cursor.next().get("_id"));
+        }
+
+        return ids;
 
     }
 
