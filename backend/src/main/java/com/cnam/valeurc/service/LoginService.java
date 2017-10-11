@@ -34,7 +34,7 @@ public class LoginService {
     public LoginService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists("users")) {
+        if (!dbConnect.collectionExists(db,"users")) {
             db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
 

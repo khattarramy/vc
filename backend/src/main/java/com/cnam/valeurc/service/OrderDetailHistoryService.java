@@ -33,7 +33,7 @@ public class OrderDetailHistoryService {
     public OrderDetailHistoryService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists("orderDetailHistory")) {
+        if (!dbConnect.collectionExists(db,"orderDetailHistory")) {
             db.createCollection("orderDetailHistory", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "orderdetailhistoryid");

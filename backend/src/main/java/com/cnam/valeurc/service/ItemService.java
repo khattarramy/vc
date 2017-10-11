@@ -33,7 +33,7 @@ public class ItemService {
     public ItemService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists("item")) {
+        if (!dbConnect.collectionExists(db,"item")) {
             db.createCollection("item", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "itemid");

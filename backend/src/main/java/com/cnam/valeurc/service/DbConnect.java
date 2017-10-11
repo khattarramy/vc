@@ -28,11 +28,8 @@ public class DbConnect {
     public void close(MongoClient mongo) {
         mongo.close();
     }
-    public boolean collectionExists(final String collectionName) {
-        MongoClient mongo = new MongoClient("localhost", 27017);
-        MongoDatabase db = mongo.getDatabase("valeurc");
+    public boolean collectionExists(MongoDatabase db,final String collectionName) {
         MongoIterable<String> collectionNames = db.listCollectionNames();
-        mongo.close();
         for (final String name : collectionNames) {
             if (name.equalsIgnoreCase(collectionName)) {
                 return true;

@@ -33,7 +33,7 @@ public class OrderService {
     public OrderService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists("order")) {
+        if (!dbConnect.collectionExists(db,"order")) {
             db.createCollection("order", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "orderid");

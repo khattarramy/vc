@@ -60,7 +60,7 @@ public class AppUtils {
 
     public static MongoCollection checkCounters(DbConnect dbConnect, MongoDatabase db, String counter_id) {
         MongoCollection counters;
-        if (!dbConnect.collectionExists("counters")) {
+        if (!dbConnect.collectionExists(db,"counters")) {
             db.createCollection("counters", new CreateCollectionOptions().capped(false));
         }
         counters = db.getCollection("counters");
