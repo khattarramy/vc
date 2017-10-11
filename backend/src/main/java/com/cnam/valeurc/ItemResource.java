@@ -27,7 +27,7 @@ public class ItemResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    
+
     public List<Item> getItems() throws UnknownHostException {
         return itemService.getAllItems();
     }
@@ -35,8 +35,8 @@ public class ItemResource {
     @GET
     @Path("/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public Item getItem(@PathParam("itemId") String itemId) throws UnknownHostException {
+
+    public Item getItem(@PathParam("itemId") int itemId) throws UnknownHostException {
 
         return itemService.getItemById(itemId);
     }
@@ -44,8 +44,8 @@ public class ItemResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public Item addItem(Item item) throws UnknownHostException {
+
+    public Item addItem(Item item) throws UnknownHostException, Exception {
         return itemService.addItem(item);
 
     }
@@ -54,8 +54,8 @@ public class ItemResource {
     @Path("/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public Item updateItem(Item item, @PathParam("itemId") String itemId) throws UnknownHostException {
+
+    public Item updateItem(Item item, @PathParam("itemId") int itemId) throws UnknownHostException {
         return itemService.updateItem(item, itemId);
 
     }
@@ -64,7 +64,7 @@ public class ItemResource {
     @Path("/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public void deleteItem(@PathParam("itemId") String itemId) throws UnknownHostException {
+    public void deleteItem(@PathParam("itemId") int itemId) throws UnknownHostException {
         itemService.deleteItem(itemId);
 
     }

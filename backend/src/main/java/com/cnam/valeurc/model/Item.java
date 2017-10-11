@@ -5,27 +5,26 @@
  */
 package com.cnam.valeurc.model;
 
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class Item {
-    private UUID ItemId;
+    private int _id;
     private String Name;
     private String Description;
     private String ModelNumber;
-    private String DistributorId;
-    private String ManufacturerId;
+    private int DistributorId;
+    private int ManufacturerId;
 
        
     public Item() {
 
     }
-    public Item(UUID ItemId,String Name, String Description,String ModelNumber, String DistributorId, String ManufacturerId) {
+    public Item(int ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
         
-        this.ItemId=ItemId;
+        this._id=ItemId;
         this.Name = Name;
         this.Description = Description;
         this.ModelNumber = ModelNumber;
@@ -33,12 +32,12 @@ public class Item {
         this.ManufacturerId = ManufacturerId;
         
     }
-    public UUID getItemId() {
-        return ItemId;
+    public int getItemId() {
+        return _id;
     }
 
-    public void setItemId(UUID id) {
-        this.ItemId = id;
+    public void setItemId(int id) {
+        this._id = id;
     }
     
     public String getName() {
@@ -65,19 +64,19 @@ public class Item {
         this.ModelNumber = modelNumber;
     }
 
-    public String getDistributorId() {
+    public int getDistributorId() {
         return DistributorId;
     }
     
-    public void setDistributorId(String id) {
+    public void setDistributorId(int id) {
         this.DistributorId = id;
     }
     
-    public String getManufacturerId() {
+    public int getManufacturerId() {
         return ManufacturerId;
     }
     
-    public void setManufacturerId(String id) {
+    public void setManufacturerId(int id) {
         this.ManufacturerId = id;
     }
     

@@ -6,42 +6,41 @@
 package com.cnam.valeurc.model;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class OrderDetailHistory {
-    private UUID OrderDetailHistoryId;
-    private String OrderDetailId;
+    private int _id;
+    private int OrderDetailId;
     private Date DateTime;
     private String Status;
-    private String UserId;
+    private int UserId;
     
     public OrderDetailHistory() {
         
     }
-    public OrderDetailHistory(UUID orderDetailHistoryId, String orderDetailId, String status,String userId) {
-        this.OrderDetailHistoryId = orderDetailHistoryId;
+    public OrderDetailHistory(int orderDetailHistoryId, int orderDetailId, String status,int userId) {
+        this._id = orderDetailHistoryId;
         this.OrderDetailId = orderDetailId;
         this.Status = status;
         this.UserId = userId;
         
     }
-    public UUID getOrderDetailHistoryId() {
-        return OrderDetailHistoryId;
+    public int getOrderDetailHistoryId() {
+        return _id;
     }
 
-    public void setOrderDetailHistoryId(UUID id) {
-        this.OrderDetailHistoryId = id;
+    public void setOrderDetailHistoryId(int id) {
+        this._id = id;
     }
     
-    public String getOrderDetailId() {
+    public int getOrderDetailId() {
         return OrderDetailId;
     }
 
-    public void setOrderDetailId(String id) {
+    public void setOrderDetailId(int id) {
         this.OrderDetailId = id;
     }
     
@@ -61,11 +60,11 @@ public class OrderDetailHistory {
         this.Status = id;
     }
     
-    public String getUserId() {
+    public int getUserId() {
         return UserId;
     }
 
-    public void setUserId(String id) {
+    public void setUserId(int id) {
         this.UserId = id;
     }
 }

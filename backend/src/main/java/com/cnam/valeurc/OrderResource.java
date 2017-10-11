@@ -27,16 +27,16 @@ public class OrderResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public List<Order> getOrders(@QueryParam("userId") String userId, @QueryParam("status") String status) throws UnknownHostException {
-        return orderService.getAllOrders(userId,status);
+
+    public List<Order> getOrders(@QueryParam("userId") int userId, @QueryParam("status") String status) throws UnknownHostException {
+        return orderService.getAllOrders(userId, status);
     }
 
     @GET
     @Path("/{orderId}")
     @Produces(MediaType.APPLICATION_JSON)
-    
-    public Order getOrder(@PathParam("orderId") String orderId) throws UnknownHostException {
+
+    public Order getOrder(@PathParam("orderId") int orderId) throws UnknownHostException {
 
         return orderService.getOrderById(orderId);
     }
@@ -44,8 +44,8 @@ public class OrderResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public Order addOrder(Order order) throws UnknownHostException {
+
+    public Order addOrder(Order order) throws UnknownHostException, Exception {
         return orderService.addOrder(order);
 
     }
@@ -54,8 +54,8 @@ public class OrderResource {
     @Path("/{orderId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    
-    public Order updateOrder(Order order, @PathParam("orderId") String orderId) throws UnknownHostException {
+
+    public Order updateOrder(Order order, @PathParam("orderId") int orderId) throws UnknownHostException {
         return orderService.updateOrder(order, orderId);
 
     }
@@ -64,7 +64,7 @@ public class OrderResource {
     @Path("/{orderId}")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public void deleteOrder(@PathParam("orderId") String orderId) throws UnknownHostException {
+    public void deleteOrder(@PathParam("orderId") int orderId) throws UnknownHostException {
         orderService.deleteOrder(orderId);
 
     }

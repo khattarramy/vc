@@ -4,27 +4,25 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class User {
-    private UUID UserId;
-    private String Type;
+    private int _id;
     private String Name;
     private String Address;
     private String Phone;
     private String Email;
     private String Password;
-
+    private String Type;
        
     public User() {
         
     }
-    public User(UUID userId, String type,String name,String address,String phone,String email,String password) {
-        this.UserId = userId;
+    public User(int userId, String type,String name,String address,String phone,String email,String password) {
+        this._id = userId;
         this.Type = type;
         this.Name=name;
         this.Address=address;
@@ -33,12 +31,12 @@ public class User {
         this.Password=password;
         
     }
-    public UUID getUserId() {
-        return UserId;
+    public int getUserId() {
+        return _id;
     }
 
-    public void setUserId(UUID id) {
-        this.UserId = id;
+    public void setUserId(int id) {
+        this._id = id;
     }
 
     public String getType() {

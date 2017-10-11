@@ -4,55 +4,50 @@
  * and open the template in the editor.
  */
 package com.cnam.valeurc.model;
-import java.util.UUID;
 
 /**
  *
  * @author George Harik
  */
 public class OrderDetail {
-    private UUID OrderDetailId;
-    private String OrderId;
-    private String ItemId;
+    private int _id;
+    private int OrderId;
+    private int ItemId;
     private String Status;
-    private String ManufacturerId;
-    private String RetailerId;
-    private String DistributorId;
     private int Quantity;
     private int QuantityDistributor;
        
     public OrderDetail() {
         
     }
-    public OrderDetail(UUID orderDetailId, String orderId, String itemId, String status, String userId) {
-        this.OrderDetailId = orderDetailId;
-        this.ItemId = itemId;
+    public OrderDetail(int orderDetailId, int orderId, int itemId, String status) {
+        this._id = orderDetailId;
+        this.OrderId = orderId;
         this.ItemId = itemId;
         this.Status = status;
-        this.RetailerId = userId;
     }
     
-    public UUID getOrderDetailId() {
-        return OrderDetailId;
+    public int getOrderDetailId() {
+        return _id;
     }
 
-    public void setOrderDetailId(UUID id) {
-        this.OrderDetailId = id;
+    public void setOrderDetailId(int id) {
+        this._id = id;
     }
     
-    public String getOrderId() {
+    public int getOrderId() {
         return OrderId;
     }
 
-    public void setOrderId(String id) {
+    public void setOrderId(int id) {
         this.OrderId = id;
     }
     
-    public String getItemId() {
+    public int getItemId() {
         return ItemId;
     }
 
-    public void setItemId(String id) {
+    public void setItemId(int id) {
         this.ItemId = id;
     }
     
@@ -64,27 +59,6 @@ public class OrderDetail {
         this.Status = id;
     }
     
-    public String getDistributorId() {
-        return DistributorId;
-    }
-
-    public void setDistributorId(String id) {
-        this.DistributorId = id;
-    }
-    public String getRetailerId() {
-        return RetailerId;
-    }
-
-    public void setRetailerId(String id) {
-        this.RetailerId = id;
-    }
-    public String getManufacturerId() {
-        return ManufacturerId;
-    }
-
-    public void setManufacturerId(String id) {
-        this.ManufacturerId = id;
-    }
     public int getQuantity() {
         return Quantity;
     }

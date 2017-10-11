@@ -7,7 +7,6 @@ package com.cnam.valeurc.model;
 
 import java.util.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.UUID;
 
 /**
  *
@@ -16,8 +15,8 @@ import java.util.UUID;
 @XmlRootElement
 public class Order {
     
-    private UUID OrderId;
-    private String UserId;
+    private int _id;
+    private int UserId;
     private String Status;
     private Date DateInitialized;
     private Date DateFinished;
@@ -27,27 +26,27 @@ public class Order {
         
     }
 
-    public Order(UUID id, String userId, String status) {
-        this.OrderId = id;
+    public Order(int id, int userId, String status) {
+        this._id = id;
         this.UserId = userId;
         this.Status = status;
         this.DateInitialized = new Date();
     }
 
     
-    public UUID getOrderId() {
-        return OrderId;
+    public int getOrderId() {
+        return _id;
     }
 
-    public void setOrderId(UUID id) {
-        this.OrderId = id;
+    public void setOrderId(int id) {
+        this._id = id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return UserId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.UserId = userId;
     }
 

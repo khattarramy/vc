@@ -7,11 +7,14 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.User;
-import com.cnam.valeurc.model.User;
-import com.cnam.valeurc.model.User;
-import com.mongodb.*;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.CreateCollectionOptions;
+import static com.mongodb.client.model.Filters.eq;
 import java.net.UnknownHostException;
 import java.util.*;
+import org.bson.Document;
 
 /**
  *
@@ -20,35 +23,32 @@ import java.util.*;
 public class UserService {
 
     DbConnect dbConnect = new DbConnect();
-    DBCollection userCollection;
-    DB db;
+    MongoCollection userCollection, counters;
+    MongoDatabase db;
 
     public UserService() throws UnknownHostException {
         db = dbConnect.init();
-        if (!db.collectionExists("users")) {
-            db.createCollection("users", null);
+        if (!dbConnect.collectionExists("users")) {
+            db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
-
+        counters = AppUtils.checkCounters(dbConnect, db, "userid"); 
         userCollection = db.getCollection("users");
     }
 
-    public User addUser(User user) throws UnknownHostException {
-        userCollection.insert(AppUtils.toDBObject(user));
+    public User addUser(User user) throws UnknownHostException, Exception {
+        user.setUserId((int) AppUtils.getNextSequence("userid", counters));
+        userCollection.insertOne(AppUtils.toDocument(user));
         return user;
     }
 
-    public User getUserById(String userId) {
+    public User getUserById(int userId) {
 
         User user = new User();
 
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("UserId", userId);
-
-        DBCursor cursor = userCollection.find(searchQuery);
+        MongoCursor<Document> cursor = userCollection.find(eq("_id", userId)).iterator();
 
         while (cursor.hasNext()) {
-            user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
+            user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
 
         return user;
@@ -57,46 +57,20 @@ public class UserService {
 
     public List<User> getAllUsers() throws UnknownHostException {
         List<User> users = new ArrayList();
-        DBCursor cursor = userCollection.find();
+        MongoCursor<Document> cursor = userCollection.find().iterator();
         while (cursor.hasNext()) {
-            users.add((User) AppUtils.fromDBObject(cursor.next(), User.class));
+            users.add((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
         return users;
     }
 
-    public User updateUser(User user, String userId) {
-        User oldUser = new User();
-
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("UserId", userId);
-
-        user.setUserId((UUID.fromString(userId)));
-        
-        DBCursor cursor = userCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            oldUser = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
-        }
-
-        userCollection.update(AppUtils.toDBObject(oldUser), AppUtils.toDBObject(user));
-
+    public User updateUser(User user, int userId) {
+        user.setUserId(userId);
+        userCollection.updateOne(eq("_id", userId), new Document("$set", AppUtils.toDocument(user)));
         return user;
     }
 
-    public void deleteUser(String userId) {
-        User user = new User();
-
-        BasicDBObject searchQuery = new BasicDBObject();
-
-        searchQuery.put("UserId", userId);
-
-        DBCursor cursor = userCollection.find(searchQuery);
-
-        while (cursor.hasNext()) {
-            user = ((User) AppUtils.fromDBObject(cursor.next(), User.class));
-        }
-
-        userCollection.remove(AppUtils.toDBObject(user));
+    public void deleteUser(int userId) {
+        userCollection.deleteOne(eq("_id", userId));
     }
 }
