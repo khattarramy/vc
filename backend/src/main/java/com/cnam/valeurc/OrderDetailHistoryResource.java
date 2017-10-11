@@ -28,8 +28,8 @@ public class OrderDetailHistoryResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<OrderDetailHistory> getOrderDetailHistorys() throws UnknownHostException {
-        return orderDetailHistoryService.getAllOrderDetailHistorys();
+    public List<OrderDetailHistory> getOrderDetailHistorys(@QueryParam("orderDetailId") int orderDetailId) throws UnknownHostException {
+        return orderDetailHistoryService.getAllOrderDetailHistorys(orderDetailId);
     }
 
     @GET

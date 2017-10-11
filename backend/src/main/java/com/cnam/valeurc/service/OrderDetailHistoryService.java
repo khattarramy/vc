@@ -7,6 +7,7 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetailHistory;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -58,10 +59,15 @@ public class OrderDetailHistoryService {
 
     }
 
-    public List<OrderDetailHistory> getAllOrderDetailHistorys() throws UnknownHostException {
+    public List<OrderDetailHistory> getAllOrderDetailHistorys(int orderDetailId) throws UnknownHostException {
 
         List<OrderDetailHistory> orderDetailHistorys = new ArrayList();
-        MongoCursor<Document> cursor = orderDetailHistoryCollection.find().iterator();
+        BasicDBObject searchQuery = new BasicDBObject(); 
+
+        if (orderDetailId > 0) {
+            searchQuery.put("OderDetailId", orderDetailId);
+        }
+        MongoCursor<Document> cursor = orderDetailHistoryCollection.find(searchQuery).iterator();
 
         while (cursor.hasNext()) {
             orderDetailHistorys.add((OrderDetailHistory) AppUtils.fromDocument(cursor.next(), OrderDetailHistory.class));
