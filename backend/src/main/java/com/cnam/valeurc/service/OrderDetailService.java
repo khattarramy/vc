@@ -53,7 +53,7 @@ public class OrderDetailService {
         }
         ItemService items = new ItemService();
         List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
-        if(itemsIds == null || itemsIds.isEmpty()) {
+        if(itemsIds != null && !itemsIds.isEmpty()) {
             searchQuery.put("ItemId", new BasicDBObject("$in", itemsIds));
         }
         MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
