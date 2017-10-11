@@ -25,13 +25,13 @@ public class OrdersByUserResource {
         this.orderService = new OrderService();
     }
 
-    @GET
-    @Path("/{userId}")
-    @Produces(MediaType.APPLICATION_JSON)
+//    @GET
+//    @Path("/{userId}")
+//    @Produces(MediaType.APPLICATION_JSON)
 
-    public List<Order> getOrdersByUserId(@PathParam("userId") String userId) throws UnknownHostException {
-
-        return orderService.getOrdersByUserId(userId);
-    }
+//    public List<Order> getOrdersByUserId(@PathParam("userId") String userId) throws UnknownHostException {
+//
+////        return orderService.getOrdersByUserId(userId);
+//    }
 
 }
