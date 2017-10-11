@@ -23,6 +23,16 @@ export class OrderDetailService {
       });
   }
 
+  getOrderDetailsByStatusAndRetailer(status:String, retailerId: String): Observable<OrderDetail[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orderdetails?userId=" +
+      retailerId + "&status=" + status)
+      .map((response: Response) => {
+        const orderDetails: OrderDetail[] = response.json();
+        return orderDetails;
+      });
+  }
+
   getOrderDetail(index: string): Observable<OrderDetail> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orderdetails/" + index)

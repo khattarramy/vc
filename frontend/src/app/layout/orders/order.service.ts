@@ -22,6 +22,15 @@ export class OrderService {
         return orders;
       });
   }
+  getOrdersByStatusAndRetailer(status:String, retailerId: String): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?userId=" +
+      retailerId + "&status=" + status)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
 
   getOrder(index: string): Observable<Order> {
     return this.http
@@ -32,7 +41,7 @@ export class OrderService {
       });
   }
 
-  addOrder(order: Order) {
+  addOrder(order: Order): Observable<Order> {
     console.log(JSON.stringify(order));
     return this.http
       .post("http://localhost:8080/valeurc/glg/orders", order)
@@ -40,6 +49,8 @@ export class OrderService {
         this.getOrders().subscribe(response => {
           this.ordersChanged.next(response);
         });
+        const order: Order = response.json();
+        return order;
       });
   }
 

@@ -1,3 +1,39 @@
-<div>
-    <h2 class="text-muted">Create Order </h2>
-</div>
+<form [formGroup]="createOrderForm" (ngSubmit)="onSubmit()">
+        <div class="col-xs-12">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!createOrderForm.valid">Save</button>
+                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+              </div>
+
+
+                <fieldset class="form-group">
+                        <label for="itemId">itemId</label>
+
+                        <select class="form-control" id="itemId" formControlName="itemId">
+                                <option *ngFor="let itemEl of items; let i = index"
+                                value="{{itemEl.itemId}}">{{itemEl.name}}</option>
+                            </select>
+        
+
+                    </fieldset>
+
+                    
+            <fieldset class="form-group">
+                    <label for="quantity">quantity</label>
+                    <input class="form-control"
+                    id="quantity"
+                    formControlName="quantity"
+                    >
+
+                </fieldset>
+  
+
+
+
+
+</form>
+
+
+

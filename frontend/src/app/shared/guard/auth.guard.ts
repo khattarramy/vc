@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
       localStorage.getItem('email') &&
       localStorage.getItem('password') &&
       localStorage.getItem('userId') &&
-      localStorage.getItem('typeId')
+      localStorage.getItem('type')
     ) {
       return true;
     }

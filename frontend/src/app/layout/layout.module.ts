@@ -37,6 +37,11 @@ import { OrderDetailHistoryDetailComponent } from './order-detail-histories/orde
 import { OrderDetailHistoryStartComponent } from './order-detail-histories/order-detail-history-start/order-detail-history-start.component';
 import { OrderDetailHistoryEditComponent } from './order-detail-histories/order-detail-history-edit/order-detail-history-edit.component';
 import { OrderDetailHistoryService } from './order-detail-histories/order-detail-history.service';
+import { CreateOrderComponent } from 'app/layout/create-order/create-order.component';
+import { CartComponent } from 'app/layout/cart/cart.component';
+import { CartDetailComponent } from 'app/layout/cart/cart-detail/cart-detail.component';
+import { CartListComponent } from 'app/layout/cart/cart-list/cart-list.component';
+import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.component';
 
 
 @NgModule({
@@ -74,12 +79,21 @@ import { OrderDetailHistoryService } from './order-detail-histories/order-detail
         OrderDetailListComponent,
         OrderDetailStartComponent,
 
+        CartComponent,
+        CartDetailComponent,
+        CartListComponent,
+        CartStartComponent,
+
 
         OrderDetailHistoriesComponent,
         OrderDetailHistoryDetailComponent,
         OrderDetailHistoryEditComponent,
         OrderDetailHistoryListComponent,
-        OrderDetailHistoryStartComponent
+        OrderDetailHistoryStartComponent,
+
+        CreateOrderComponent,
+
+        CartComponent
     ],
     providers: [ ItemService, OrderService , OrderDetailService, OrderDetailHistoryService]
 })

@@ -18,9 +18,11 @@ export class OrderDetailEditComponent implements OnInit {
   orderDetailForm: FormGroup = new FormGroup({
     orderDetailId: new FormControl(''),
     orderId: new FormControl(''),
-    userId: new FormControl(''),
-    statusId: new FormControl(''),
-    itemId: new FormControl('')
+    retailerId: new FormControl(''),
+    status: new FormControl(''),
+    itemId: new FormControl(''),
+    quantity: new FormControl(''),
+    quantityDistributor: new FormControl('')
   });
   constructor(private route: ActivatedRoute,
     private orderDetailService: OrderDetailService,
@@ -64,10 +66,12 @@ export class OrderDetailEditComponent implements OnInit {
       this.orderDetail = response;
           this.orderDetailForm.setValue({
             orderId: this.orderDetail.orderId,
-            userId: this.orderDetail.userId,
-            statusId: this.orderDetail.statusId,
+            retailerId: this.orderDetail.retailerId,
+            status: this.orderDetail.status,
             orderDetailId: this.orderDetail.orderDetailId,
-            itemId: this.orderDetail.itemId
+            itemId: this.orderDetail.itemId,
+            quantity : this.orderDetail.quantity,
+            quantityDistributor  : this.orderDetail.quantityDistributor
         });
 
         });

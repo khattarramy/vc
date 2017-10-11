@@ -1,6 +1,6 @@
 export class User{
     public userId: string;
-    public typeId: string;
+    public type: string;
     public name: string;
     public address: string;
     public phone: string;
@@ -8,9 +8,9 @@ export class User{
     public username: string;
     public password: string;
 
-    constructor(userId: string,typeId: string, name: string, address: string, phone: string, email: string, username: string, password: string){
+    constructor(userId: string,type: string, name: string, address: string, phone: string, email: string, username: string, password: string){
         this.userId = userId;
-        this.typeId = typeId;
+        this.type= type;
         this.name = name;
         this.address = address;
         this.phone = phone;

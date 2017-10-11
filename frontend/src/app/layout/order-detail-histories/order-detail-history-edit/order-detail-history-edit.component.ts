@@ -19,7 +19,7 @@ export class OrderDetailHistoryEditComponent implements OnInit {
     orderDetailHistoryId: new FormControl(''),
     orderDetailId: new FormControl(''),
     userId: new FormControl(''),
-    statusId: new FormControl(''),
+    status: new FormControl(''),
     dateTime: new FormControl('')
   });
   constructor(private route: ActivatedRoute,
@@ -65,7 +65,7 @@ export class OrderDetailHistoryEditComponent implements OnInit {
           this.orderDetailHistoryForm.setValue({
             orderDetailHistoryId: this.orderDetailHistory.orderDetailHistoryId,
             userId: this.orderDetailHistory.userId,
-            statusId: this.orderDetailHistory.statusId,
+            status: this.orderDetailHistory.status,
             orderDetailId: this.orderDetailHistory.orderDetailId,
             dateTime: this.orderDetailHistory.dateTime
         });
