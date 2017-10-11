@@ -1,17 +1,17 @@
 export class OrderDetail {
 
-  public orderDetailId: string;
-  public orderId: string;
-  public retailerId: string;
+  public orderDetailId: Number;
+  public orderId: Number;
+  public retailerId: Number;
   public status: string;
-  public itemId: string;
+  public itemId: Number;
   public quantity : Number;
   public quantityDistributor : Number;
   
 
 
-  constructor(orderDetailId: string, orderId: string, itemId: string, 
-    status: string, retailerId: string,quantity : Number,quantityDistributor : Number) {
+  constructor(orderDetailId: Number, orderId: Number, itemId: Number, 
+    status: string, retailerId: Number,quantity : Number,quantityDistributor : Number) {
     this.orderId = orderId;
     this.retailerId = retailerId;
     this.status = status;

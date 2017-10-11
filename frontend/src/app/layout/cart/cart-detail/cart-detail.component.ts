@@ -10,7 +10,7 @@ import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 })
 export class CartDetailComponent implements OnInit {
   orderDetail: OrderDetail;
-  id: string;
+  id: Number;
 
   constructor(private orderDetailService: OrderDetailService,
     private route: ActivatedRoute,

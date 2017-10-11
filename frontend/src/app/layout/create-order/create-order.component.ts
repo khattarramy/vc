@@ -15,7 +15,7 @@ import { Order } from 'app/layout/orders/order.model';
   styleUrls: ['./create-order.component.css']
 })
 export class CreateOrderComponent implements OnInit {
-  id: string;
+  id: Number;
   editMode = false;
   items: Item[];
   orderDetail: OrderDetail;
@@ -42,11 +42,11 @@ export class CreateOrderComponent implements OnInit {
     this.orderDetail = this.createOrderForm.value;
 
     this.orderDetail.status = "Cart";
-    this.orderDetail.retailerId = localStorage.getItem('userId');
+    this.orderDetail.retailerId = parseInt(localStorage.getItem('userId'));
     this.orderDetail.quantityDistributor = 0;
 
 
-    this.orderService.getOrdersByStatusAndRetailer("Cart", localStorage.getItem("userId"))
+    this.orderService.getOrdersByStatusAndRetailer("Cart", parseInt(localStorage.getItem("userId")))
       .subscribe(response => {
         if (response.length > 0) {
           this.orderDetail.orderId = response[0].orderId;
@@ -54,7 +54,7 @@ export class CreateOrderComponent implements OnInit {
             .subscribe(x => console.log(x));
         }
         else{
-        this.order.userId = localStorage.getItem("userId");
+        this.order.userId = parseInt(localStorage.getItem("userId"));
         this.order.status = "Cart";
         this.order.dateInitialized = "2016-03-03T08:00:00+02:00";
         this.order.dateFinished = "2016-03-03T08:00:00+02:00";

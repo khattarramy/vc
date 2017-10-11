@@ -23,7 +23,7 @@ export class ItemService {
       });
   }
 
-  getItem(index: string): Observable<Item> {
+  getItem(index: Number): Observable<Item> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/items/" + index)
       .map((response: Response) => {
@@ -43,7 +43,7 @@ export class ItemService {
       });
   }
 
-  updateItem(index: string, newItem: Item) {
+  updateItem(index: Number, newItem: Item) {
     const x: string = "http://localhost:8080/valeurc/glg/items/" + index;
     console.log(x);
     return this.http.put(x, newItem).map((response: Response) => {
@@ -53,7 +53,7 @@ export class ItemService {
     });
   }
 
-  deleteItem(index: string) {
+  deleteItem(index: Number) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/items/" + index)
       .map((response: Response) => {

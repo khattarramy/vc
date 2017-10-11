@@ -25,7 +25,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
         
-    this.orderDetailService.getOrderDetailsByStatusAndRetailer("Cart",localStorage.getItem("userId"))
+    this.orderDetailService.getOrderDetailsByStatusAndRetailer("Cart",parseInt(localStorage.getItem("userId")))
       .subscribe(response => { this.orderDetails = response; });
   }
 
@@ -37,7 +37,7 @@ export class CartListComponent implements OnInit, OnDestroy {
      
    } 
 
-   this.orderService.getOrdersByStatusAndRetailer("Cart", localStorage.getItem("userId"))
+   this.orderService.getOrdersByStatusAndRetailer("Cart", parseInt(localStorage.getItem("userId")))
    .subscribe(response => {
      if (response.length > 0) {
        this.order = response[0];

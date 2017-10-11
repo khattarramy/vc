@@ -22,7 +22,7 @@ export class OrderService {
         return orders;
       });
   }
-  getOrdersByStatusAndRetailer(status:String, retailerId: String): Observable<Order[]> {
+  getOrdersByStatusAndRetailer(status:String, retailerId: Number): Observable<Order[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?userId=" +
       retailerId + "&status=" + status)
@@ -32,7 +32,7 @@ export class OrderService {
       });
   }
 
-  getOrder(index: string): Observable<Order> {
+  getOrder(index: Number): Observable<Order> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders/" + index)
       .map((response: Response) => {
@@ -54,7 +54,7 @@ export class OrderService {
       });
   }
 
-  updateOrder(index: string, newOrder: Order) {
+  updateOrder(index: Number, newOrder: Order) {
     const x: string = "http://localhost:8080/valeurc/glg/orders/" + index;
     console.log(x);
     return this.http.put(x, newOrder).map((response: Response) => {
@@ -64,7 +64,7 @@ export class OrderService {
     });
   }
 
-  deleteOrder(index: string) {
+  deleteOrder(index: Number) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/orders/" + index)
       .map((response: Response) => {

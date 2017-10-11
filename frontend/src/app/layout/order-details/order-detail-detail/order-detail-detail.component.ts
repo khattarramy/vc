@@ -11,7 +11,7 @@ import { OrderDetailService } from '../order-detail.service';
 })
 export class OrderDetailDetailComponent implements OnInit {
   orderDetail: OrderDetail;
-  id: string;
+  id: Number;
 
   constructor(private orderDetailService: OrderDetailService,
     private route: ActivatedRoute,

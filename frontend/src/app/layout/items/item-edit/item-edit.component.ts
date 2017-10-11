@@ -14,7 +14,7 @@ import { ItemService } from "../item.service";
   styleUrls: ["./item-edit.component.css"]
 })
 export class ItemEditComponent implements OnInit {
-  id: string;
+  id: Number;
   editMode = false;
   users: User[];
   item: Item;

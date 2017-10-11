@@ -11,7 +11,7 @@ import { OrderDetailHistoryService } from '../order-detail-history.service';
   styleUrls: ['./order-detail-history-edit.component.css']
 })
 export class OrderDetailHistoryEditComponent implements OnInit {
-  id: string;
+  id: Number;
   editMode = false;
 
   orderDetailHistory: OrderDetailHistory;

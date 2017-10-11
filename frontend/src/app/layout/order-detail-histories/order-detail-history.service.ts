@@ -23,7 +23,7 @@ export class OrderDetailHistoryService {
       });
   }
 
-  getOrderDetailHistory(index: string): Observable<OrderDetailHistory> {
+  getOrderDetailHistory(index: Number): Observable<OrderDetailHistory> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orderdetailhistory/" + index)
       .map((response: Response) => {
@@ -46,7 +46,7 @@ export class OrderDetailHistoryService {
       });
   }
 
-  updateOrderDetailHistory(index: string, newOrderDetailHistory: OrderDetailHistory) {
+  updateOrderDetailHistory(index: Number, newOrderDetailHistory: OrderDetailHistory) {
     const x: string =
       "http://localhost:8080/valeurc/glg/orderdetailhistory/" + index;
     console.log(x);
@@ -57,7 +57,7 @@ export class OrderDetailHistoryService {
     });
   }
 
-  deleteOrderDetailHistory(index: string) {
+  deleteOrderDetailHistory(index: Number) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/orderdetailhistory/" + index)
       .map((response: Response) => {

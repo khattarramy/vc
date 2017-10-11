@@ -11,7 +11,7 @@ import { OrderService } from '../order.service';
   styleUrls: ['./order-edit.component.css']
 })
 export class OrderEditComponent implements OnInit {
-  id: string;
+  id: Number;
   editMode = false;
 
   order: Order;

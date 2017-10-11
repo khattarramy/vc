@@ -11,7 +11,7 @@ import { OrderDetailService } from '../order-detail.service';
   styleUrls: ['./order-detail-edit.component.css']
 })
 export class OrderDetailEditComponent implements OnInit {
-  id: string;
+  id: Number;
   editMode = false;
 
   orderDetail: OrderDetail;
@@ -33,7 +33,7 @@ export class OrderDetailEditComponent implements OnInit {
     this.route.params
       .subscribe(
       (params: Params) => {
-        this.id = params['id'];
+        this.id = parseInt(params['id']);
         this.editMode = params['id'] != null;
         this.initForm();
       }

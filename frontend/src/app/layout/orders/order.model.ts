@@ -1,7 +1,7 @@
 export class Order {
 
-  public orderId: string;
-  public userId: string;
+  public orderId: Number;
+  public userId: Number;
   public status: string;
   public dateInitialized: string;
   public dateFinished: string;

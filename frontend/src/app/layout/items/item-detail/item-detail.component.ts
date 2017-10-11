@@ -11,7 +11,7 @@ import { ItemService } from '../item.service';
 })
 export class ItemDetailComponent implements OnInit {
   item: Item;
-  id: string;
+  id: Number;
 
   constructor(private itemService: ItemService,
     private route: ActivatedRoute,
