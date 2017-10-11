@@ -7,7 +7,9 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetail;
+import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -25,11 +27,13 @@ import org.bson.conversions.Bson;
 public class OrderDetailService {
 
     DbConnect dbConnect = new DbConnect();
+    MongoClient mongo;
     MongoCollection orderDetailCollection, counters;
     MongoDatabase db;
 
     public OrderDetailService() throws UnknownHostException {
-        db = dbConnect.init();
+        mongo = dbConnect.init();
+        db = dbConnect.getDatabase(mongo, DB_NAME);
         if (!dbConnect.collectionExists("orderDetail")) {
             db.createCollection("orderDetail", new CreateCollectionOptions().capped(false));
         }
@@ -39,11 +43,10 @@ public class OrderDetailService {
 
     }
 
-
-    public List<OrderDetail> getAllOrderDetails(int orderId,int retailerId,int distributorId,int manufacturerId,String status) throws UnknownHostException {
+    public List<OrderDetail> getAllOrderDetails(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
 
         List<OrderDetail> orderDetails = new ArrayList();
-        BasicDBObject searchQuery = new BasicDBObject(); 
+        BasicDBObject searchQuery = new BasicDBObject();
 
         if (status != null && !"".equals(status)) {
             searchQuery.put("Status", status);
@@ -53,7 +56,7 @@ public class OrderDetailService {
         }
         ItemService items = new ItemService();
         List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
-        if(itemsIds != null && !itemsIds.isEmpty()) {
+        if (itemsIds != null && !itemsIds.isEmpty()) {
             searchQuery.put("ItemId", new BasicDBObject("$in", itemsIds));
         }
         MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
@@ -62,6 +65,7 @@ public class OrderDetailService {
             orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
         }
 
+        dbConnect.close(mongo);
         return orderDetails;
 
     }
@@ -76,6 +80,7 @@ public class OrderDetailService {
             orderDetail = ((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
         }
 
+        dbConnect.close(mongo);
         return orderDetail;
 
     }
@@ -83,16 +88,19 @@ public class OrderDetailService {
     public OrderDetail addOrderDetail(OrderDetail orderDetail) throws UnknownHostException, Exception {
         orderDetail.setOrderDetailId((int) AppUtils.getNextSequence("orderdetailid", counters));
         orderDetailCollection.insertOne(AppUtils.toDocument(orderDetail));
+        dbConnect.close(mongo);
         return orderDetail;
     }
 
     public OrderDetail updateOrderDetail(OrderDetail orderDetail, int orderDetailId) throws UnknownHostException {
         orderDetail.setOrderDetailId(orderDetailId);
         orderDetailCollection.updateOne(eq("_id", orderDetailId), new Document("$set", AppUtils.toDocument(orderDetail)));
+        dbConnect.close(mongo);
         return orderDetail;
     }
 
     public void deleteOrderDetail(int orderDetailId) throws UnknownHostException {
         orderDetailCollection.deleteOne(eq("_id", orderDetailId));
+        dbConnect.close(mongo);
     }
 }

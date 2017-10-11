@@ -7,7 +7,9 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Item;
+import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -24,15 +26,17 @@ import org.bson.Document;
 public class ItemService {
 
     DbConnect dbConnect = new DbConnect();
+    MongoClient mongo;
     MongoCollection itemCollection, counters;
     MongoDatabase db;
 
     public ItemService() throws UnknownHostException {
-        db = dbConnect.init();
+        mongo = dbConnect.init();
+        db = dbConnect.getDatabase(mongo, DB_NAME);
         if (!dbConnect.collectionExists("item")) {
             db.createCollection("item", new CreateCollectionOptions().capped(false));
         }
-        counters = AppUtils.checkCounters(dbConnect, db, "itemid"); 
+        counters = AppUtils.checkCounters(dbConnect, db, "itemid");
         itemCollection = db.getCollection("item");
 
     }
@@ -45,15 +49,15 @@ public class ItemService {
         while (cursor.hasNext()) {
             items.add((Item) AppUtils.fromDocument(cursor.next(), Item.class));
         }
-
+        dbConnect.close(mongo);
         return items;
 
     }
-    
+
     public List<Integer> getAllItemsIds(int distributorId, int manufacturerId) throws UnknownHostException {
 
         List<Integer> ids = new ArrayList();
-        BasicDBObject searchQuery = new BasicDBObject(); 
+        BasicDBObject searchQuery = new BasicDBObject();
         if (manufacturerId > 0) {
             searchQuery.put("ManufacturerId", manufacturerId);
         }
@@ -65,6 +69,7 @@ public class ItemService {
         while (cursor.hasNext()) {
             ids.add((Integer) cursor.next().get("_id"));
         }
+        dbConnect.close(mongo);
 
         return ids;
 
@@ -79,24 +84,28 @@ public class ItemService {
         while (cursor.hasNext()) {
             item = ((Item) AppUtils.fromDocument(cursor.next(), Item.class));
         }
+        dbConnect.close(mongo);
 
         return item;
 
     }
 
-    public Item addItem(Item item)  throws UnknownHostException, Exception {
+    public Item addItem(Item item) throws UnknownHostException, Exception {
         item.setItemId((int) AppUtils.getNextSequence("itemid", counters));
         itemCollection.insertOne(AppUtils.toDocument(item));
+        dbConnect.close(mongo);
         return item;
     }
 
     public Item updateItem(Item item, int itemId) throws UnknownHostException {
         item.setItemId(itemId);
         itemCollection.updateOne(eq("_id", itemId), new Document("$set", AppUtils.toDocument(item)));
+        dbConnect.close(mongo);
         return item;
     }
 
     public void deleteItem(int itemId) throws UnknownHostException {
         itemCollection.deleteOne(eq("_id", itemId));
+        dbConnect.close(mongo);
     }
 }

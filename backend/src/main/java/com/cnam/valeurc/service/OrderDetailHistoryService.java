@@ -7,7 +7,9 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.OrderDetailHistory;
+import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -24,11 +26,13 @@ import org.bson.Document;
 public class OrderDetailHistoryService {
 
     DbConnect dbConnect = new DbConnect();
+    MongoClient mongo;
     MongoCollection orderDetailHistoryCollection, counters;
     MongoDatabase db;
 
     public OrderDetailHistoryService() throws UnknownHostException {
-        db = dbConnect.init();
+        mongo = dbConnect.init();
+        db = dbConnect.getDatabase(mongo, DB_NAME);
         if (!dbConnect.collectionExists("orderDetailHistory")) {
             db.createCollection("orderDetailHistory", new CreateCollectionOptions().capped(false));
         }
@@ -38,31 +42,10 @@ public class OrderDetailHistoryService {
 
     }
 
-    public List<OrderDetailHistory> getOrderDetailHistoryByOrderDetailId(int orderDetailId) throws UnknownHostException {
-
-        List<OrderDetailHistory> orderDetailHistory = new ArrayList();
-//         
-//        BasicDBObject searchQuery = new BasicDBObject(); 
-// 
-//        searchQuery.put("OrderDetailId", orderDetailId); 
-// 
-//        DBCursor cursor = orderDetailHistoryCollection.find(searchQuery); 
-// 
-//        while (cursor.hasNext()) { 
-//            orderDetailHistory.add((OrderDetailHistory) AppUtils.fromDBObject(cursor.next(), OrderDetailHistory.class)); 
-//        } 
-//        while (cursor.hasNext()) { 
-//            orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDocument(cursor.next(), OrderDetailHistory.class)); 
-//        } 
-// 
-        return orderDetailHistory;
-
-    }
-
     public List<OrderDetailHistory> getAllOrderDetailHistorys(int orderDetailId) throws UnknownHostException {
 
         List<OrderDetailHistory> orderDetailHistorys = new ArrayList();
-        BasicDBObject searchQuery = new BasicDBObject(); 
+        BasicDBObject searchQuery = new BasicDBObject();
 
         if (orderDetailId > 0) {
             searchQuery.put("OderDetailId", orderDetailId);
@@ -73,6 +56,7 @@ public class OrderDetailHistoryService {
             orderDetailHistorys.add((OrderDetailHistory) AppUtils.fromDocument(cursor.next(), OrderDetailHistory.class));
         }
 
+        dbConnect.close(mongo);
         return orderDetailHistorys;
 
     }
@@ -87,6 +71,7 @@ public class OrderDetailHistoryService {
             orderDetailHistory = ((OrderDetailHistory) AppUtils.fromDocument(cursor.next(), OrderDetailHistory.class));
         }
 
+        dbConnect.close(mongo);
         return orderDetailHistory;
 
     }
@@ -94,16 +79,19 @@ public class OrderDetailHistoryService {
     public OrderDetailHistory addOrderDetailHistory(OrderDetailHistory orderDetailHistory) throws UnknownHostException, Exception {
         orderDetailHistory.setOrderDetailHistoryId((int) AppUtils.getNextSequence("orderdetailhistoryid", counters));
         orderDetailHistoryCollection.insertOne(AppUtils.toDocument(orderDetailHistory));
+        dbConnect.close(mongo);
         return orderDetailHistory;
     }
 
     public OrderDetailHistory updateOrderDetailHistory(OrderDetailHistory orderDetailHistory, int orderDetailHistoryId) throws UnknownHostException {
         orderDetailHistory.setOrderDetailHistoryId(orderDetailHistoryId);
         orderDetailHistoryCollection.updateOne(eq("_id", orderDetailHistoryId), new Document("$set", AppUtils.toDocument(orderDetailHistory)));
+        dbConnect.close(mongo);
         return orderDetailHistory;
     }
 
     public void deleteOrderDetailHistory(int orderDetailHistoryId) throws UnknownHostException {
         orderDetailHistoryCollection.deleteOne(eq("_id", orderDetailHistoryId));
+        dbConnect.close(mongo);
     }
 }

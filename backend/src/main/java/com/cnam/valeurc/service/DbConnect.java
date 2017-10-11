@@ -16,17 +16,23 @@ import java.net.UnknownHostException;
  * @author George Harik
  */
 public class DbConnect {
-
-    public MongoDatabase init() throws UnknownHostException {
+    public static final String DB_NAME = "valeurc";
+    public MongoClient init() throws UnknownHostException {
         MongoClient mongo = new MongoClient("localhost", 27017);
-        MongoDatabase db = mongo.getDatabase("valeurc");
+        return mongo;
+    }
+    public MongoDatabase getDatabase(MongoClient mongo,String dbname) throws UnknownHostException {
+        MongoDatabase db = mongo.getDatabase(dbname);
         return db;
     }
-
+    public void close(MongoClient mongo) {
+        mongo.close();
+    }
     public boolean collectionExists(final String collectionName) {
         MongoClient mongo = new MongoClient("localhost", 27017);
         MongoDatabase db = mongo.getDatabase("valeurc");
         MongoIterable<String> collectionNames = db.listCollectionNames();
+        mongo.close();
         for (final String name : collectionNames) {
             if (name.equalsIgnoreCase(collectionName)) {
                 return true;

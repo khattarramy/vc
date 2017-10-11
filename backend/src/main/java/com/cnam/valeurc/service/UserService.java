@@ -7,6 +7,8 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.User;
+import static com.cnam.valeurc.service.DbConnect.DB_NAME;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -23,21 +25,24 @@ import org.bson.Document;
 public class UserService {
 
     DbConnect dbConnect = new DbConnect();
+    MongoClient mongo;
     MongoCollection userCollection, counters;
     MongoDatabase db;
 
     public UserService() throws UnknownHostException {
-        db = dbConnect.init();
+        mongo = dbConnect.init();
+        db = dbConnect.getDatabase(mongo, DB_NAME);
         if (!dbConnect.collectionExists("users")) {
             db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
-        counters = AppUtils.checkCounters(dbConnect, db, "userid"); 
+        counters = AppUtils.checkCounters(dbConnect, db, "userid");
         userCollection = db.getCollection("users");
     }
 
     public User addUser(User user) throws UnknownHostException, Exception {
         user.setUserId((int) AppUtils.getNextSequence("userid", counters));
         userCollection.insertOne(AppUtils.toDocument(user));
+        dbConnect.close(mongo);
         return user;
     }
 
@@ -51,6 +56,7 @@ public class UserService {
             user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
 
+        dbConnect.close(mongo);
         return user;
 
     }
@@ -61,16 +67,19 @@ public class UserService {
         while (cursor.hasNext()) {
             users.add((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
+        dbConnect.close(mongo);
         return users;
     }
 
     public User updateUser(User user, int userId) {
         user.setUserId(userId);
         userCollection.updateOne(eq("_id", userId), new Document("$set", AppUtils.toDocument(user)));
+        dbConnect.close(mongo);
         return user;
     }
 
     public void deleteUser(int userId) {
         userCollection.deleteOne(eq("_id", userId));
+        dbConnect.close(mongo);
     }
 }
