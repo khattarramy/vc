@@ -11,6 +11,7 @@ import com.cnam.valeurc.model.OrderDetail;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
+import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -28,12 +29,14 @@ import org.bson.conversions.Bson;
 public class LoginService {
 
     DbConnect dbConnect = new DbConnect();
+    MongoClient mongo;
     MongoCollection userCollection;
     MongoDatabase db;
 
     public LoginService() throws UnknownHostException {
-        db = dbConnect.init();
-        if (!dbConnect.collectionExists("users")) {
+        mongo = dbConnect.init();
+        db = dbConnect.getDatabase(mongo, DB_NAME);
+        if (!dbConnect.collectionExists(db,"users")) {
             db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
 
@@ -58,8 +61,13 @@ public class LoginService {
            user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
      
         }
+<<<<<<< HEAD
 
 
+=======
+        
+        dbConnect.close(mongo);
+>>>>>>> ca27264ff278793664687d51e95d79b9ca83b6e8
         return user;
 
 
