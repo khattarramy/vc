@@ -22,6 +22,10 @@ import { CreateOrderComponent } from 'app/layout/create-order/create-order.compo
 import { CartComponent } from 'app/layout/cart/cart.component';
 import { CartDetailComponent } from 'app/layout/cart/cart-detail/cart-detail.component';
 import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.component';
+import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
+import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
+import { AllOrderStartComponent } from 'app/layout/all-orders/all-order-start/all-order-start.component';
+import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
 
 const routes: Routes = [
     {
@@ -62,6 +66,16 @@ const routes: Routes = [
                     { path: 'new', component: OrderEditComponent },
                     { path: ':id', component: OrderDetailComponent },
                     { path: ':id/edit', component: OrderEditComponent },
+                ]
+            },
+
+
+            {
+                path: 'all-orders', component: AllOrdersComponent, children: [
+                    { path: '', component: AllOrderStartComponent },
+                    { path: 'new', component: AllOrderEditComponent },
+                    { path: ':id', component: AllOrderDetailComponent },
+                    { path: ':id/edit', component: AllOrderEditComponent },
                 ]
             },
             //{ path: 'items', loadChildren: './items/items.module#ItemsModule' }

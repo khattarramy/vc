@@ -42,6 +42,11 @@ import { CartComponent } from 'app/layout/cart/cart.component';
 import { CartDetailComponent } from 'app/layout/cart/cart-detail/cart-detail.component';
 import { CartListComponent } from 'app/layout/cart/cart-list/cart-list.component';
 import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.component';
+import { AllOrderStartComponent } from 'app/layout/all-orders/all-order-start/all-order-start.component';
+import { AllOrderListComponent } from 'app/layout/all-orders/all-order-list/all-order-list.component';
+import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
+import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
+import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
 
 
 @NgModule({
@@ -90,6 +95,15 @@ import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.compon
         OrderDetailHistoryEditComponent,
         OrderDetailHistoryListComponent,
         OrderDetailHistoryStartComponent,
+
+
+        AllOrdersComponent,
+        AllOrderDetailComponent,
+        AllOrderEditComponent,
+        AllOrderListComponent,
+        AllOrderStartComponent,
+
+
 
         CreateOrderComponent,
 
