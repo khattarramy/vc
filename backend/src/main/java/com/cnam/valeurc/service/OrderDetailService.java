@@ -34,7 +34,7 @@ public class OrderDetailService {
     public OrderDetailService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db,"orderDetail")) {
+        if (!dbConnect.collectionExists(db, "orderDetail")) {
             db.createCollection("orderDetail", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "orderdetailid");
@@ -43,29 +43,54 @@ public class OrderDetailService {
 
     }
 
-    public List<OrderDetail> getAllOrderDetails(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
+    public List<OrderDetail> getAllOrderDetails(int orderId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
 
-        List<OrderDetail> orderDetails = new ArrayList();
         BasicDBObject searchQuery = new BasicDBObject();
 
-        if (status != null && !"".equals(status)) {
-            searchQuery.put("Status", status);
-        }
-        if (orderId > 0) {
-            searchQuery.put("OrderId", orderId);
-        }
-        ItemService items = new ItemService();
-        List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
-        if (itemsIds != null && !itemsIds.isEmpty()) {
-            searchQuery.put("ItemId", new BasicDBObject("$in", itemsIds));
-        }
-        MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
+        List<OrderDetail> orderDetails = new ArrayList();
 
-        while (cursor.hasNext()) {
-            orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+        if ((orderId == 0) && (distributorId == 0) && (manufacturerId == 0) && ((status == null) || (status == ""))) {
+
+            MongoCursor<Document> cursor = orderDetailCollection.find().iterator();
+            
+            while (cursor.hasNext()) {
+                
+                orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+            }
+        } else {
+            if (status != null && !"".equals(status)) {
+                
+                searchQuery.append("Status", status);
+                
+            }
+            
+            if (orderId > 0) {
+                
+                searchQuery.append("OrderId", orderId);
+            }
+            
+            ItemService items = new ItemService();
+            
+            List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
+            
+            if (itemsIds != null && !itemsIds.isEmpty()) {
+                
+                searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
+                
+            }
+            
+            if (!searchQuery.isEmpty()) {
+                
+                MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
+
+                while (cursor.hasNext()) {
+                    orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+                }
+            }
         }
 
         dbConnect.close(mongo);
+        
         return orderDetails;
 
     }

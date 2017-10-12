@@ -7,6 +7,7 @@ package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
+import com.cnam.valeurc.model.OrderDetail;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -33,7 +34,7 @@ public class OrderService {
     public OrderService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db,"order")) {
+        if (!dbConnect.collectionExists(db, "order")) {
             db.createCollection("order", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "orderid");
@@ -42,22 +43,64 @@ public class OrderService {
 
     }
 
-    public List<Order> getAllOrders(int userId, String status) throws UnknownHostException {
-        BasicDBObject searchQuery = new BasicDBObject();
-        List<Order> orders = new ArrayList();
-        if (status != null && !"".equals(status)) {
-            searchQuery.put("Status", status);
-        }
-        if (userId > 0) {
-            searchQuery.put("UserId", userId);
-        }
-        MongoCursor<Document> cursor = orderCollection.find(searchQuery).iterator();
+    public List<Order> getAllOrders(int userId, String status, int distributorId, int manufacturerId) throws UnknownHostException {
 
-        while (cursor.hasNext()) {
-            orders.add((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+        List<Order> orders = new ArrayList();
+
+        MongoCursor<Document> cursor;
+
+        if ((userId == 0) && ((status == null) || (status == "")) && (distributorId == 0) && (manufacturerId == 0)) {
+
+            cursor = orderCollection.find().iterator();
+
+            while (cursor.hasNext()) {
+                orders.add((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+            }
+
+        } else {
+
+            BasicDBObject searchQuery = new BasicDBObject();
+
+            if (status != null && !"".equals(status)) {
+
+                searchQuery.put("Status", status);
+
+            }
+            if (userId > 0) {
+
+                searchQuery.put("UserId", userId);
+
+            }
+
+            if (distributorId > 0 || manufacturerId > 0) {
+
+                OrderDetailService orderDetails = new OrderDetailService();
+
+                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0, distributorId, manufacturerId, null);
+
+                List<Integer> orderDetailIdsList = new ArrayList();
+
+                for (OrderDetail o : orderDetailsList) {
+
+                    orderDetailIdsList.add(o.getOrderId());
+
+                }
+
+                searchQuery.put("_id", new BasicDBObject("$in", orderDetailIdsList));
+
+            }
+            if (!searchQuery.isEmpty()) {
+
+                cursor = orderCollection.find(searchQuery).iterator();
+
+                while (cursor.hasNext()) {
+                    orders.add((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+                }
+            }
         }
 
         dbConnect.close(mongo);
+
         return orders;
 
     }

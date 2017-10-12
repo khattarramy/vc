@@ -28,9 +28,10 @@ public class OrderDetailResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<OrderDetail> getOrderDetails(@QueryParam("orderId") int orderId, @QueryParam("retailerId") int retailerId, @QueryParam("distributorId") int distributorId, @QueryParam("manufacturerId") int manufacturerId, @QueryParam("status") String status) throws UnknownHostException {
-        return orderDetailService.getAllOrderDetails(orderId,retailerId,distributorId,manufacturerId,status);
-//        return orderDetailService.getAllOrderDetails();
+    public List<OrderDetail> getOrderDetails(@QueryParam("orderId") int orderId, @QueryParam("distributorId") int distributorId, @QueryParam("manufacturerId") int manufacturerId, @QueryParam("status") String status) throws UnknownHostException {
+        
+        return orderDetailService.getAllOrderDetails(orderId, distributorId, manufacturerId, status);
+        
     }
 
     @GET
