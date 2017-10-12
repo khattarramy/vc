@@ -2,7 +2,6 @@ export class OrderDetail {
 
   public orderDetailId: Number;
   public orderId: Number;
-  public retailerId: Number;
   public status: string;
   public itemId: Number;
   public quantity : Number;
@@ -11,9 +10,8 @@ export class OrderDetail {
 
 
   constructor(orderDetailId: Number, orderId: Number, itemId: Number, 
-    status: string, retailerId: Number,quantity : Number,quantityDistributor : Number) {
+    status: string,quantity : Number,quantityDistributor : Number) {
     this.orderId = orderId;
-    this.retailerId = retailerId;
     this.status = status;
     this.itemId = itemId;
     this.orderDetailId = orderDetailId;

@@ -18,7 +18,6 @@ export class OrderDetailEditComponent implements OnInit {
   orderDetailForm: FormGroup = new FormGroup({
     orderDetailId: new FormControl(''),
     orderId: new FormControl(''),
-    retailerId: new FormControl(''),
     status: new FormControl(''),
     itemId: new FormControl(''),
     quantity: new FormControl(''),
@@ -66,7 +65,6 @@ export class OrderDetailEditComponent implements OnInit {
       this.orderDetail = response;
           this.orderDetailForm.setValue({
             orderId: this.orderDetail.orderId,
-            retailerId: this.orderDetail.retailerId,
             status: this.orderDetail.status,
             orderDetailId: this.orderDetail.orderDetailId,
             itemId: this.orderDetail.itemId,
