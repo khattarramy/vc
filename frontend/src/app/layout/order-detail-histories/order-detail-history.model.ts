@@ -8,7 +8,8 @@ export class OrderDetailHistory {
 
 
 
-  constructor(orderDetailHistoryId: Number, orderDetailId: Number, userId: Number, status: string, dateTime: string) {
+  constructor(orderDetailHistoryId: Number=0, orderDetailId: Number=0, userId: Number=0, 
+    status: string="", dateTime: string="") {
     this.orderDetailHistoryId = orderDetailHistoryId;
     this.userId = userId;
     this.status = status;

@@ -7,7 +7,12 @@ export class Order {
   public dateFinished: string;
 
 
-constructor(){
-
+constructor(orderId: Number=0, userId: Number=0, status: string="", 
+dateInitialized: string="", dateFinished: string=""){
+this.orderId=orderId;
+this.userId=userId;
+this.status=status;
+this.dateInitialized=dateInitialized;
+this.dateFinished=dateFinished;
 }
 }

@@ -42,7 +42,6 @@ export class CreateOrderComponent implements OnInit {
     this.orderDetail = this.createOrderForm.value;
 
     this.orderDetail.status = "Cart";
-    this.orderDetail.retailerId = parseInt(localStorage.getItem('userId'));
     this.orderDetail.quantityDistributor = 0;
 
 

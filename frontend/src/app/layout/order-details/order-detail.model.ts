@@ -9,8 +9,8 @@ export class OrderDetail {
   
 
 
-  constructor(orderDetailId: Number, orderId: Number, itemId: Number, 
-    status: string,quantity : Number,quantityDistributor : Number) {
+  constructor(orderDetailId: Number=0, orderId: Number=0, itemId: Number=0, 
+    status: string="",quantity : Number=0,quantityDistributor : Number=0) {
     this.orderId = orderId;
     this.status = status;
     this.itemId = itemId;

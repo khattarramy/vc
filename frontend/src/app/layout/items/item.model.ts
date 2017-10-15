@@ -9,9 +9,9 @@ export class Item {
 
 
 
-  constructor(itemId: Number, name: string, description: string, modelNumber: string, distributorId: Number,
-    manufacturerId: Number) {
-    this.itemId = itemId;
+  constructor(name: string="", description: string="", 
+  modelNumber: string="", distributorId: Number=0,
+    manufacturerId: Number=0) {
     this.name = name;
     this.description = description;
     this.modelNumber = modelNumber;
