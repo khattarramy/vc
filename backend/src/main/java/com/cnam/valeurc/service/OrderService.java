@@ -140,7 +140,10 @@ public class OrderService {
     }
     
         public void deleteAllOrders() throws UnknownHostException {
-        orderCollection.drop();
+       BasicDBObject searchQuery = new BasicDBObject();
+        orderCollection.deleteMany(searchQuery);
         dbConnect.close(mongo);
+        CounterService counterService = new CounterService();
+        counterService.deleteCounter("orderid");
     }
 }

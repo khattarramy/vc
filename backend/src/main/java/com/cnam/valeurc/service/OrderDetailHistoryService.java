@@ -96,7 +96,10 @@ public class OrderDetailHistoryService {
     }
 
     public void deleteAllOrderDetailHistories() throws UnknownHostException {
-        orderDetailHistoryCollection.drop();
+        BasicDBObject searchQuery = new BasicDBObject();
+        orderDetailHistoryCollection.deleteMany(searchQuery);
         dbConnect.close(mongo);
+        CounterService counterService = new CounterService();
+        counterService.deleteCounter("orderdetailhistoryid");
     }
 }

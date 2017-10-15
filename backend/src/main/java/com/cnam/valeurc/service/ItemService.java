@@ -110,7 +110,10 @@ public class ItemService {
     }
     
         public void deleteAllItems() throws UnknownHostException {
-        itemCollection.drop();
+        BasicDBObject searchQuery = new BasicDBObject();
+        itemCollection.deleteMany(searchQuery);
         dbConnect.close(mongo);
+        CounterService counterService = new CounterService();
+        counterService.deleteCounter("itemid");
     }
 }

@@ -8,6 +8,7 @@ package com.cnam.valeurc.service;
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.User;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -32,7 +33,7 @@ public class UserService {
     public UserService() throws UnknownHostException {
         mongo = dbConnect.init();
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db,"users")) {
+        if (!dbConnect.collectionExists(db, "users")) {
             db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
         counters = AppUtils.checkCounters(dbConnect, db, "userid");
@@ -82,10 +83,12 @@ public class UserService {
         userCollection.deleteOne(eq("_id", userId));
         dbConnect.close(mongo);
     }
-    
-        
-        public void deleteAllUsers() throws UnknownHostException {
-        userCollection.drop();
+
+    public void deleteAllUsers() throws UnknownHostException {
+        BasicDBObject searchQuery = new BasicDBObject();
+        userCollection.deleteMany(searchQuery);
         dbConnect.close(mongo);
+        CounterService counterService = new CounterService();
+        counterService.deleteCounter("userid");
     }
 }
