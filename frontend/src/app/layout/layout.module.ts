@@ -47,6 +47,10 @@ import { AllOrderListComponent } from 'app/layout/all-orders/all-order-list/all-
 import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
 import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
 import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
+import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashboard-retailer.component';
+import { DashboardComponent } from 'app/layout/dashboard/dashboard.component';
+import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/dashboard-distributor.component';
+import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
 
 
 @NgModule({
@@ -107,7 +111,17 @@ import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
 
         CreateOrderComponent,
 
-        CartComponent
+        CartComponent,
+
+        DashboardComponent,
+
+        DashboardRetailerComponent,
+
+        DashboardDistributorComponent,
+
+        DashboardManufacturerComponent
+
+
     ],
     providers: [ ItemService, OrderService , OrderDetailService, OrderDetailHistoryService]
 })

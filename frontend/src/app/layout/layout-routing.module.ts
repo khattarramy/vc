@@ -26,12 +26,19 @@ import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
 import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
 import { AllOrderStartComponent } from 'app/layout/all-orders/all-order-start/all-order-start.component';
 import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
+import { DashboardComponent } from 'app/layout/dashboard/dashboard.component';
+import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashboard-retailer.component';
+import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
+import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/dashboard-distributor.component';
 
 const routes: Routes = [
     {
         path: '', component: LayoutComponent,
         children: [
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'dashboard', component:DashboardComponent },
+            { path: 'dashboard-retailer', component:DashboardRetailerComponent },
+            { path: 'dashboard-distributor', component:DashboardDistributorComponent },
+            { path: 'dashboard-manufacturer', component:DashboardManufacturerComponent },
 
             {
                 path: 'cart', component: CartComponent, children: [

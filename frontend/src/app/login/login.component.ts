@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
 
     var i: number = 0;
     for (let user of this.users) {
-      i = i + 50;
+      i = i + 150;
       setTimeout(() => { this.userService.addUser(user).subscribe(); }, i);
 
     }
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
 
     var j: number = 0;
     for (let item of this.items) {
-      j = j + 50;
+      j = j + 150;
       setTimeout(() => { this.itemService.addItem(item).subscribe(); }, j);
 
     }
