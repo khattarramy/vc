@@ -5,11 +5,11 @@ import { Order } from 'app/layout/orders/order.model';
 
 
 @Component({
-  selector: 'app-all-order-detail',
-  templateUrl: './all-order-detail.component.html',
-  styleUrls: ['./all-order-detail.component.css']
+  selector: 'app-all-order-manufacturer-detail',
+  templateUrl: './all-order-manufacturer-detail.component.html',
+  styleUrls: ['./all-order-manufacturer-detail.component.css']
 })
-export class AllOrderDetailComponent implements OnInit {
+export class AllOrderManufacturerDetailComponent implements OnInit {
   order: Order;
   id: Number;
 

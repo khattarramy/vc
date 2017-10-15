@@ -6,11 +6,11 @@ import { OrderService } from 'app/layout/orders/order.service';
 
 
 @Component({
-  selector: 'app-all-order-edit',
-  templateUrl: './all-order-edit.component.html',
-  styleUrls: ['./all-order-edit.component.css']
+  selector: 'app-all-order-manufacturer-edit',
+  templateUrl: './all-order-manufacturer-edit.component.html',
+  styleUrls: ['./all-order-manufacturer-edit.component.css']
 })
-export class AllOrderEditComponent implements OnInit {
+export class AllOrderManufacturerEditComponent implements OnInit {
   id: Number;
   editMode = false;
 

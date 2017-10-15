@@ -56,6 +56,11 @@ import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distri
 import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distributor/all-order-distributor-edit/all-order-distributor-edit.component';
 import { AllOrderDistributorListComponent } from 'app/layout/all-orders-distributor/all-order-distributor-list/all-order-distributor-list.component';
 import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
+import { AllOrdersManufacturerComponent } from 'app/layout/all-orders-manufacturer/all-orders-manufacturer.component';
+import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-detail/all-order-manufacturer-detail.component';
+import { AllOrderManufacturerEditComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-edit/all-order-manufacturer-edit.component';
+import { AllOrderManufacturerListComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-list/all-order-manufacturer-list.component';
+import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
 
 
 @NgModule({
@@ -117,6 +122,12 @@ import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distrib
         AllOrderDistributorEditComponent,
         AllOrderDistributorListComponent,
         AllOrderDistributorStartComponent,
+
+        AllOrdersManufacturerComponent,
+        AllOrderManufacturerDetailComponent,
+        AllOrderManufacturerEditComponent,
+        AllOrderManufacturerListComponent,
+        AllOrderManufacturerStartComponent,
 
 
 

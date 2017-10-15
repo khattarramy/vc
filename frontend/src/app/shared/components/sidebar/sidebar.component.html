@@ -1,54 +1,48 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="this.user.type=='admin'" routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
         </a>
-        <a routerLink="/dashboard-retailer" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='retailer'" routerLink="/dashboard-retailer" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
         </a>
-        <a routerLink="/dashboard-distributor" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='distributor'" routerLink="/dashboard-distributor" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
         </a>
-        <a routerLink="/dashboard-manufacturer" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="this.user.type=='manufacturer'" routerLink="/dashboard-manufacturer" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
         </a>
 
-        <a routerLink="/create-order" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='retailer'" routerLink="/create-order" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Create order' }}
         </a>
-        <a routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='admin'" routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Orders' }}
         </a>
 
-        <a routerLink="/all-orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='retailer'" routerLink="/all-orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders' }}
         </a>
 
-        <a routerLink="/all-orders-distributor" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders Distributor' }}
+        <a  *ngIf="this.user.type=='distributor'" routerLink="/all-orders-distributor" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders' }}
         </a>
 
-        <a routerLink="/order-details" [routerLinkActive]="['router-link-active']" class="list-group-item">
+
+        <a *ngIf="this.user.type=='manufacturer'"  routerLink="/all-orders-manufacturer" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders' }}
+        </a>
+        <a *ngIf="this.user.type=='admin'"  routerLink="/order-details" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Order Details' }}
         </a>
-        <a routerLink="/order-detail-histories" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='admin'" routerLink="/order-detail-histories" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Order Detail History' }}
         </a>
-        <!--  <a routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Completed orders'  }}
-        </a>-->
-        <a routerLink="/cart" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='retailer'" routerLink="/cart" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Cart' }}
         </a>
-        <a routerLink="/items" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a  *ngIf="this.user.type=='distributor' || this.user.type=='manufacturer'  || this.user.type=='admin'" routerLink="/items" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Items' }}
         </a>
-        <!-- <a routerLink="/retailerorders" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Retailer orders'  }}
-        </a>
-                <a routerLink="/distributororders" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Distributor orders'  }}
-        </a>-->
-
     </ul>
 </nav>

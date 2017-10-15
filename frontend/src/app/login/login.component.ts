@@ -50,17 +50,17 @@ export class LoginComponent implements OnInit {
   }
   addSampleData() {
 
-    this.users.push(new User("Retailer", "Retailer1 User", "Beirut", "03000000", "retailer1@isae.edu.lb", "retailer1"));
-    this.users.push(new User("Retailer", "Retailer2 User", "Beirut", "03111111", "retailer2@isae.edu.lb", "retailer2"));
-    this.users.push(new User("Retailer", "Retailer3 User", "Beirut", "03222222", "retailer3@isae.edu.lb", "retailer3"));
+    this.users.push(new User("retailer", "Retailer1 User", "Beirut", "03000000", "retailer1@isae.edu.lb", "retailer1"));
+    this.users.push(new User("retailer", "Retailer2 User", "Beirut", "03111111", "retailer2@isae.edu.lb", "retailer2"));
+    this.users.push(new User("retailer", "Retailer3 User", "Beirut", "03222222", "retailer3@isae.edu.lb", "retailer3"));
 
-    this.users.push(new User("Distributor", "Distributor1 User", "Beirut", "03000000", "distributor1@isae.edu.lb", "distributor1"));
-    this.users.push(new User("Distributor", "Distributor2 User", "Beirut", "03111111", "distributor2@isae.edu.lb", "distributor2"));
-    this.users.push(new User("Distributor", "Distributor3 User", "Beirut", "03222222", "distributor3@isae.edu.lb", "distributor3"));
+    this.users.push(new User("distributor", "Distributor1 User", "Beirut", "03000000", "distributor1@isae.edu.lb", "distributor1"));
+    this.users.push(new User("distributor", "Distributor2 User", "Beirut", "03111111", "distributor2@isae.edu.lb", "distributor2"));
+    this.users.push(new User("distributor", "Distributor3 User", "Beirut", "03222222", "distributor3@isae.edu.lb", "distributor3"));
 
-    this.users.push(new User("Manufacturer", "Manufacturer1 User", "Beirut", "03000000", "manufacturer1@isae.edu.lb", "manufacturer1"));
-    this.users.push(new User("Manufacturer", "Manufacturer2 User", "Beirut", "03111111", "manufacturer2@isae.edu.lb", "manufacturer2"));
-    this.users.push(new User("Manufacturer", "Manufacturer3 User", "Beirut", "03222222", "manufacturer3@isae.edu.lb", "manufacturer3"));
+    this.users.push(new User("manufacturer", "Manufacturer1 User", "Beirut", "03000000", "manufacturer1@isae.edu.lb", "manufacturer1"));
+    this.users.push(new User("manufacturer", "Manufacturer2 User", "Beirut", "03111111", "manufacturer2@isae.edu.lb", "manufacturer2"));
+    this.users.push(new User("manufacturer", "Manufacturer3 User", "Beirut", "03222222", "manufacturer3@isae.edu.lb", "manufacturer3"));
 
     this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
 

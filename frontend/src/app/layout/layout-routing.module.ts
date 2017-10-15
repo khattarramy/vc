@@ -34,6 +34,10 @@ import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distribu
 import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
 import { AllOrdersDistributorComponent } from 'app/layout/all-orders-distributor/all-orders-distributor.component';
 import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distributor/all-order-distributor-detail/all-order-distributor-detail.component';
+import { AllOrderManufacturerEditComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-edit/all-order-manufacturer-edit.component';
+import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-detail/all-order-manufacturer-detail.component';
+import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
+import { AllOrdersManufacturerComponent } from 'app/layout/all-orders-manufacturer/all-orders-manufacturer.component';
 
 const routes: Routes = [
     {
@@ -98,7 +102,15 @@ const routes: Routes = [
                     { path: ':id/edit', component: AllOrderDistributorEditComponent },
                 ]
             },
-            //{ path: 'items', loadChildren: './items/items.module#ItemsModule' }
+            {
+                path: 'all-orders-manufacturer', component: AllOrdersManufacturerComponent, children: [
+                    { path: '', component: AllOrderManufacturerStartComponent },
+                    { path: 'new', component: AllOrderManufacturerEditComponent },
+                    { path: ':id', component: AllOrderManufacturerDetailComponent },
+                    { path: ':id/edit', component: AllOrderManufacturerEditComponent },
+                ]
+            },
+
             {
                 path: 'items', component: ItemsComponent, children: [
                     { path: '', component: ItemStartComponent },
