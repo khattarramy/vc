@@ -31,6 +31,25 @@ export class OrderService {
         return orders;
       });
   }
+  getOrdersByStatusAndDistributor(status:String, distributorId: Number): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?distributorId=" +
+      distributorId + "&status=" + status)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
+
+  getOrdersByDistributor(distributorId: Number): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?distributorId=" +
+      distributorId)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
 
   getOrdersByRetailer(retailerId: Number): Observable<Order[]> {
     return this.http

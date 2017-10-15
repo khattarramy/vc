@@ -33,6 +33,16 @@ export class OrderDetailService {
       });
   }
 
+
+  getOrderDetailsByOrderAndDistributor(orderId:Number, distributorId: Number): Observable<OrderDetail[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orderdetails?orderId=" +
+      orderId + "&distributorId=" + distributorId)
+      .map((response: Response) => {
+        const orderDetails: OrderDetail[] = response.json();
+        return orderDetails;
+      });
+  }
   getOrderDetail(index: Number): Observable<OrderDetail> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orderdetails/" + index)

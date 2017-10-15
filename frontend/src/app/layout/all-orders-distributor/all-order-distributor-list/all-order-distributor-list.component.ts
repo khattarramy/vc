@@ -11,7 +11,7 @@ import { OrderService } from 'app/layout/orders/order.service';
   templateUrl: './all-order-distributor-list.component.html',
   styleUrls: ['./all-order-distributor-list.component.css']
 })
-export class AllOrderDistributorListComponent implements OnInit, OnDestroy {
+export class AllOrderDistributorListComponent implements OnInit {
   orders: Order[];
   subscription: Subscription;
 
@@ -21,21 +21,13 @@ export class AllOrderDistributorListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-        this.subscription = this.orderService.ordersChanged
-      .subscribe(
-        (orders: Order[]) => {
-          this.orders = orders;
-        }
-      );
-    this.orderService.getOrders()
-      .subscribe(response => { this.orders = response; });
-  }
+
+    this.orderService.getOrdersByDistributor(parseInt(localStorage.getItem("userId")))
+    .subscribe(response => { this.orders = response; });
+    }
 
   onNewOrder() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

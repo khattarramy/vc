@@ -31,7 +31,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   onNewOrderDetail() {
     for(var i = 0;i<this.orderDetails.length;i++) { 
-      this.orderDetails[i].status = "sent";
+      this.orderDetails[i].status = "distributor";
       this.orderDetailService.updateOrderDetail(this.orderDetails[i].orderDetailId, this.orderDetails[i])
       .subscribe(x => console.log(x));
      
