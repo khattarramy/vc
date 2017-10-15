@@ -41,6 +41,26 @@ export class OrderService {
       });
   }
 
+
+  getOrdersByStatusAndManufacturer(status:String, manufacturerId: Number): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?manufacturerId=" +
+      manufacturerId + "&status=" + status)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
+  getOrdersByManufacturer(manufacturerId: Number): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?manufacturerId=" +
+      manufacturerId)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
+
   getOrdersByDistributor(distributorId: Number): Observable<Order[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?distributorId=" +

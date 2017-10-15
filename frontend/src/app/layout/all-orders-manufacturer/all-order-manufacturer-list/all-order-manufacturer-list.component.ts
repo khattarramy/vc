@@ -11,7 +11,7 @@ import { OrderService } from 'app/layout/orders/order.service';
   templateUrl: './all-order-manufacturer-list.component.html',
   styleUrls: ['./all-order-manufacturer-list.component.css']
 })
-export class AllOrderManufacturerListComponent implements OnInit, OnDestroy {
+export class AllOrderManufacturerListComponent implements OnInit {
   orders: Order[];
   subscription: Subscription;
 
@@ -21,21 +21,8 @@ export class AllOrderManufacturerListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-        this.subscription = this.orderService.ordersChanged
-      .subscribe(
-        (orders: Order[]) => {
-          this.orders = orders;
-        }
-      );
-    this.orderService.getOrders()
-      .subscribe(response => { this.orders = response; });
+    this.orderService.getOrdersByManufacturer(parseInt(localStorage.getItem("userId")))
+    .subscribe(response => { this.orders = response; });
   }
 
-  onNewOrder() {
-    this.router.navigate(['new'], { relativeTo: this.route });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }
