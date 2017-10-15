@@ -66,4 +66,9 @@ export class OrderDetailHistoryService {
         });
       });
   }
+
+  deleteOrderDetailHistories() {
+    return this.http
+      .delete("http://localhost:8080/valeurc/glg/orderdetailhistory");
+  }
 }

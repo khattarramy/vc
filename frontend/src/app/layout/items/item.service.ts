@@ -62,4 +62,9 @@ export class ItemService {
         });
       });
   }
+
+  deleteItems() {
+    return this.http
+      .delete("http://localhost:8080/valeurc/glg/items");
+  }
 }

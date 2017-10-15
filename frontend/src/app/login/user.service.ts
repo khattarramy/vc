@@ -53,7 +53,7 @@ export class UserService {
     });
   }
 
-  deleteOrder(index: string) {
+  deleteUser(index: string) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/users/" + index)
       .map((response: Response) => {
@@ -61,5 +61,10 @@ export class UserService {
           this.usersChanged.next(response);
         });
       });
+  }
+
+  deleteUsers() {
+    return this.http
+      .delete("http://localhost:8080/valeurc/glg/users");
   }
 }

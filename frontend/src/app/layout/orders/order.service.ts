@@ -73,4 +73,9 @@ export class OrderService {
         });
       });
   }
+
+  deleteOrders() {
+    return this.http
+      .delete("http://localhost:8080/valeurc/glg/orders"); 
+  }
 }
