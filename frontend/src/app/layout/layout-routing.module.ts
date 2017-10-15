@@ -30,6 +30,10 @@ import { DashboardComponent } from 'app/layout/dashboard/dashboard.component';
 import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashboard-retailer.component';
 import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
 import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/dashboard-distributor.component';
+import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distributor/all-order-distributor-edit/all-order-distributor-edit.component';
+import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
+import { AllOrdersDistributorComponent } from 'app/layout/all-orders-distributor/all-orders-distributor.component';
+import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distributor/all-order-distributor-detail/all-order-distributor-detail.component';
 
 const routes: Routes = [
     {
@@ -83,6 +87,15 @@ const routes: Routes = [
                     { path: 'new', component: AllOrderEditComponent },
                     { path: ':id', component: AllOrderDetailComponent },
                     { path: ':id/edit', component: AllOrderEditComponent },
+                ]
+            },
+
+            {
+                path: 'all-orders-distributor', component: AllOrdersDistributorComponent, children: [
+                    { path: '', component: AllOrderDistributorStartComponent },
+                    { path: 'new', component: AllOrderDistributorEditComponent },
+                    { path: ':id', component: AllOrderDistributorDetailComponent },
+                    { path: ':id/edit', component: AllOrderDistributorEditComponent },
                 ]
             },
             //{ path: 'items', loadChildren: './items/items.module#ItemsModule' }

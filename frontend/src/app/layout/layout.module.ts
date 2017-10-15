@@ -51,6 +51,11 @@ import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashbo
 import { DashboardComponent } from 'app/layout/dashboard/dashboard.component';
 import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/dashboard-distributor.component';
 import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
+import { AllOrdersDistributorComponent } from 'app/layout/all-orders-distributor/all-orders-distributor.component';
+import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distributor/all-order-distributor-detail/all-order-distributor-detail.component';
+import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distributor/all-order-distributor-edit/all-order-distributor-edit.component';
+import { AllOrderDistributorListComponent } from 'app/layout/all-orders-distributor/all-order-distributor-list/all-order-distributor-list.component';
+import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
 
 
 @NgModule({
@@ -106,6 +111,12 @@ import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacture
         AllOrderEditComponent,
         AllOrderListComponent,
         AllOrderStartComponent,
+
+        AllOrdersDistributorComponent,
+        AllOrderDistributorDetailComponent,
+        AllOrderDistributorEditComponent,
+        AllOrderDistributorListComponent,
+        AllOrderDistributorStartComponent,
 
 
 
