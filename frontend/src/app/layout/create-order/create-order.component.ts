@@ -55,8 +55,9 @@ export class CreateOrderComponent implements OnInit {
         else{
         this.order.userId = parseInt(localStorage.getItem("userId"));
         this.order.status = "cart";
-        this.order.dateInitialized = "2016-03-03T08:00:00+02:00";
-        this.order.dateFinished = "2016-03-03T08:00:00+02:00";
+        this.order.dateInitialized = new Date().toISOString();
+        
+        this.order.dateFinished = new Date().toISOString();
           this.orderService.addOrder(this.order)
           .subscribe(response => {
             this.orderDetail.orderId = response.orderId;
