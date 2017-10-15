@@ -20,6 +20,10 @@
                 <button
                 type="submit" class="btn rounded-btn"  [disabled]="!loginForm.valid"> Log in </button>
 
+                <button
+                type="button" class="btn rounded-btn"  (click)="clearOldData()"> Clear Old Data </button>
+                <button
+                type="button" class="btn rounded-btn"  (click)="addSampleData()"> Add sample data </button>
 
             </form>
         </div>

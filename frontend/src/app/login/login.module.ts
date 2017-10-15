@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { ItemService } from 'app/layout/items/item.service';
+import { OrderDetailHistoryService } from 'app/layout/order-detail-histories/order-detail-history.service';
+import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
+import { OrderService } from 'app/layout/orders/order.service';
 
 @NgModule({
     imports: [
@@ -15,7 +19,7 @@ import { LoginComponent } from './login.component';
     ],
     declarations: [LoginComponent]
     ,
-    providers: [ LoginService]
+    providers: [ LoginService,OrderService,OrderDetailService,OrderDetailHistoryService,ItemService]
 })
 export class LoginModule {
 }
