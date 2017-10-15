@@ -6,6 +6,7 @@
 package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.model.Order;
 import com.cnam.valeurc.model.OrderDetail;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
@@ -43,7 +44,7 @@ public class OrderDetailService {
 
     }
 
-    public List<OrderDetail> getAllOrderDetails(int orderId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
+    public List<OrderDetail> getAllOrderDetails(int orderId,int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
@@ -76,6 +77,24 @@ public class OrderDetailService {
             if (itemsIds != null && !itemsIds.isEmpty()) {
 
                 searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
+
+            }
+                        if (retailerId  > 0 ) {
+
+                OrderService orders = new OrderService();
+
+                List<Order> orderList = orders.getAllOrders(retailerId,"",0,0);
+                
+
+                List<Integer> orderIdsList = new ArrayList();
+
+                for (Order o : orderList) {
+
+                    orderIdsList.add(o.getOrderId());
+
+                }
+
+                searchQuery.put("orderId", new BasicDBObject("$in", orderIdsList));
 
             }
 

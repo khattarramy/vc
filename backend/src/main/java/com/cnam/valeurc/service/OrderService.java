@@ -76,7 +76,7 @@ public class OrderService {
 
                 OrderDetailService orderDetails = new OrderDetailService();
 
-                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0, distributorId, manufacturerId, null);
+                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0,0, distributorId, manufacturerId, null);
 
                 List<Integer> orderDetailIdsList = new ArrayList();
 
