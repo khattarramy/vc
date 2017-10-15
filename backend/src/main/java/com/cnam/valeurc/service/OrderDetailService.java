@@ -44,13 +44,13 @@ public class OrderDetailService {
 
     }
 
-    public List<OrderDetail> getAllOrderDetails(int orderId,int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
+    public List<OrderDetail> getAllOrderDetails(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
 
         BasicDBObject searchQuery = new BasicDBObject();
 
         List<OrderDetail> orderDetails = new ArrayList();
 
-        if ((orderId == 0) && (distributorId == 0) && (manufacturerId == 0) && ((status == null) || (status == ""))) {
+        if ((retailerId == 0) && (orderId == 0) && (distributorId == 0) && (manufacturerId == 0) && ((status == null) || (status == ""))) {
 
             MongoCursor<Document> cursor = orderDetailCollection.find().iterator();
 
@@ -69,7 +69,7 @@ public class OrderDetailService {
 
                 searchQuery.append("OrderId", orderId);
             }
-
+if (distributorId > 0 || manufacturerId > 0) {
             ItemService items = new ItemService();
 
             List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
@@ -78,13 +78,12 @@ public class OrderDetailService {
 
                 searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
 
-            }
-                        if (retailerId  > 0 ) {
+            }}
+            if (retailerId > 0) {
 
                 OrderService orders = new OrderService();
 
-                List<Order> orderList = orders.getAllOrders(retailerId,"",0,0);
-                
+                List<Order> orderList = orders.getAllOrders(retailerId, "", 0, 0);
 
                 List<Integer> orderIdsList = new ArrayList();
 
@@ -94,7 +93,7 @@ public class OrderDetailService {
 
                 }
 
-                searchQuery.put("orderId", new BasicDBObject("$in", orderIdsList));
+                searchQuery.put("OrderId", new BasicDBObject("$in", orderIdsList));
 
             }
 

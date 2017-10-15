@@ -32,6 +32,16 @@ export class OrderService {
       });
   }
 
+  getOrdersByRetailer(retailerId: Number): Observable<Order[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orders?userId=" +
+      retailerId)
+      .map((response: Response) => {
+        const orders: Order[] = response.json();
+        return orders;
+      });
+  }
+
   getOrder(index: Number): Observable<Order> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders/" + index)

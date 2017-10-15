@@ -10,7 +10,7 @@ import { OrderService } from 'app/layout/orders/order.service';
   templateUrl: './all-order-list.component.html',
   styleUrls: ['./all-order-list.component.css']
 })
-export class AllOrderListComponent implements OnInit, OnDestroy {
+export class AllOrderListComponent implements OnInit {
   orders: Order[];
   subscription: Subscription;
 
@@ -20,13 +20,7 @@ export class AllOrderListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-        this.subscription = this.orderService.ordersChanged
-      .subscribe(
-        (orders: Order[]) => {
-          this.orders = orders;
-        }
-      );
-    this.orderService.getOrders()
+    this.orderService.getOrdersByRetailer(parseInt(localStorage.getItem("userId")))
       .subscribe(response => { this.orders = response; });
   }
 
@@ -34,7 +28,4 @@ export class AllOrderListComponent implements OnInit, OnDestroy {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

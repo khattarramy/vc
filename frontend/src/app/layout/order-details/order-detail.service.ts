@@ -25,7 +25,7 @@ export class OrderDetailService {
 
   getOrderDetailsByStatusAndRetailer(status:String, retailerId: Number): Observable<OrderDetail[]> {
     return this.http
-      .get("http://localhost:8080/valeurc/glg/orderdetails?userId=" +
+      .get("http://localhost:8080/valeurc/glg/orderdetails?retailerId=" +
       retailerId + "&status=" + status)
       .map((response: Response) => {
         const orderDetails: OrderDetail[] = response.json();
