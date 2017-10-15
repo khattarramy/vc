@@ -20,6 +20,11 @@ export class AllOrderDistributorDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) {
   }
+  onOrderDetailClick(orderDetail:OrderDetail){
+    orderDetail.status="manufacturer";
+    orderDetail.quantityDistributor=3;
+    this.orderDetailService.updateOrderDetail(orderDetail.orderDetailId,orderDetail).subscribe();
+  }
 
   ngOnInit() {
     this.route.params
@@ -32,17 +37,4 @@ export class AllOrderDistributorDetailComponent implements OnInit {
       }
       );
   }
-
-
-  onEditOrder() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
-    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
-  }
-
-  onDeleteOrder() {
-    this.orderService.deleteOrder(this.id)
-      .subscribe(x => console.log(x));  ;
-    this.router.navigate(['/orders']);
-  }
-
 }
