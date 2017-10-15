@@ -68,5 +68,13 @@ public class OrderDetailResource {
         orderDetailService.deleteOrderDetail(orderDetailId);
 
     }
+    
+        @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public void deleteAllOrderDetails() throws UnknownHostException {
+        orderDetailService.deleteAllOrderDetails();
+
+    }
 
 }

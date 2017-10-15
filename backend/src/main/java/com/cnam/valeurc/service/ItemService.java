@@ -108,4 +108,9 @@ public class ItemService {
         itemCollection.deleteOne(eq("_id", itemId));
         dbConnect.close(mongo);
     }
+    
+        public void deleteAllItems() throws UnknownHostException {
+        itemCollection.drop();
+        dbConnect.close(mongo);
+    }
 }

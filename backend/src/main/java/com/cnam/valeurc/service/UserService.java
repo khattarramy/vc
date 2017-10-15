@@ -82,4 +82,10 @@ public class UserService {
         userCollection.deleteOne(eq("_id", userId));
         dbConnect.close(mongo);
     }
+    
+        
+        public void deleteAllUsers() throws UnknownHostException {
+        userCollection.drop();
+        dbConnect.close(mongo);
+    }
 }

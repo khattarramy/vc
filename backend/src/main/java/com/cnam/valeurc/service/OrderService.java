@@ -138,4 +138,9 @@ public class OrderService {
         orderCollection.deleteOne(eq("_id", orderId));
         dbConnect.close(mongo);
     }
+    
+        public void deleteAllOrders() throws UnknownHostException {
+        orderCollection.drop();
+        dbConnect.close(mongo);
+    }
 }

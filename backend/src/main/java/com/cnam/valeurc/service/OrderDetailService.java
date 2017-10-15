@@ -52,35 +52,35 @@ public class OrderDetailService {
         if ((orderId == 0) && (distributorId == 0) && (manufacturerId == 0) && ((status == null) || (status == ""))) {
 
             MongoCursor<Document> cursor = orderDetailCollection.find().iterator();
-            
+
             while (cursor.hasNext()) {
-                
+
                 orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
             }
         } else {
             if (status != null && !"".equals(status)) {
-                
+
                 searchQuery.append("Status", status);
-                
+
             }
-            
+
             if (orderId > 0) {
-                
+
                 searchQuery.append("OrderId", orderId);
             }
-            
+
             ItemService items = new ItemService();
-            
+
             List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
-            
+
             if (itemsIds != null && !itemsIds.isEmpty()) {
-                
+
                 searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
-                
+
             }
-            
+
             if (!searchQuery.isEmpty()) {
-                
+
                 MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
 
                 while (cursor.hasNext()) {
@@ -90,7 +90,7 @@ public class OrderDetailService {
         }
 
         dbConnect.close(mongo);
-        
+
         return orderDetails;
 
     }
@@ -126,6 +126,11 @@ public class OrderDetailService {
 
     public void deleteOrderDetail(int orderDetailId) throws UnknownHostException {
         orderDetailCollection.deleteOne(eq("_id", orderDetailId));
+        dbConnect.close(mongo);
+    }
+
+    public void deleteAllOrderDetails() throws UnknownHostException {
+        orderDetailCollection.drop();
         dbConnect.close(mongo);
     }
 }

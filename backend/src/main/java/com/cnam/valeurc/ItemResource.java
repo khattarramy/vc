@@ -68,5 +68,14 @@ public class ItemResource {
         itemService.deleteItem(itemId);
 
     }
+    
+        @DELETE
+    
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public void deleteAllItems() throws UnknownHostException {
+        itemService.deleteAllItems();
+
+    }
 
 }

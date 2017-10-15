@@ -68,5 +68,14 @@ public class UserResource {
         userService.deleteUser(userId);
 
     }
+    
+    
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public void deleteAllUsers() throws UnknownHostException {
+        userService.deleteAllUsers();
+    }
+
 
 }

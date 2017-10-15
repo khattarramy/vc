@@ -69,4 +69,13 @@ public class OrderDetailHistoryResource {
 
     }
 
+    
+        @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public void deleteAllOrderDetailHistories() throws UnknownHostException {
+        orderDetailHistoryService.deleteAllOrderDetailHistories();
+
+    }
+
 }
