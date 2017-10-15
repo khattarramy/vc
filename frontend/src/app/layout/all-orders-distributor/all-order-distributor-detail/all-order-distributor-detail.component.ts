@@ -4,6 +4,7 @@ import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
 import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,16 +15,19 @@ import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 export class AllOrderDistributorDetailComponent implements OnInit {
   orderDetails: OrderDetail[];
   id: Number;
-
+  orderDetail:OrderDetail;
+  orderDetailForm: FormGroup = new FormGroup({
+    quantityDistributor: new FormControl(''),
+  });
   constructor(private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private route: ActivatedRoute,
     private router: Router) {
   }
-  onOrderDetailClick(orderDetail:OrderDetail){
-    orderDetail.status="manufacturer";
-    orderDetail.quantityDistributor=3;
-    this.orderDetailService.updateOrderDetail(orderDetail.orderDetailId,orderDetail).subscribe();
+  onOrderDetailClick(){
+    this.orderDetail.status="manufacturer";
+    this.orderDetail.quantityDistributor=this.orderDetailForm.value.quantityDistributor;
+    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId,this.orderDetail).subscribe();
   }
 
   ngOnInit() {
@@ -36,5 +40,11 @@ export class AllOrderDistributorDetailComponent implements OnInit {
           .subscribe(response => { this.orderDetails = response; });
       }
       );
+
+
+  }
+
+  initForm(orderDetail:OrderDetail){
+  this.orderDetail = orderDetail;    
   }
 }

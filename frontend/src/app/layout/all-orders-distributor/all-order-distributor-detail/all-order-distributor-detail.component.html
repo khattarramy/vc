@@ -1,7 +1,24 @@
+<form [formGroup]="orderDetailForm" (ngSubmit)="onOrderDetailClick()">
+    <div class="col-xs-12">
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!orderDetailForm.valid">Save</button>
+            <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          </div>
+                    <fieldset class="form-group">
+                            <label for="quantityDistributor">Quantity Available</label>
+                            <input class="form-control"
+                            id="quantityDistributor"
+                            formControlName="quantityDistributor">
+
+                        </fieldset>
+
+
+</form>
+
 <div class="row">
-  
-  
-    <div class="col col-xl-12 col-lg-12">
+  <div class="col col-xl-12 col-lg-12">
       <div class="card mb-12">
           <div class="card-header">Orders</div>
           <div class="card-block table-responsive">
@@ -17,7 +34,7 @@
                   </thead>
                   <tbody>
                           <tr *ngFor="let orderDetailEl of orderDetails; let i = index" style="cursor: pointer;"
-                          (click)="onOrderDetailClick(orderDetailEl)"
+                          (click)="initForm(orderDetailEl)"
                           routerLinkActive="table-warning"                        >
                               <th scope="row">1</th>
                               <td>{{ orderDetailEl.status }}</td>
@@ -33,3 +50,6 @@
   
   </div>
   </div>
+
+
+
