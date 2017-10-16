@@ -8,6 +8,8 @@ package com.cnam.valeurc.service;
 import com.cnam.valeurc.AppUtils;
 import com.cnam.valeurc.model.Order;
 import com.cnam.valeurc.model.OrderDetail;
+import com.cnam.valeurc.model.OrderDto;
+import com.cnam.valeurc.model.User;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -40,6 +42,30 @@ public class OrderService {
         counters = AppUtils.checkCounters(dbConnect, db, "orderid");
 
         orderCollection = db.getCollection("order");
+
+    }
+
+    public List<OrderDto> getAllOrdersDto(int userId, String status, int distributorId, int manufacturerId) throws UnknownHostException {
+
+        List<Order> orders = new ArrayList();
+        List<OrderDto> orderDtos = new ArrayList<OrderDto>();
+        UserService userService = new UserService();
+
+        List<User> users = new ArrayList<User>();
+
+        users = userService.getAllUsers();
+
+        orders = getAllOrders(userId, status, distributorId, manufacturerId);
+
+        for (Order o : orders) {
+            for (User u : users) {
+                if (o.getUserId() == u.getUserId()) {
+                    orderDtos.add(new OrderDto(o.getOrderId(), u.getName(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
+                }
+            }
+        }
+
+        return orderDtos;
 
     }
 
@@ -76,7 +102,7 @@ public class OrderService {
 
                 OrderDetailService orderDetails = new OrderDetailService();
 
-                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0,0, distributorId, manufacturerId, null);
+                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0, 0, distributorId, manufacturerId, null);
 
                 List<Integer> orderDetailIdsList = new ArrayList();
 
@@ -138,9 +164,9 @@ public class OrderService {
         orderCollection.deleteOne(eq("_id", orderId));
         dbConnect.close(mongo);
     }
-    
-        public void deleteAllOrders() throws UnknownHostException {
-       BasicDBObject searchQuery = new BasicDBObject();
+
+    public void deleteAllOrders() throws UnknownHostException {
+        BasicDBObject searchQuery = new BasicDBObject();
         orderCollection.deleteMany(searchQuery);
         dbConnect.close(mongo);
         CounterService counterService = new CounterService();

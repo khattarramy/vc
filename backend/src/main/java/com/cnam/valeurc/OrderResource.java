@@ -6,6 +6,7 @@
 package com.cnam.valeurc;
 
 import com.cnam.valeurc.model.Order;
+import com.cnam.valeurc.model.OrderDto;
 import com.cnam.valeurc.service.OrderService;
 import java.net.UnknownHostException;
 import java.util.*;
@@ -28,9 +29,9 @@ public class OrderResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<Order> getOrders(@QueryParam("userId") int userId, @QueryParam("status") String status, @QueryParam("distributorId") int distributorId, @QueryParam("manufacturerId") int manufacturerId) throws UnknownHostException {
+    public List<OrderDto> getOrders(@QueryParam("userId") int userId, @QueryParam("status") String status, @QueryParam("distributorId") int distributorId, @QueryParam("manufacturerId") int manufacturerId) throws UnknownHostException {
         
-        return orderService.getAllOrders(userId, status, distributorId, manufacturerId);
+        return orderService.getAllOrdersDto(userId, status, distributorId, manufacturerId);
         
 
     }
