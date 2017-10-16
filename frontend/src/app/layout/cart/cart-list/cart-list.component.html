@@ -16,9 +16,8 @@
                 <thead class="thead-default">
                 <tr>
                     <th>#</th>
-                    <th>Order Detail Id</th>
-                    <th>Order Id</th>
-                    <th>Status</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,9 +25,8 @@
                         [routerLink]="[orderEl.orderDetailId]"
                         routerLinkActive="table-warning"                        >
                             <th scope="row">1</th>
-                            <td>{{ orderEl.orderDetailId }}</td>
-                            <td>{{ orderEl.orderId }}</td>
-                            <td>{{orderEl.status}}</td>
+                            <td>{{ orderEl.itemName }}</td>
+                            <td>{{ orderEl.quantity }}</td>
                         </tr>
 
 

@@ -5,6 +5,7 @@ import { OrderDetailService } from 'app/layout/order-details/order-detail.servic
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
+import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model';
 
 
 
@@ -14,7 +15,7 @@ import { Order } from 'app/layout/orders/order.model';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit, OnDestroy {
-  orderDetails: OrderDetail[];
+  orderDetails: OrderDetailDto[];
   order : Order;
   
   constructor(private orderDetailService: OrderDetailService,

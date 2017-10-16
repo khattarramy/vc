@@ -5,6 +5,7 @@ import "rxjs/Rx";
 import { Order } from "./order.model";
 import { Http, Response, RequestOptions } from "@angular/http";
 import "rxjs/add/operator/map";
+import { OrderDto } from "app/layout/orders/order-dto.model";
 
 @Injectable()
 export class OrderService {
@@ -22,62 +23,62 @@ export class OrderService {
         return orders;
       });
   }
-  getOrdersByStatusAndRetailer(status:String, retailerId: Number): Observable<Order[]> {
+  getOrdersByStatusAndRetailer(status:String, retailerId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?userId=" +
       retailerId + "&status=" + status)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
+        const orders: OrderDto[] = response.json();
         return orders;
       });
   }
-  getOrdersByStatusAndDistributor(status:String, distributorId: Number): Observable<Order[]> {
+  getOrdersByStatusAndDistributor(status:String, distributorId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?distributorId=" +
       distributorId + "&status=" + status)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
+        const orders: OrderDto[] = response.json();
         return orders;
       });
   }
 
 
-  getOrdersByStatusAndManufacturer(status:String, manufacturerId: Number): Observable<Order[]> {
+  getOrdersByStatusAndManufacturer(status:String, manufacturerId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?manufacturerId=" +
       manufacturerId + "&status=" + status)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
-        return orders;
+        const ordersDto: OrderDto[] = response.json();
+        return ordersDto;
       });
   }
-  getOrdersByManufacturer(manufacturerId: Number): Observable<Order[]> {
+  getOrdersByManufacturer(manufacturerId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?manufacturerId=" +
       manufacturerId)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
-        return orders;
+        const ordersDto: OrderDto[] = response.json();
+        return ordersDto;
       });
   }
 
-  getOrdersByDistributor(distributorId: Number): Observable<Order[]> {
+  getOrdersByDistributor(distributorId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?distributorId=" +
       distributorId)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
-        return orders;
+        const ordersDto: OrderDto[] = response.json();
+        return ordersDto;
       });
   }
 
-  getOrdersByRetailer(retailerId: Number): Observable<Order[]> {
+  getOrdersByRetailer(retailerId: Number): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders?userId=" +
       retailerId)
       .map((response: Response) => {
-        const orders: Order[] = response.json();
-        return orders;
+        const ordersDto: OrderDto[] = response.json();
+        return ordersDto;
       });
   }
 
