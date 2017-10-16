@@ -6,8 +6,12 @@
 package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.model.Item;
 import com.cnam.valeurc.model.Order;
 import com.cnam.valeurc.model.OrderDetail;
+import com.cnam.valeurc.model.OrderDetailDto;
+import com.cnam.valeurc.model.OrderDto;
+import com.cnam.valeurc.model.User;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
@@ -44,6 +48,29 @@ public class OrderDetailService {
 
     }
 
+    public List<OrderDetailDto> getAllOrderDetailsDto(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        orderDetails = getAllOrderDetails(orderId, retailerId, distributorId, manufacturerId, status);
+
+        List<OrderDetailDto> orderDetailsDto = new ArrayList<OrderDetailDto>();
+        ItemService itemService = new ItemService();
+
+        List<Item> items = new ArrayList<Item>();
+
+        items = itemService.getAllItems();
+
+        for (OrderDetail o : orderDetails) {
+            for (Item u : items) {
+                if (o.getItemId() == u.getItemId()) {
+                    orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(),o.getOrderId(),u.getName(),o.getStatus(),o.getQuantity(),o.getQuantityDistributor()));
+                }
+            }
+        }
+        return orderDetailsDto;
+
+    }
+
     public List<OrderDetail> getAllOrderDetails(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
 
         BasicDBObject searchQuery = new BasicDBObject();
@@ -69,16 +96,17 @@ public class OrderDetailService {
 
                 searchQuery.append("OrderId", orderId);
             }
-if (distributorId > 0 || manufacturerId > 0) {
-            ItemService items = new ItemService();
+            if (distributorId > 0 || manufacturerId > 0) {
+                ItemService items = new ItemService();
 
-            List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
+                List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
 
-            if (itemsIds != null && !itemsIds.isEmpty()) {
+                if (itemsIds != null && !itemsIds.isEmpty()) {
 
-                searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
+                    searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
 
-            }}
+                }
+            }
             if (retailerId > 0) {
 
                 OrderService orders = new OrderService();
