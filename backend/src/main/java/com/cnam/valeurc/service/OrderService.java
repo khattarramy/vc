@@ -60,7 +60,7 @@ public class OrderService {
         for (Order o : orders) {
             for (User u : users) {
                 if (o.getUserId() == u.getUserId()) {
-                    orderDtos.add(new OrderDto(o.getOrderId(), u.getName(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
+                    orderDtos.add(new OrderDto(o.getOrderId(), u.getName(),o.getUserId(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
                 }
             }
         }

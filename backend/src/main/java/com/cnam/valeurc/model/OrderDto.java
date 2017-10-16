@@ -17,6 +17,7 @@ public class OrderDto {
     
     private int _id;
     private String SenderName;
+    private int UserId;
     private String Status;
     private Date DateInitialized;
     private Date DateFinished;
@@ -26,9 +27,10 @@ public class OrderDto {
         
     }
 
-    public OrderDto(int id, String senderName, String status,Date dateInitialized,Date dateFinished) {
+    public OrderDto(int id, String senderName, int userId, String status,Date dateInitialized,Date dateFinished) {
         this._id = id;
         this.SenderName = senderName;
+        this.UserId = userId;
         this.Status = status;
         this.DateInitialized = dateInitialized;
         this.DateFinished = dateFinished;
@@ -52,6 +54,14 @@ public class OrderDto {
         this.SenderName = senderName;
     }
 
+        public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        this.UserId = userId;
+    }
+    
     public String getStatus() {
         return Status;
     }

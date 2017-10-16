@@ -12,6 +12,7 @@ package com.cnam.valeurc.model;
 public class OrderDetailDto {
     private int _id;
     private int OrderId;
+    private int ItemId;
     private String ItemName;
     private String Status;
     private int Quantity;
@@ -20,9 +21,10 @@ public class OrderDetailDto {
     public OrderDetailDto() {
         
     }
-    public OrderDetailDto(int orderDetailId, int orderId, String itemName, String status,int quantity, int quantityDistributor) {
+    public OrderDetailDto(int orderDetailId, int orderId,int itemId, String itemName, String status,int quantity, int quantityDistributor) {
         this._id = orderDetailId;
         this.OrderId = orderId;
+        this.ItemId = itemId;
         this.ItemName = itemName;
         this.Status = status;
         this.Quantity=quantity;
@@ -44,6 +46,17 @@ public class OrderDetailDto {
     public void setOrderId(int id) {
         this.OrderId = id;
     }
+    
+    
+     public int getItemId() {
+        return ItemId;
+    }
+
+    public void setItemId(int id) {
+        this.ItemId = id;
+    }
+    
+    
     
     public String getItemName() {
         return ItemName;

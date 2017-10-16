@@ -63,7 +63,7 @@ public class OrderDetailService {
         for (OrderDetail o : orderDetails) {
             for (Item u : items) {
                 if (o.getItemId() == u.getItemId()) {
-                    orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(),o.getOrderId(),u.getName(),o.getStatus(),o.getQuantity(),o.getQuantityDistributor()));
+                    orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(),o.getOrderId(),o.getItemId(),u.getName(),o.getStatus(),o.getQuantity(),o.getQuantityDistributor()));
                 }
             }
         }
