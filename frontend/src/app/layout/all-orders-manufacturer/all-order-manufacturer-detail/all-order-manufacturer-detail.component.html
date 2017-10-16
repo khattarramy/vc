@@ -10,9 +10,9 @@
                   <thead class="thead-default">
                   <tr>
                       <th>#</th>
-                      <th>Status</th>
-                      <th>Item Id</th>
+                      <th>Item Name</th>
                       <th>Quantity</th>
+                      <th>Quantity Distributor</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -20,9 +20,9 @@
                           (click)="onOrderDetailClick(orderDetailEl)"
                           routerLinkActive="table-warning"                        >
                               <th scope="row">1</th>
-                              <td>{{ orderDetailEl.status }}</td>
-                              <td>{{ orderDetailEl.itemId }}</td>
-                              <td>{{orderDetailEl.quantity}}</td>
+                              <td>{{ orderDetailEl.itemName }}</td>
+                              <td>{{ orderDetailEl.quantity }}</td>
+                              <td>{{orderDetailEl.quantityDistributor}}</td>
                           </tr>
   
   

@@ -5,6 +5,7 @@ import { Order } from 'app/layout/orders/order.model';
 import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
   styleUrls: ['./all-order-distributor-detail.component.css']
 })
 export class AllOrderDistributorDetailComponent implements OnInit {
-  orderDetails: OrderDetail[];
+  orderDetails: OrderDetailDto[];
   id: Number;
   orderDetail:OrderDetail;
   orderDetailForm: FormGroup = new FormGroup({

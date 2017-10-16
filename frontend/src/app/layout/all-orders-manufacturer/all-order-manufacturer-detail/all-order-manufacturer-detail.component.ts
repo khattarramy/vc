@@ -4,6 +4,7 @@ import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
 import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
+import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { OrderDetail } from 'app/layout/order-details/order-detail.model';
   styleUrls: ['./all-order-manufacturer-detail.component.css']
 })
 export class AllOrderManufacturerDetailComponent implements OnInit {
-  orderDetails: OrderDetail[];
+  orderDetails: OrderDetailDto[];
   id: Number;
 
   constructor(

@@ -19,3 +19,4 @@ export class OrderDetail {
     this.quantityDistributor = quantityDistributor;
   }
 }
+//orderDetailDto item id -> itemName

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Order } from '../order.model';
 import { OrderService } from '../order.service';
+import { OrderDto } from 'app/layout/orders/order-dto.model';
 
 @Component({
   selector: 'app-order-list',
@@ -11,7 +12,7 @@ import { OrderService } from '../order.service';
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent implements OnInit, OnDestroy {
-  orders: Order[];
+  orders: OrderDto[];
   subscription: Subscription;
 
   constructor(private orderService: OrderService,
@@ -22,7 +23,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
   ngOnInit() {
         this.subscription = this.orderService.ordersChanged
       .subscribe(
-        (orders: Order[]) => {
+        (orders: OrderDto[]) => {
           this.orders = orders;
         }
       );

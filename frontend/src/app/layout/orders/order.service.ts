@@ -15,11 +15,11 @@ export class OrderService {
 
   constructor(private http: Http) {}
 
-  getOrders(): Observable<Order[]> {
+  getOrders(): Observable<OrderDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orders")
       .map((response: Response) => {
-        const orders: Order[] = response.json();
+        const orders: OrderDto[] = response.json();
         return orders;
       });
   }

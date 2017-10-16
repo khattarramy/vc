@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Order } from 'app/layout/orders/order.model';
 import { OrderService } from 'app/layout/orders/order.service';
+import { OrderDto } from 'app/layout/orders/order-dto.model';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { OrderService } from 'app/layout/orders/order.service';
   styleUrls: ['./all-order-manufacturer-list.component.css']
 })
 export class AllOrderManufacturerListComponent implements OnInit {
-  orders: Order[];
+  orders: OrderDto[];
   subscription: Subscription;
 
   constructor(private orderService: OrderService,
