@@ -61,6 +61,7 @@ import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manuf
 import { AllOrderManufacturerEditComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-edit/all-order-manufacturer-edit.component';
 import { AllOrderManufacturerListComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-list/all-order-manufacturer-list.component';
 import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
+import { StatModule } from 'app/shared/modules';
 
 
 @NgModule({
@@ -72,8 +73,8 @@ import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufa
 
         FormsModule,
         ReactiveFormsModule,
-        HttpModule
-
+        HttpModule,
+        StatModule
     ],
     declarations: [
         LayoutComponent,
