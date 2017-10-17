@@ -96,7 +96,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('password', this.user.password);
         localStorage.setItem('userId', String(this.user.userId));
         localStorage.setItem('type', String(this.user.type));
-        this.router.navigate(['/dashboard']);
+
+        if(this.user.type == "retailer") { this.router.navigate(['/dashboard-retailer']); }
+        else if(this.user.type == "distributor") { this.router.navigate(['/dashboard-distributor']); }
+        else if(this.user.type == "manufacturer") { this.router.navigate(['/dashboard-manufacturer']); }
   
 
       }
