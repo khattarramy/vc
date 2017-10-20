@@ -91,12 +91,12 @@ export class OrderService {
       });
   }
 
-  addOrder(order: Order): Observable<Order> {
+  addOrder(order: Order,functionName:string,params: any[]): Observable<Order> {
     console.log(JSON.stringify(order));
     return this.http
       .post("http://localhost:8080/valeurc/glg/orders", order)
       .map((response: Response) => {
-        this.getOrders().subscribe(response => {
+        this[functionName].apply(this,params).subscribe(response => {
           this.ordersChanged.next(response);
         });
         const order: Order = response.json();
@@ -104,17 +104,17 @@ export class OrderService {
       });
   }
 
-  updateOrder(index: Number, newOrder: Order) {
+  updateOrder(index: Number, newOrder: Order,functionName:string,params: any[]) {
     const x: string = "http://localhost:8080/valeurc/glg/orders/" + index;
     console.log(x);
     return this.http.put(x, newOrder).map((response: Response) => {
-      this.getOrders().subscribe(response => {
+      this[functionName].apply(this,params).subscribe(response => {
         this.ordersChanged.next(response);
       });
     });
   }
 
-  deleteOrder(index: Number,functionName:string,params: Number[]) {
+  deleteOrder(index: Number,functionName:string,params: any[]) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/orders/" + index)
       .map((response: Response) => {

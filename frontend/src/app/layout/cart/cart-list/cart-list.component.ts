@@ -43,7 +43,7 @@ export class CartListComponent implements OnInit, OnDestroy {
      if (response.length > 0) {
        this.order = response[0];
        this.order.status="sent";
-       this.orderService.updateOrder(this.order.orderId,this.order)
+       this.orderService.updateOrder(this.order.orderId,this.order,"getOrders",[])
          .subscribe(x => console.log(x));
      }
    });

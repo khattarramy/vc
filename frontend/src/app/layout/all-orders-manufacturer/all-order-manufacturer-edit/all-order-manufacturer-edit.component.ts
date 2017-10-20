@@ -42,11 +42,11 @@ export class AllOrderManufacturerEditComponent implements OnInit {
     if (this.editMode) {
       console.log(this.orderForm.value);
       //console.log(this.id);
-        this.orderService.updateOrder(this.id, this.orderForm.value)
+        this.orderService.updateOrder(this.id, this.orderForm.value,"getOrdersByDistributor",[parseInt(localStorage.getItem("userId"))])
           .subscribe(x => console.log(x));
     } else {
      // console.log(<Order>this.orderForm.value);
-      this.orderService.addOrder(this.orderForm.value)
+      this.orderService.addOrder(this.orderForm.value,"getOrdersByDistributor",[parseInt(localStorage.getItem("userId"))])
        .subscribe(x => console.log(x));
     }
     this.onCancel();

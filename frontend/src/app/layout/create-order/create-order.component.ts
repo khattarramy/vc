@@ -58,7 +58,7 @@ export class CreateOrderComponent implements OnInit {
         this.order.dateInitialized = new Date().toISOString();
         
         this.order.dateFinished = new Date().toISOString();
-          this.orderService.addOrder(this.order)
+          this.orderService.addOrder(this.order,"getOrders",[])
           .subscribe(response => {
             this.orderDetail.orderId = response.orderId;
             this.orderDetailService.addOrderDetail(this.orderDetail)

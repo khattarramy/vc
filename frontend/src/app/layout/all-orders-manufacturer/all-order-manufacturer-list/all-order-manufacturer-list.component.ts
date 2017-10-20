@@ -12,7 +12,7 @@ import { OrderDto } from 'app/layout/orders/order-dto.model';
   templateUrl: './all-order-manufacturer-list.component.html',
   styleUrls: ['./all-order-manufacturer-list.component.css']
 })
-export class AllOrderManufacturerListComponent implements OnInit {
+export class AllOrderManufacturerListComponent implements OnInit,OnDestroy {
   orders: OrderDto[];
   subscription: Subscription;
 
@@ -22,8 +22,21 @@ export class AllOrderManufacturerListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription = this.orderService.ordersChanged
+    .subscribe(
+      (orders: OrderDto[]) => {
+        this.orders = orders;
+      }
+    );
+
+    
     this.orderService.getOrdersByManufacturer(parseInt(localStorage.getItem("userId")))
     .subscribe(response => { this.orders = response; });
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 
 }
