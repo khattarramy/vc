@@ -45,6 +45,17 @@ export class OrderDetailService {
       });
   }
 
+  getOrderDetailsByOrderAndDistributorAndStatus(orderId:Number, distributorId: Number,status:String): Observable<OrderDetailDto[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orderdetails?orderId=" +
+      orderId + "&distributorId=" + distributorId +"&status="+ status)
+      .map((response: Response) => {
+        const orderDetailDto: OrderDetailDto[] = response.json();
+        return orderDetailDto;
+      });
+  }
+
+  
   getOrderDetailsByOrderAndManufacturer(orderId:Number, manufacturerId: Number): Observable<OrderDetailDto[]> {
     return this.http
       .get("http://localhost:8080/valeurc/glg/orderdetails?orderId=" +

@@ -31,8 +31,8 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   onOrderDetailClick(){
     this.orderDetail.status="manufacturer";
     this.orderDetail.quantityDistributor=this.orderDetailForm.value.quantityDistributor;
-    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId,this.orderDetail,"getOrderDetailsByOrderAndDistributor",[this.id,
-      parseInt(localStorage.getItem("userId"))]).subscribe();
+    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId,this.orderDetail,
+      "getOrderDetailsByOrderAndDistributorAndStatus",[this.id,parseInt(localStorage.getItem("userId")),"distributor"]).subscribe();
   }
 
   ngOnInit() {
@@ -46,8 +46,8 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
             this.orderDetails = orderDetails;
           }
         );
-        this.orderDetailService.getOrderDetailsByOrderAndDistributor(this.id,
-          parseInt(localStorage.getItem("userId")))
+        this.orderDetailService.getOrderDetailsByOrderAndDistributorAndStatus(this.id,
+          parseInt(localStorage.getItem("userId")),"distributor")
           .subscribe(response => { this.orderDetails = response; });
       }
       );
