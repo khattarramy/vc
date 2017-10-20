@@ -34,6 +34,16 @@ export class OrderDetailService {
       });
   }
 
+  getOrderDetailsByOrder(orderId:Number): Observable<OrderDetailDto[]> {
+    return this.http
+      .get("http://localhost:8080/valeurc/glg/orderdetails?orderId=" +
+      orderId)
+      .map((response: Response) => {
+        const orderDetailDto: OrderDetailDto[] = response.json();
+        return orderDetailDto;
+      });
+  }
+
 
   getOrderDetailsByOrderAndDistributor(orderId:Number, distributorId: Number): Observable<OrderDetailDto[]> {
     return this.http

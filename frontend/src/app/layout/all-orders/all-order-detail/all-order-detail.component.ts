@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
+import { Subscription } from 'rxjs';
+import { OrderDetailService } from 'app/layout/order-details/order-detail.service';
+import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model';
 
 
 @Component({
@@ -12,8 +15,12 @@ import { Order } from 'app/layout/orders/order.model';
 export class AllOrderDetailComponent implements OnInit {
   order: Order;
   id: Number;
-
-  constructor(private orderService: OrderService,
+  subscription: Subscription;  
+  orderDetails: OrderDetailDto[];
+  
+  constructor(
+    private orderDetailService: OrderDetailService,
+    private orderService: OrderService,
     private route: ActivatedRoute,
     private router: Router) {
   }
@@ -23,22 +30,17 @@ export class AllOrderDetailComponent implements OnInit {
       .subscribe(
       (params: Params) => {
         this.id = params['id'];
-        this.orderService.getOrder(this.id)
-          .subscribe(response => { this.order = response; });
+        this.subscription = this.orderDetailService.ordersChanged
+        .subscribe(
+          (orderDetails: OrderDetailDto[]) => {
+            this.orderDetails = orderDetails;
+          }
+        );
+        this.orderDetailService.getOrderDetailsByOrder(this.id)
+          .subscribe(response => { this.orderDetails = response; });
       }
       );
   }
 
-
-  onEditOrder() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
-    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
-  }
-
-  onDeleteOrder() {
-    this.orderService.deleteOrder(this.id,"getOrdersByRetailer",[parseInt(localStorage.getItem("userId"))])
-      .subscribe(x => console.log(x));  ;
-    //this.router.navigate(['/orders']);
-  }
 
 }
