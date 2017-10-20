@@ -11,7 +11,7 @@ Le projet utilise MongoDb comme base de donnee, des services web Java JAX-RS com
 	sudo apt-get install -y nodejs
 
 2 - Installer angular cli
-	npm install @angular/cli
+	npm install -g @angular/cli
 
 3 - Naviger dans le repertoire frontend
 
