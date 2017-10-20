@@ -36,9 +36,9 @@ export class AllOrderDetailComponent implements OnInit {
   }
 
   onDeleteOrder() {
-    this.orderService.deleteOrder(this.id)
+    this.orderService.deleteOrder(this.id,"getOrdersByRetailer",[parseInt(localStorage.getItem("userId"))])
       .subscribe(x => console.log(x));  ;
-    this.router.navigate(['/orders']);
+    //this.router.navigate(['/orders']);
   }
 
 }

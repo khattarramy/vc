@@ -114,11 +114,11 @@ export class OrderService {
     });
   }
 
-  deleteOrder(index: Number) {
+  deleteOrder(index: Number,functionName:string,params: Number[]) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/orders/" + index)
       .map((response: Response) => {
-        this.getOrders().subscribe(response => {
+        this[functionName].apply(this,params).subscribe(response => {
           this.ordersChanged.next(response);
         });
       });

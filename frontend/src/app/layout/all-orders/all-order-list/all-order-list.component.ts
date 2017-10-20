@@ -11,7 +11,7 @@ import { OrderDto } from 'app/layout/orders/order-dto.model';
   templateUrl: './all-order-list.component.html',
   styleUrls: ['./all-order-list.component.css']
 })
-export class AllOrderListComponent implements OnInit {
+export class AllOrderListComponent implements OnInit,OnDestroy {
   orders: OrderDto[];
   subscription: Subscription;
 
@@ -21,6 +21,14 @@ export class AllOrderListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription = this.orderService.ordersChanged
+    .subscribe(
+      (orders: OrderDto[]) => {
+        this.orders = orders;
+      }
+    );
+
+
     this.orderService.getOrdersByRetailer(parseInt(localStorage.getItem("userId")))
       .subscribe(response => { this.orders = response; });
   }
@@ -29,4 +37,7 @@ export class AllOrderListComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
