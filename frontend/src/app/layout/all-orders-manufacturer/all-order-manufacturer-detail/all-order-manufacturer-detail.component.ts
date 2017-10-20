@@ -35,8 +35,8 @@ export class AllOrderManufacturerDetailComponent implements OnInit , OnDestroy {
             this.orderDetails = orderDetails;
           }
         );
-        this.orderDetailService.getOrderDetailsByOrderAndManufacturer(this.id,
-          parseInt(localStorage.getItem("userId")))
+        this.orderDetailService.getOrderDetailsByOrderAndManufacturerAndStatus(this.id,
+          parseInt(localStorage.getItem("userId")),"manufacturer")
           .subscribe(response => { this.orderDetails = response; });
       }
       );
@@ -44,8 +44,8 @@ export class AllOrderManufacturerDetailComponent implements OnInit , OnDestroy {
 
   onOrderDetailClick(orderDetail:OrderDetail){
     orderDetail.status="distributor";
-    this.orderDetailService.updateOrderDetail(orderDetail.orderDetailId,orderDetail,"getOrderDetailsByOrderAndManufacturer",[this.id,
-      parseInt(localStorage.getItem("userId"))]).subscribe();
+    this.orderDetailService.updateOrderDetail(orderDetail.orderDetailId,orderDetail,"getOrderDetailsByOrderAndManufacturerAndStatus",[this.id,
+      parseInt(localStorage.getItem("userId")),"manufacturer"]).subscribe();
   }
 
   ngOnDestroy() {
