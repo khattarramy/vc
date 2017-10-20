@@ -41,41 +41,45 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
-  clearOldData() {
-    this.userService.deleteUsers().subscribe();
+
+  addSampleData() {
+    this.userService.deleteUsers().subscribe(response =>{
+      this.users.push(new User("retailer", "Retailer1 User", "Beirut", "03000000", "retailer1@isae.edu.lb", "retailer1"));
+      this.users.push(new User("retailer", "Retailer2 User", "Beirut", "03111111", "retailer2@isae.edu.lb", "retailer2"));
+      this.users.push(new User("retailer", "Retailer3 User", "Beirut", "03222222", "retailer3@isae.edu.lb", "retailer3"));
+  
+      this.users.push(new User("distributor", "Distributor1 User", "Beirut", "03000000", "distributor1@isae.edu.lb", "distributor1"));
+      this.users.push(new User("distributor", "Distributor2 User", "Beirut", "03111111", "distributor2@isae.edu.lb", "distributor2"));
+      this.users.push(new User("distributor", "Distributor3 User", "Beirut", "03222222", "distributor3@isae.edu.lb", "distributor3"));
+  
+      this.users.push(new User("manufacturer", "Manufacturer1 User", "Beirut", "03000000", "manufacturer1@isae.edu.lb", "manufacturer1"));
+      this.users.push(new User("manufacturer", "Manufacturer2 User", "Beirut", "03111111", "manufacturer2@isae.edu.lb", "manufacturer2"));
+      this.users.push(new User("manufacturer", "Manufacturer3 User", "Beirut", "03222222", "manufacturer3@isae.edu.lb", "manufacturer3"));
+  
+      this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
+  
+      this.addUsers(0, this.users);
+  
+    });
+
+    this.itemService.deleteItems().subscribe(response =>{
+      this.items.push(new Item("TV","Samsung LED TV","9qpfjpqwf",4,5));
+      this.items.push(new Item("Phone","Samsung S7","afsa3f3f",4,7));
+      this.items.push(new Item("Laptop","Lenovo Laptop","33fasfasf",6,8));
+      
+      this.addItems(0,this.items);
+    });
+    
+
     this.OrderService.deleteOrders().subscribe();
     this.orderDetailService.deleteOrderDetails().subscribe();
     this.orderDetailHistoryService.deleteOrderDetailHistories().subscribe();
-    this.itemService.deleteItems().subscribe();
-  }
-  addSampleData() {
 
-    this.users.push(new User("retailer", "Retailer1 User", "Beirut", "03000000", "retailer1@isae.edu.lb", "retailer1"));
-    this.users.push(new User("retailer", "Retailer2 User", "Beirut", "03111111", "retailer2@isae.edu.lb", "retailer2"));
-    this.users.push(new User("retailer", "Retailer3 User", "Beirut", "03222222", "retailer3@isae.edu.lb", "retailer3"));
-
-    this.users.push(new User("distributor", "Distributor1 User", "Beirut", "03000000", "distributor1@isae.edu.lb", "distributor1"));
-    this.users.push(new User("distributor", "Distributor2 User", "Beirut", "03111111", "distributor2@isae.edu.lb", "distributor2"));
-    this.users.push(new User("distributor", "Distributor3 User", "Beirut", "03222222", "distributor3@isae.edu.lb", "distributor3"));
-
-    this.users.push(new User("manufacturer", "Manufacturer1 User", "Beirut", "03000000", "manufacturer1@isae.edu.lb", "manufacturer1"));
-    this.users.push(new User("manufacturer", "Manufacturer2 User", "Beirut", "03111111", "manufacturer2@isae.edu.lb", "manufacturer2"));
-    this.users.push(new User("manufacturer", "Manufacturer3 User", "Beirut", "03222222", "manufacturer3@isae.edu.lb", "manufacturer3"));
-
-    this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
-
-    this.addUsers(0, this.users);
-
-
-    this.items.push(new Item("TV","Samsung LED TV","9qpfjpqwf",4,5));
-    this.items.push(new Item("Phone","Samsung S7","afsa3f3f",4,7));
-    this.items.push(new Item("Laptop","Lenovo Laptop","33fasfasf",6,8));
-    
-    this.addItems(0,this.items);
   }
 
   addUsers(i: number, users: User[]) {
     if (i == users.length) {
+      alert("Users added successfully")
       return;
     } else {
       this.userService.addUser(users[i]).subscribe(response => {
@@ -86,6 +90,7 @@ export class LoginComponent implements OnInit {
 
   addItems(i: number, items: Item[]) {
     if (i == items.length) {
+      alert("Items added successfully")
       return;
     } else {
       this.itemService.addItem(items[i]).subscribe(response => {
