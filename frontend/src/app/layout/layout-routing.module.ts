@@ -25,16 +25,13 @@ import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.compon
 import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
 import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
 import { AllOrderStartComponent } from 'app/layout/all-orders/all-order-start/all-order-start.component';
-import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
 import { DashboardComponent } from 'app/layout/dashboard/dashboard.component';
 import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashboard-retailer.component';
 import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
 import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/dashboard-distributor.component';
-import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distributor/all-order-distributor-edit/all-order-distributor-edit.component';
 import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
 import { AllOrdersDistributorComponent } from 'app/layout/all-orders-distributor/all-orders-distributor.component';
 import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distributor/all-order-distributor-detail/all-order-distributor-detail.component';
-import { AllOrderManufacturerEditComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-edit/all-order-manufacturer-edit.component';
 import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-detail/all-order-manufacturer-detail.component';
 import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
 import { AllOrdersManufacturerComponent } from 'app/layout/all-orders-manufacturer/all-orders-manufacturer.component';
@@ -88,26 +85,21 @@ const routes: Routes = [
             {
                 path: 'all-orders', component: AllOrdersComponent, children: [
                     { path: '', component: AllOrderStartComponent },
-                    { path: 'new', component: AllOrderEditComponent },
                     { path: ':id', component: AllOrderDetailComponent },
-                    { path: ':id/edit', component: AllOrderEditComponent },
                 ]
             },
 
             {
                 path: 'all-orders-distributor', component: AllOrdersDistributorComponent, children: [
                     { path: '', component: AllOrderDistributorStartComponent },
-                    { path: 'new', component: AllOrderDistributorEditComponent },
-                    { path: ':id', component: AllOrderDistributorDetailComponent },
-                    { path: ':id/edit', component: AllOrderDistributorEditComponent },
+                    { path: ':id', component: AllOrderDistributorDetailComponent },                    
                 ]
             },
             {
                 path: 'all-orders-manufacturer', component: AllOrdersManufacturerComponent, children: [
                     { path: '', component: AllOrderManufacturerStartComponent },
-                    { path: 'new', component: AllOrderManufacturerEditComponent },
                     { path: ':id', component: AllOrderManufacturerDetailComponent },
-                    { path: ':id/edit', component: AllOrderManufacturerEditComponent },
+                   
                 ]
             },
 

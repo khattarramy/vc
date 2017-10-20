@@ -44,7 +44,6 @@ import { CartListComponent } from 'app/layout/cart/cart-list/cart-list.component
 import { CartStartComponent } from 'app/layout/cart/cart-start/cart-start.component';
 import { AllOrderStartComponent } from 'app/layout/all-orders/all-order-start/all-order-start.component';
 import { AllOrderListComponent } from 'app/layout/all-orders/all-order-list/all-order-list.component';
-import { AllOrderEditComponent } from 'app/layout/all-orders/all-order-edit/all-order-edit.component';
 import { AllOrderDetailComponent } from 'app/layout/all-orders/all-order-detail/all-order-detail.component';
 import { AllOrdersComponent } from 'app/layout/all-orders/all-orders.component';
 import { DashboardRetailerComponent } from 'app/layout/dashboard-retailer/dashboard-retailer.component';
@@ -53,12 +52,10 @@ import { DashboardDistributorComponent } from 'app/layout/dashboard-distributor/
 import { DashboardManufacturerComponent } from 'app/layout/dashboard-manufacturer/dashboard-manufacturer.component';
 import { AllOrdersDistributorComponent } from 'app/layout/all-orders-distributor/all-orders-distributor.component';
 import { AllOrderDistributorDetailComponent } from 'app/layout/all-orders-distributor/all-order-distributor-detail/all-order-distributor-detail.component';
-import { AllOrderDistributorEditComponent } from 'app/layout/all-orders-distributor/all-order-distributor-edit/all-order-distributor-edit.component';
 import { AllOrderDistributorListComponent } from 'app/layout/all-orders-distributor/all-order-distributor-list/all-order-distributor-list.component';
 import { AllOrderDistributorStartComponent } from 'app/layout/all-orders-distributor/all-order-distributor-start/all-order-distributor-start.component';
 import { AllOrdersManufacturerComponent } from 'app/layout/all-orders-manufacturer/all-orders-manufacturer.component';
 import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-detail/all-order-manufacturer-detail.component';
-import { AllOrderManufacturerEditComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-edit/all-order-manufacturer-edit.component';
 import { AllOrderManufacturerListComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-list/all-order-manufacturer-list.component';
 import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
 import { StatModule } from 'app/shared/modules';
@@ -114,19 +111,16 @@ import { StatModule } from 'app/shared/modules';
 
         AllOrdersComponent,
         AllOrderDetailComponent,
-        AllOrderEditComponent,
         AllOrderListComponent,
         AllOrderStartComponent,
 
         AllOrdersDistributorComponent,
         AllOrderDistributorDetailComponent,
-        AllOrderDistributorEditComponent,
         AllOrderDistributorListComponent,
         AllOrderDistributorStartComponent,
 
         AllOrdersManufacturerComponent,
         AllOrderManufacturerDetailComponent,
-        AllOrderManufacturerEditComponent,
         AllOrderManufacturerListComponent,
         AllOrderManufacturerStartComponent,
 
