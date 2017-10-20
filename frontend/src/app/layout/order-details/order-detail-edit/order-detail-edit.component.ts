@@ -43,11 +43,11 @@ export class OrderDetailEditComponent implements OnInit {
     if (this.editMode) {
       console.log(this.orderDetailForm.value);
       //console.log(this.id);
-        this.orderDetailService.updateOrderDetail(this.id, this.orderDetailForm.value)
+        this.orderDetailService.updateOrderDetail(this.id, this.orderDetailForm.value,"getOrderDetails",[])
           .subscribe(x => console.log(x));
     } else {
      // console.log(<Order>this.orderForm.value);
-      this.orderDetailService.addOrderDetail(this.orderDetailForm.value)
+      this.orderDetailService.addOrderDetail(this.orderDetailForm.value,"getOrderDetails",[])
        .subscribe(x => console.log(x));
     }
     this.onCancel();

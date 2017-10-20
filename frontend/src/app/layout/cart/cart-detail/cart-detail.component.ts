@@ -35,7 +35,7 @@ export class CartDetailComponent implements OnInit {
   }
 
   onDeleteOrderDetail() {
-    this.orderDetailService.deleteOrderDetail(this.id)
+    this.orderDetailService.deleteOrderDetail(this.id,"getOrderDetailsByStatusAndRetailer",["cart", parseInt(localStorage.getItem("userId"))])
       .subscribe(x => console.log(x));  ;
     this.router.navigate(['/cart']);
   }

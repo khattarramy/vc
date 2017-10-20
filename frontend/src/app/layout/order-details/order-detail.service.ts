@@ -65,32 +65,32 @@ export class OrderDetailService {
       });
   }
 
-  addOrderDetail(order: OrderDetail) {
+  addOrderDetail(order: OrderDetail,functionName:string,params: any[]) {
     console.log(JSON.stringify(order));
     return this.http
       .post("http://localhost:8080/valeurc/glg/orderdetails", order)
       .map((response: Response) => {
-        this.getOrderDetails().subscribe(response => {
+        this[functionName].apply(this,params).subscribe(response => {
           this.ordersChanged.next(response);
         });
       });
   }
 
-  updateOrderDetail(index: Number, newOrder: OrderDetail) {
+  updateOrderDetail(index: Number, newOrder: OrderDetail,functionName:string,params: any[]) {
     const x: string = "http://localhost:8080/valeurc/glg/orderdetails/" + index;
     console.log(x);
     return this.http.put(x, newOrder).map((response: Response) => {
-      this.getOrderDetails().subscribe(response => {
+      this[functionName].apply(this,params).subscribe(response => {
         this.ordersChanged.next(response);
       });
     });
   }
 
-  deleteOrderDetail(index: Number) {
+  deleteOrderDetail(index: Number,functionName:string,params: any[]) {
     return this.http
       .delete("http://localhost:8080/valeurc/glg/orderdetails/" + index)
       .map((response: Response) => {
-        this.getOrderDetails().subscribe(response => {
+        this[functionName].apply(this,params).subscribe(response => {
           this.ordersChanged.next(response);
         });
       });

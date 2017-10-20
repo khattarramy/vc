@@ -49,7 +49,7 @@ export class CreateOrderComponent implements OnInit {
       .subscribe(response => {
         if (response.length > 0) {
           this.orderDetail.orderId = response[0].orderId;
-          this.orderDetailService.addOrderDetail(this.orderDetail)
+          this.orderDetailService.addOrderDetail(this.orderDetail,"getOrderDetails",[])
             .subscribe(x => console.log(x));
         }
         else{
@@ -61,7 +61,7 @@ export class CreateOrderComponent implements OnInit {
           this.orderService.addOrder(this.order,"getOrders",[])
           .subscribe(response => {
             this.orderDetail.orderId = response.orderId;
-            this.orderDetailService.addOrderDetail(this.orderDetail)
+            this.orderDetailService.addOrderDetail(this.orderDetail,"getOrderDetails",[])
               .subscribe(x => console.log(x));
 
           });

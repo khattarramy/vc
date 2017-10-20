@@ -17,7 +17,7 @@ import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model'
 export class CartListComponent implements OnInit, OnDestroy {
   orderDetails: OrderDetailDto[];
   order : Order;
-  
+  subscription: Subscription;
   constructor(private orderDetailService: OrderDetailService,
     private orderService: OrderService,
     private router: Router,
@@ -25,6 +25,12 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscription = this.orderDetailService.ordersChanged
+    .subscribe(
+      (orderDetails: OrderDetailDto[]) => {
+        this.orderDetails = orderDetails;
+      }
+    );
         
     this.orderDetailService.getOrderDetailsByStatusAndRetailer("cart",parseInt(localStorage.getItem("userId")))
       .subscribe(response => { this.orderDetails = response; });
@@ -33,7 +39,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   onNewOrderDetail() {
     for(var i = 0;i<this.orderDetails.length;i++) { 
       this.orderDetails[i].status = "distributor";
-      this.orderDetailService.updateOrderDetail(this.orderDetails[i].orderDetailId, this.orderDetails[i])
+      this.orderDetailService.updateOrderDetail(this.orderDetails[i].orderDetailId, this.orderDetails[i],"getOrderDetailsByStatusAndRetailer",["cart", parseInt(localStorage.getItem("userId"))])
       .subscribe(x => console.log(x));
      
    } 
@@ -52,6 +58,6 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.subscription.unsubscribe();
   }
 }
