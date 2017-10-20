@@ -64,43 +64,54 @@ export class LoginComponent implements OnInit {
 
     this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
 
-    var i: number = 0;
-    for (let user of this.users) {
-      i = i + 150;
-      setTimeout(() => { this.userService.addUser(user).subscribe(); }, i);
+    this.addUsers(0, this.users);
 
-    }
-    
 
     this.items.push(new Item("TV","Samsung LED TV","9qpfjpqwf",4,5));
     this.items.push(new Item("Phone","Samsung S7","afsa3f3f",4,7));
     this.items.push(new Item("Laptop","Lenovo Laptop","33fasfasf",6,8));
-
-    var j: number = 0;
-    for (let item of this.items) {
-      j = j + 150;
-      setTimeout(() => { this.itemService.addItem(item).subscribe(); }, j);
-
-    }
     
+    this.addItems(0,this.items);
   }
+
+  addUsers(i: number, users: User[]) {
+    if (i == users.length) {
+      return;
+    } else {
+      this.userService.addUser(users[i]).subscribe(response => {
+        this.addUsers(i + 1, users);
+      })
+    }
+  }
+
+  addItems(i: number, items: Item[]) {
+    if (i == items.length) {
+      return;
+    } else {
+      this.itemService.addItem(items[i]).subscribe(response => {
+        this.addItems(i + 1, items);
+      })
+    }
+
+  }
+
   onSubmit() {
     this.loginService.loginUser(this.loginForm.value).subscribe(response => {
-      
+
       this.user = response;
-      if (this.user.userId == 0){
+      if (this.user.userId == 0) {
         alert("Wrong credentials!");
 
-      }else{
+      } else {
         localStorage.setItem('email', this.user.email);
         localStorage.setItem('password', this.user.password);
         localStorage.setItem('userId', String(this.user.userId));
         localStorage.setItem('type', String(this.user.type));
 
-        if(this.user.type == "retailer") { this.router.navigate(['/dashboard-retailer']); }
-        else if(this.user.type == "distributor") { this.router.navigate(['/dashboard-distributor']); }
-        else if(this.user.type == "manufacturer") { this.router.navigate(['/dashboard-manufacturer']); }
-  
+        if (this.user.type == "retailer") { this.router.navigate(['/dashboard-retailer']); }
+        else if (this.user.type == "distributor") { this.router.navigate(['/dashboard-distributor']); }
+        else if (this.user.type == "manufacturer") { this.router.navigate(['/dashboard-manufacturer']); }
+
 
       }
 
