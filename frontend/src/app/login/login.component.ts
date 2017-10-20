@@ -111,6 +111,7 @@ export class LoginComponent implements OnInit {
         if (this.user.type == "retailer") { this.router.navigate(['/dashboard-retailer']); }
         else if (this.user.type == "distributor") { this.router.navigate(['/dashboard-distributor']); }
         else if (this.user.type == "manufacturer") { this.router.navigate(['/dashboard-manufacturer']); }
+        else if (this.user.type == "admin") { this.router.navigate(['/dashboard']); }
 
 
       }
