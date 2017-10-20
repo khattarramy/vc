@@ -6,10 +6,17 @@ Le projet utilise MongoDb comme base de donnee, des services web Java JAX-RS com
 
 
 # Pour demarrer le projet frontend:
-1 - Installer nodejs
+1 - Installer nodejs:
+	curl -sL https://deb.nodesource.com/setup | sudo -E bash -
+	sudo apt-get install -y nodejs
+
 2 - Installer angular cli
+	npm install @angular/cli
+
 3 - Naviger dans le repertoire frontend
+
 4 - npm install
+
 5 - ng serve
 
 # Pour demarrer la base de donnee MongoDb (Linux et OsX)
@@ -26,3 +33,4 @@ Le projet utilise MongoDb comme base de donnee, des services web Java JAX-RS com
 # Pour tester les services web
 1 - Installer 'Postman'
 2 - Importer les fichier Json des test du repertoire 'tests' du projet dans postman
+
