@@ -64,24 +64,11 @@ export class LoginComponent implements OnInit {
     /* id: 18 */    this.users.push(new User("manufacturer", "Dell Manufacturer", "Beirut", "03222222", "dellmanufacturer@isae.edu.lb", "dellmanufacturer"));
     /* id: 19 */    this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
 
-      this.addUsers(0, this.users);
+    this.addUsers(0, this.users);
 
     });
 
-    this.itemService.deleteItems().subscribe(response => {
-      this.items.push(new Item("Samsung Smart TV 50 inch", "", "", 5, 12));
-      this.items.push(new Item("LG Refrigerator", "", "", 6, 13));
-      this.items.push(new Item("Campomatic washing machine", "", "", 10, 17));
-      this.items.push(new Item("Campomatic air conditioner", "", "", 10, 17));
-      this.items.push(new Item("Sony home theatre", "", "", 7, 14));
-      this.items.push(new Item("HP Desk pro 3600", "", "", 8, 15));
-      this.items.push(new Item("Lenovo thinkpad", "", "", 9, 16));
-      this.items.push(new Item("Samsung galaxy S8", "", "", 5, 12));
-      this.items.push(new Item("LG TV 55 inch", "", "", 6, 13));
-      this.items.push(new Item("HP LaserJet Printer 5001", "", "", 8, 15));
-      this.items.push(new Item("Dell XPS", "", "", 11, 18));
-      this.addItems(0, this.items);
-    });
+
 
 
     this.OrderService.deleteOrders().subscribe();
@@ -93,6 +80,21 @@ export class LoginComponent implements OnInit {
   addUsers(i: number, users: User[]) {
     if (i == users.length) {
       alert("Users added successfully")
+
+      this.itemService.deleteItems().subscribe(response => {
+        this.items.push(new Item("Samsung Smart TV 50 inch", "", "", 5, 12));
+        this.items.push(new Item("LG Refrigerator", "", "", 6, 13));
+        this.items.push(new Item("Campomatic washing machine", "", "", 10, 17));
+        this.items.push(new Item("Campomatic air conditioner", "", "", 10, 17));
+        this.items.push(new Item("Sony home theatre", "", "", 7, 14));
+        this.items.push(new Item("HP Desk pro 3600", "", "", 8, 15));
+        this.items.push(new Item("Lenovo thinkpad", "", "", 9, 16));
+        this.items.push(new Item("Samsung galaxy S8", "", "", 5, 12));
+        this.items.push(new Item("LG TV 55 inch", "", "", 6, 13));
+        this.items.push(new Item("HP LaserJet Printer 5001", "", "", 8, 15));
+        this.items.push(new Item("Dell XPS", "", "", 11, 18));
+        this.addItems(0, this.items);
+      });
       return;
     } else {
       this.userService.addUser(users[i]).subscribe(response => {
