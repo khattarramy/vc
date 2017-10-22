@@ -14,26 +14,27 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Order {
-    
+
     private int _id;
     private int UserId;
+    private User User;
     private String Status;
     private Date DateInitialized;
     private Date DateFinished;
+    private List<OrderDetail> OrderDetails;
 
-       
     public Order() {
-        
+
     }
 
-    public Order(int id, int userId, String status) {
+    public Order(int id, int userId, String status, List<OrderDetail> orderDetails) {
         this._id = id;
         this.UserId = userId;
         this.Status = status;
         this.DateInitialized = new Date();
+        this.OrderDetails = orderDetails;
     }
 
-    
     public int getOrderId() {
         return _id;
     }
@@ -73,5 +74,19 @@ public class Order {
     public void setDateFinished(Date dateFinished) {
         this.DateFinished = dateFinished;
     }
-    
+
+    public List<OrderDetail> getOrderDetails() {
+        return this.OrderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.OrderDetails = orderDetails;
+    }
+    public User getUser() {
+        return User;
+    }
+
+    public void setUser(User user) {
+        this.User = user;
+    }
 }

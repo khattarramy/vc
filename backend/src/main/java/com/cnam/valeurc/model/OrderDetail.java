@@ -16,15 +16,17 @@ public class OrderDetail {
     private String Status;
     private int Quantity;
     private int QuantityDistributor;
+    private Item Item;
        
     public OrderDetail() {
         
     }
-    public OrderDetail(int orderDetailId, int orderId, int itemId, String status) {
+    public OrderDetail(int orderDetailId, int orderId, int itemId, String status, Item item) {
         this._id = orderDetailId;
         this.OrderId = orderId;
         this.ItemId = itemId;
         this.Status = status;
+        this.Item = item;
     }
     
     public int getOrderDetailId() {
@@ -73,4 +75,13 @@ public class OrderDetail {
     public void setQuantityDistributor(int quantityDistributor) {
         this.QuantityDistributor = quantityDistributor;
     }
+    
+        public Item getItem() {
+        return Item;
+    }
+
+    public void setItem(Item item) {
+        this.Item = item;
+    }
+    
 }

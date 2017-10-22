@@ -32,11 +32,15 @@ public class ItemService {
 
     public ItemService() throws UnknownHostException {
         mongo = dbConnect.init();
+        
         db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db,"item")) {
+        
+        if (!dbConnect.collectionExists(db, "item")) {
             db.createCollection("item", new CreateCollectionOptions().capped(false));
         }
+        
         counters = AppUtils.checkCounters(dbConnect, db, "itemid");
+        
         itemCollection = db.getCollection("item");
 
     }
@@ -57,18 +61,23 @@ public class ItemService {
     public List<Integer> getAllItemsIds(int distributorId, int manufacturerId) throws UnknownHostException {
 
         List<Integer> ids = new ArrayList();
+        
         BasicDBObject searchQuery = new BasicDBObject();
+        
         if (manufacturerId > 0) {
             searchQuery.put("ManufacturerId", manufacturerId);
         }
+        
         if (distributorId > 0) {
             searchQuery.put("DistributorId", distributorId);
         }
+        
         MongoCursor<Document> cursor = itemCollection.find(searchQuery).iterator();
 
         while (cursor.hasNext()) {
             ids.add((Integer) cursor.next().get("_id"));
         }
+        
         dbConnect.close(mongo);
 
         return ids;
@@ -91,29 +100,55 @@ public class ItemService {
     }
 
     public Item addItem(Item item) throws UnknownHostException, Exception {
+        
+        UserService userService = new UserService();
+        
+        item.setDistributor(userService.getUserById(item.getDistributorId()));
+        
+        item.setManufacturer(userService.getUserById(item.getManufacturerId()));
+        
         item.setItemId((int) AppUtils.getNextSequence("itemid", counters));
+        
         itemCollection.insertOne(AppUtils.toDocument(item));
+        
         dbConnect.close(mongo);
+        
         return item;
     }
 
     public Item updateItem(Item item, int itemId) throws UnknownHostException {
         item.setItemId(itemId);
+        
+        UserService userService = new UserService();
+
+        item.setDistributor(userService.getUserById(item.getDistributorId()));
+        
+        item.setManufacturer(userService.getUserById(item.getManufacturerId()));
+
         itemCollection.updateOne(eq("_id", itemId), new Document("$set", AppUtils.toDocument(item)));
+        
         dbConnect.close(mongo);
+        
         return item;
     }
 
     public void deleteItem(int itemId) throws UnknownHostException {
+        
         itemCollection.deleteOne(eq("_id", itemId));
+        
         dbConnect.close(mongo);
     }
-    
-        public void deleteAllItems() throws UnknownHostException {
+
+    public void deleteAllItems() throws UnknownHostException {
+        
         BasicDBObject searchQuery = new BasicDBObject();
+        
         itemCollection.deleteMany(searchQuery);
+        
         dbConnect.close(mongo);
+        
         CounterService counterService = new CounterService();
+        
         counterService.deleteCounter("itemid");
     }
 }

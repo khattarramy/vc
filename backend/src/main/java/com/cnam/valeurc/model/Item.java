@@ -17,12 +17,15 @@ public class Item {
     private String ModelNumber;
     private int DistributorId;
     private int ManufacturerId;
+    private User Distributor;
+    private User Manufacturer;
 
        
     public Item() {
 
     }
-    public Item(int ItemId,String Name, String Description,String ModelNumber, int DistributorId, int ManufacturerId) {
+    public Item(int ItemId,String Name, String Description,String ModelNumber, 
+            int DistributorId, int ManufacturerId, User distributor, User manufacturer) {
         
         this._id=ItemId;
         this.Name = Name;
@@ -30,7 +33,8 @@ public class Item {
         this.ModelNumber = ModelNumber;
         this.DistributorId = DistributorId;
         this.ManufacturerId = ManufacturerId;
-        
+        this.Distributor = distributor;
+        this.Manufacturer = manufacturer;
     }
     public int getItemId() {
         return _id;
@@ -78,6 +82,23 @@ public class Item {
     
     public void setManufacturerId(int id) {
         this.ManufacturerId = id;
+    }
+    
+    
+    public User getDistributor() {
+        return Distributor;
+    }
+    
+    public void setDistributor(User distributor) {
+        this.Distributor = distributor;
+    }
+    
+    public User getManufacturer() {
+        return Manufacturer;
+    }
+    
+    public void setManufacturer(User manufacturer) {
+        this.Manufacturer = manufacturer;
     }
     
 }

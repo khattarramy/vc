@@ -48,21 +48,19 @@ public class OrderService {
     public List<OrderDto> getAllOrdersDto(int userId, String status, int distributorId, int manufacturerId) throws UnknownHostException {
 
         List<Order> orders = new ArrayList();
+
         List<OrderDto> orderDtos = new ArrayList<OrderDto>();
+
         UserService userService = new UserService();
 
         List<User> users = new ArrayList<User>();
 
-        users = userService.getAllUsers();
-
         orders = getAllOrders(userId, status, distributorId, manufacturerId);
 
         for (Order o : orders) {
-            for (User u : users) {
-                if (o.getUserId() == u.getUserId()) {
-                    orderDtos.add(new OrderDto(o.getOrderId(), u.getName(),o.getUserId(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
-                }
-            }
+            
+            orderDtos.add(new OrderDto(o.getOrderId(), o.getUser().getName(), o.getUserId(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
+
         }
 
         return orderDtos;
@@ -93,28 +91,17 @@ public class OrderService {
 
             }
             if (userId > 0) {
-
                 searchQuery.put("UserId", userId);
-
             }
 
-            if (distributorId > 0 || manufacturerId > 0) {
-
-                OrderDetailService orderDetails = new OrderDetailService();
-
-                List<OrderDetail> orderDetailsList = orderDetails.getAllOrderDetails(0, 0, distributorId, manufacturerId, null);
-
-                List<Integer> orderDetailIdsList = new ArrayList();
-
-                for (OrderDetail o : orderDetailsList) {
-
-                    orderDetailIdsList.add(o.getOrderId());
-
-                }
-
-                searchQuery.put("_id", new BasicDBObject("$in", orderDetailIdsList));
-
+            if (distributorId > 0) {
+                searchQuery.put("OrderDetails.Item.Distributor._id", distributorId);
             }
+
+            if (manufacturerId > 0) {
+                searchQuery.put("OrderDetails.Item.Manufacturer._id", manufacturerId);
+            }
+
             if (!searchQuery.isEmpty()) {
 
                 cursor = orderCollection.find(searchQuery).iterator();
@@ -147,29 +134,52 @@ public class OrderService {
     }
 
     public Order addOrder(Order order) throws UnknownHostException, Exception {
+
+        UserService userService = new UserService();
+
+        order.setUser(userService.getUserById(order.getUserId()));
+
         order.setOrderId((int) AppUtils.getNextSequence("orderid", counters));
+
         orderCollection.insertOne(AppUtils.toDocument(order));
+
         dbConnect.close(mongo);
+
         return order;
     }
 
     public Order updateOrder(Order order, int orderId) throws UnknownHostException {
+
         order.setOrderId(orderId);
+
+        UserService userService = new UserService();
+
+        order.setUser(userService.getUserById(order.getUserId()));
+
         orderCollection.updateOne(eq("_id", orderId), new Document("$set", AppUtils.toDocument(order)));
+
         dbConnect.close(mongo);
+
         return order;
     }
 
     public void deleteOrder(int orderId) throws UnknownHostException {
+
         orderCollection.deleteOne(eq("_id", orderId));
+
         dbConnect.close(mongo);
     }
 
     public void deleteAllOrders() throws UnknownHostException {
+
         BasicDBObject searchQuery = new BasicDBObject();
+
         orderCollection.deleteMany(searchQuery);
+
         dbConnect.close(mongo);
+
         CounterService counterService = new CounterService();
+
         counterService.deleteCounter("orderid");
     }
 }

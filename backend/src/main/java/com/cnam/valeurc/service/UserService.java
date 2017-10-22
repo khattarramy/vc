@@ -41,9 +41,13 @@ public class UserService {
     }
 
     public User addUser(User user) throws UnknownHostException, Exception {
+        
         user.setUserId((int) AppUtils.getNextSequence("userid", counters));
+        
         userCollection.insertOne(AppUtils.toDocument(user));
+        
         dbConnect.close(mongo);
+        
         return user;
     }
 
@@ -57,38 +61,54 @@ public class UserService {
             user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
 
-        dbConnect.close(mongo);
+        
         return user;
 
     }
 
     public List<User> getAllUsers() throws UnknownHostException {
+        
         List<User> users = new ArrayList();
+        
         MongoCursor<Document> cursor = userCollection.find().iterator();
+        
         while (cursor.hasNext()) {
             users.add((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
+        
         dbConnect.close(mongo);
+        
         return users;
     }
 
     public User updateUser(User user, int userId) {
+        
         user.setUserId(userId);
+        
         userCollection.updateOne(eq("_id", userId), new Document("$set", AppUtils.toDocument(user)));
+        
         dbConnect.close(mongo);
+        
         return user;
     }
 
     public void deleteUser(int userId) {
+        
         userCollection.deleteOne(eq("_id", userId));
+        
         dbConnect.close(mongo);
     }
 
     public void deleteAllUsers() throws UnknownHostException {
+        
         BasicDBObject searchQuery = new BasicDBObject();
+        
         userCollection.deleteMany(searchQuery);
+        
         dbConnect.close(mongo);
+        
         CounterService counterService = new CounterService();
+        
         counterService.deleteCounter("userid");
     }
 }

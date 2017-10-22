@@ -14,14 +14,21 @@ import com.cnam.valeurc.model.OrderDto;
 import com.cnam.valeurc.model.User;
 import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
+import com.mongodb.BasicDBObjectBuilder;
+import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.CreateCollectionOptions;
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Updates;
 import java.net.UnknownHostException;
 import java.util.*;
+import static java.util.Arrays.asList;
+import org.bson.BSONObject;
+import org.bson.BsonDocument;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -33,7 +40,7 @@ public class OrderDetailService {
 
     DbConnect dbConnect = new DbConnect();
     MongoClient mongo;
-    MongoCollection orderDetailCollection, counters;
+    MongoCollection orderDetailCollection, orderCollection, counters;
     MongoDatabase db;
 
     public OrderDetailService() throws UnknownHostException {
@@ -42,9 +49,18 @@ public class OrderDetailService {
         if (!dbConnect.collectionExists(db, "orderDetail")) {
             db.createCollection("orderDetail", new CreateCollectionOptions().capped(false));
         }
+
         counters = AppUtils.checkCounters(dbConnect, db, "orderdetailid");
 
         orderDetailCollection = db.getCollection("orderDetail");
+
+        if (!dbConnect.collectionExists(db, "order")) {
+            db.createCollection("order", new CreateCollectionOptions().capped(false));
+        }
+
+        counters = AppUtils.checkCounters(dbConnect, db, "orderid");
+
+        orderCollection = db.getCollection("order");
 
     }
 
@@ -54,84 +70,88 @@ public class OrderDetailService {
         orderDetails = getAllOrderDetails(orderId, retailerId, distributorId, manufacturerId, status);
 
         List<OrderDetailDto> orderDetailsDto = new ArrayList<OrderDetailDto>();
-        ItemService itemService = new ItemService();
-
-        List<Item> items = new ArrayList<Item>();
-
-        items = itemService.getAllItems();
 
         for (OrderDetail o : orderDetails) {
-            for (Item u : items) {
-                if (o.getItemId() == u.getItemId()) {
-                    orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(),o.getOrderId(),o.getItemId(),u.getName(),o.getStatus(),o.getQuantity(),o.getQuantityDistributor()));
-                }
-            }
+
+            orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(), o.getOrderId(), o.getItemId(), o.getItem().getName(), o.getStatus(), o.getQuantity(), o.getQuantityDistributor()));
+
         }
         return orderDetailsDto;
 
     }
 
     public List<OrderDetail> getAllOrderDetails(int orderId, int retailerId, int distributorId, int manufacturerId, String status) throws UnknownHostException {
-
-        BasicDBObject searchQuery = new BasicDBObject();
-
         List<OrderDetail> orderDetails = new ArrayList();
 
+        List<Document> search = new ArrayList<>();
+        search.add(new Document("$unwind", "$OrderDetails"));
+
         if ((retailerId == 0) && (orderId == 0) && (distributorId == 0) && (manufacturerId == 0) && ((status == null) || (status == ""))) {
+            MongoCursor<Document> cursor
+                    = orderCollection.aggregate(search).iterator();
 
-            MongoCursor<Document> cursor = orderDetailCollection.find().iterator();
+            try {
+                while (cursor.hasNext()) {
+                    Document element = cursor.next();
 
-            while (cursor.hasNext()) {
+                    for (String field : element.keySet()) {
+                        if (field.equals("OrderDetails")) {
+                            Document document = (Document) element.get(field);
+                            orderDetails.add((OrderDetail) AppUtils.fromDocument(document, OrderDetail.class));
+                        }
 
-                orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+                    }
+                }
+
+            } finally {
+                cursor.close();
             }
         } else {
             if (status != null && !"".equals(status)) {
 
-                searchQuery.append("Status", status);
+                search.add(new Document("$match", new Document("OrderDetails.Status", status)));
 
             }
 
             if (orderId > 0) {
 
-                searchQuery.append("OrderId", orderId);
+                search.add(new Document("$match", new Document("_id", orderId)));
             }
-            if (distributorId > 0 || manufacturerId > 0) {
-                ItemService items = new ItemService();
+            if (distributorId > 0) {
+                search.add(new Document("$match", new Document("OrderDetails.Item.DistributorId", distributorId)));
 
-                List<Integer> itemsIds = items.getAllItemsIds(distributorId, manufacturerId);
-
-                if (itemsIds != null && !itemsIds.isEmpty()) {
-
-                    searchQuery.append("ItemId", new BasicDBObject("$in", itemsIds));
-
-                }
             }
+
+            if (manufacturerId > 0) {
+                search.add(new Document("$match", new Document("OrderDetails.Item.ManufacturerId", manufacturerId)));
+
+            }
+
             if (retailerId > 0) {
 
-                OrderService orders = new OrderService();
-
-                List<Order> orderList = orders.getAllOrders(retailerId, "", 0, 0);
-
-                List<Integer> orderIdsList = new ArrayList();
-
-                for (Order o : orderList) {
-
-                    orderIdsList.add(o.getOrderId());
-
-                }
-
-                searchQuery.put("OrderId", new BasicDBObject("$in", orderIdsList));
-
+                search.add(new Document("$match", new Document("UserId", retailerId)));
             }
 
-            if (!searchQuery.isEmpty()) {
+            if (search.size() > 1) {
+                MongoCursor<Document> cursor
+                        = orderCollection.aggregate(search).iterator();
 
-                MongoCursor<Document> cursor = orderDetailCollection.find(searchQuery).iterator();
+                try {
+                    while (cursor.hasNext()) {
+                        Document element = cursor.next();
 
-                while (cursor.hasNext()) {
-                    orderDetails.add((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+                        for (String field : element.keySet()) {
+                            if (field.equals("OrderDetails")) {
+                                Document document = (Document) element.get(field);
+                                orderDetails.add((OrderDetail) AppUtils.fromDocument(document, OrderDetail.class));
+                            }
+                        }
+                    }
+
+                } finally {
+                    cursor.close();
                 }
+
             }
         }
 
@@ -142,37 +162,103 @@ public class OrderDetailService {
     }
 
     public OrderDetail getOrderDetailById(int orderDetailId) throws UnknownHostException {
-
         OrderDetail orderDetail = new OrderDetail();
+        List<Document> search = new ArrayList<>();
+        search.add(new Document("$unwind", "$OrderDetails"));
+        search.add(new Document("$match", new Document("OrderDetails._id", orderDetailId)));
+        MongoCursor<Document> cursor
+                = orderCollection.aggregate(search).iterator();
 
-        MongoCursor<Document> cursor = orderDetailCollection.find(eq("_id", orderDetailId)).iterator();
+        try {
+            while (cursor.hasNext()) {
+                Document element = cursor.next();
 
-        while (cursor.hasNext()) {
-            orderDetail = ((OrderDetail) AppUtils.fromDocument(cursor.next(), OrderDetail.class));
+                for (String field : element.keySet()) {
+                    if (field.equals("OrderDetails")) {
+                        Document document = (Document) element.get(field);
+                        orderDetail = (OrderDetail) AppUtils.fromDocument(document, OrderDetail.class);
+                    }
+
+                }
+            }
+
+        } finally {
+            cursor.close();
         }
-
-        dbConnect.close(mongo);
         return orderDetail;
-
     }
 
     public OrderDetail addOrderDetail(OrderDetail orderDetail) throws UnknownHostException, Exception {
+
+        ItemService itemService = new ItemService();
+
+        orderDetail.setItem(itemService.getItemById(orderDetail.getItemId()));
+
         orderDetail.setOrderDetailId((int) AppUtils.getNextSequence("orderdetailid", counters));
-        orderDetailCollection.insertOne(AppUtils.toDocument(orderDetail));
+
+        orderCollection.updateOne(eq("_id", orderDetail.getOrderId()), Updates.addToSet("OrderDetails", AppUtils.toDocument(orderDetail)));
+
         dbConnect.close(mongo);
+
         return orderDetail;
     }
 
     public OrderDetail updateOrderDetail(OrderDetail orderDetail, int orderDetailId) throws UnknownHostException {
         orderDetail.setOrderDetailId(orderDetailId);
-        orderDetailCollection.updateOne(eq("_id", orderDetailId), new Document("$set", AppUtils.toDocument(orderDetail)));
+
+        ItemService itemService = new ItemService();
+
+        orderDetail.setItem(itemService.getItemById(orderDetail.getItemId()));
+
+        BasicDBObject query = new BasicDBObject();
+
+        query.put("_id", orderDetail.getOrderId());
+        query.put("OrderDetails._id", orderDetail.getOrderDetailId());
+
+        BasicDBObject data = new BasicDBObject();
+
+        data.put("OrderDetails.$.ItemId", orderDetail.getItemId());
+        data.put("OrderDetails.$.Status", orderDetail.getStatus());
+        data.put("OrderDetails.$.Quantity", orderDetail.getQuantity());
+        data.put("OrderDetails.$.QuantityDistributor", orderDetail.getQuantityDistributor());
+        data.put("OrderDetails.$.Item._id", orderDetail.getItem().getItemId());
+        data.put("OrderDetails.$.Item.Name", orderDetail.getItem().getName());
+        data.put("OrderDetails.$.Item.Description", orderDetail.getItem().getDescription());
+        data.put("OrderDetails.$.Item.ModelNumber", orderDetail.getItem().getModelNumber());
+        data.put("OrderDetails.$.Item.DistributorId", orderDetail.getItem().getDistributorId());
+        data.put("OrderDetails.$.Item.ManufacturerId", orderDetail.getItem().getManufacturerId());
+        data.put("OrderDetails.$.Item.Distributor.Name", orderDetail.getItem().getDistributor().getName());
+        data.put("OrderDetails.$.Item.Manufacturer.Name", orderDetail.getItem().getManufacturer().getName());
+
+        BasicDBObject command = new BasicDBObject();
+        command.put("$set", data);
+
+        orderCollection.updateOne(query, command);
+
         dbConnect.close(mongo);
         return orderDetail;
     }
 
     public void deleteOrderDetail(int orderDetailId) throws UnknownHostException {
-        orderDetailCollection.deleteOne(eq("_id", orderDetailId));
+        Order order = getOrderByOrderDetailId(orderDetailId);
+
+        BasicDBObject match = new BasicDBObject("_id", order.getOrderId()); // to match your document
+        BasicDBObject update = new BasicDBObject("OrderDetails", new BasicDBObject("_id", orderDetailId));
+        orderCollection.updateOne(match, new BasicDBObject("$pull", update));
+
         dbConnect.close(mongo);
+    }
+
+    public Order getOrderByOrderDetailId(int orderDetailId) {
+
+        Order order = new Order();
+        Document document = new Document("OrderDetails._id", orderDetailId);
+        MongoCursor<Document> cursor = orderCollection.find(document).iterator();
+
+        while (cursor.hasNext()) {
+            order = ((Order) AppUtils.fromDocument(cursor.next(), Order.class));
+        }
+        return order;
     }
 
     public void deleteAllOrderDetails() throws UnknownHostException {
