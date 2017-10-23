@@ -19,9 +19,10 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   id: Number;
   orderDetail:OrderDetail;
   subscription: Subscription;
+  selectedRow : Number;
   
   orderDetailForm: FormGroup = new FormGroup({
-    quantityDistributor: new FormControl(''),
+    quantityDistributor: new FormControl('',Validators.required),
   });
   constructor(private orderService: OrderService,
     private orderDetailService: OrderDetailService,
@@ -55,12 +56,22 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
 
   }
 
-  initForm(orderDetail:OrderDetail){
-  this.orderDetail = orderDetail;    
+  initForm(orderDetail:OrderDetail,index){
+  this.orderDetail = orderDetail;
+  this.selectedRow = index;
+  
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  onCancel(){
+    this.orderDetailForm.setValue({
+      quantityDistributor: ""
+    });
+    this.selectedRow = null;
+
   }
 
 }
