@@ -5,7 +5,7 @@
     </div>
 
     <fieldset class="form-group">
-        <input class="form-control" id="enableButton" formControlName="enableButton">
+        <input style="display:none;" class="form-control" id="enableButton" formControlName="enableButton">
     </fieldset>
 </form>
 
@@ -21,8 +21,8 @@
                   <tr>
                       <th>#</th>
                       <th>Item Name</th>
-                      <th>Quantity</th>
-                      <th>Quantity Distributor</th>
+                      <th>Needed Quantity</th>
+                      
                   </tr>
                   </thead>
                   <tbody>
@@ -31,8 +31,8 @@
                           [ngClass]="{'table-warning': i == selectedRow}"                       >
                               <th scope="row">1</th>
                               <td>{{ orderDetailEl.itemName }}</td>
-                              <td>{{ orderDetailEl.quantity }}</td>
-                              <td>{{orderDetailEl.quantityDistributor}}</td>
+                              <td>{{ substract(orderDetailEl.quantity,orderDetailEl.quantityDistributor)}}</td>
+                             
                           </tr>
   
   

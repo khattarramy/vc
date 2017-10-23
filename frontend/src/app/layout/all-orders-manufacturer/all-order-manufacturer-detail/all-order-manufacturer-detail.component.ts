@@ -76,4 +76,9 @@ export class AllOrderManufacturerDetailComponent implements OnInit , OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  substract(Quantity : number, QuantityDistributor): Number{
+
+    return Quantity - QuantityDistributor;
+  }
+
 }
