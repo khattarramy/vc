@@ -1,14 +1,5 @@
 <div class="row">
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-    </div>
+        <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'card-danger'" [icon]="'fa-list-alt'" [count]="13" [label]="'Pending orders!'" (click)="onClick()"></app-stat>
+            </div>
 </div>

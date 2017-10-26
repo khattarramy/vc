@@ -14,18 +14,18 @@
         </a>
 
         <a  *ngIf="this.user.type=='retailer'" routerLink="/create-order" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Create order' }}
+            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Create order' }}
         </a>
         <a  *ngIf="this.user.type=='admin'" routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Orders' }}
+            <i class="fa fa-fw fa-list-alt"></i>&nbsp;{{ 'Orders' }}
         </a>
 
         <a  *ngIf="this.user.type=='retailer'" routerLink="/all-orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders' }}
+            <i class="fa fa-fw fa-list-alt"></i>&nbsp;{{ 'All Orders' }}
         </a>
 
         <a  *ngIf="this.user.type=='distributor'" routerLink="/all-orders-distributor" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'All Orders' }}
+            <i class="fa fa-fw fa-list-alt"></i>&nbsp;{{ 'All Orders' }}
         </a>
 
 
@@ -39,10 +39,10 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Order Detail History' }}
         </a>
         <a  *ngIf="this.user.type=='retailer'" routerLink="/cart" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Cart' }}
+            <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;{{ 'Cart' }}
         </a>
         <a  *ngIf="this.user.type=='distributor' || this.user.type=='manufacturer'  || this.user.type=='admin'" routerLink="/items" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Items' }}
+            <i class="fa fa-fw fa-list-ul"></i>&nbsp;{{ 'Items' }}
         </a>
     </ul>
 </nav>
