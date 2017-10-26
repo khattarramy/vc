@@ -1,6 +1,7 @@
 <form [formGroup]="orderDetailForm" (ngSubmit)="onOrderDetailClick()">
     <div class="col-xs-12">
-        <button type="submit" class="btn btn-success" [disabled]="!orderDetailForm.valid">Save</button>
+        <button type="submit" class="btn btn-success" [disabled]="!orderDetailForm.valid">To manufacturer</button>
+        <button type="button" class="btn btn-success" (click)="finish()">Finish</button>
         <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
     </div>
     <fieldset class="form-group">

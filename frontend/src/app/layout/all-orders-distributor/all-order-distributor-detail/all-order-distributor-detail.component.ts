@@ -17,23 +17,24 @@ import { Subscription } from 'rxjs';
 export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   orderDetails: OrderDetailDto[];
   id: Number;
-  orderDetail:OrderDetail;
+  orderDetail: OrderDetail;
   subscription: Subscription;
-  selectedRow : Number;
-  
+  selectedRow: Number;
+  order: Order;
+
   orderDetailForm: FormGroup = new FormGroup({
-    quantityDistributor: new FormControl('',Validators.required),
+    quantityDistributor: new FormControl('', Validators.required),
   });
   constructor(private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private route: ActivatedRoute,
     private router: Router) {
   }
-  onOrderDetailClick(){
-    this.orderDetail.status="manufacturer";
-    this.orderDetail.quantityDistributor=this.orderDetailForm.value.quantityDistributor;
-    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId,this.orderDetail,
-      "getOrderDetailsByOrderAndDistributorAndStatus",[this.id,parseInt(localStorage.getItem("userId")),"distributor"]).subscribe();
+  onOrderDetailClick() {
+    this.orderDetail.status = "manufacturer";
+    this.orderDetail.quantityDistributor = this.orderDetailForm.value.quantityDistributor;
+    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId, this.orderDetail,
+      "getOrderDetailsByOrderAndDistributorAndStatus", [this.id, parseInt(localStorage.getItem("userId")), "distributor"]).subscribe();
   }
 
   ngOnInit() {
@@ -42,13 +43,13 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
       (params: Params) => {
         this.id = params['id'];
         this.subscription = this.orderDetailService.ordersChanged
-        .subscribe(
+          .subscribe(
           (orderDetails: OrderDetailDto[]) => {
             this.orderDetails = orderDetails;
           }
-        );
+          );
         this.orderDetailService.getOrderDetailsByOrderAndDistributorAndStatus(this.id,
-          parseInt(localStorage.getItem("userId")),"distributor")
+          parseInt(localStorage.getItem("userId")), "distributor")
           .subscribe(response => { this.orderDetails = response; });
       }
       );
@@ -56,17 +57,17 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
 
   }
 
-  initForm(orderDetail:OrderDetail,index){
-  this.orderDetail = orderDetail;
-  this.selectedRow = index;
-  
+  initForm(orderDetail: OrderDetail, index) {
+    this.orderDetail = orderDetail;
+    this.selectedRow = index;
+
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  onCancel(){
+  onCancel() {
     this.orderDetailForm.setValue({
       quantityDistributor: ""
     });
@@ -74,4 +75,29 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
 
   }
 
+  finish() {
+    this.orderDetailService.getOrderDetailsByOrderAndDistributorAndStatus(this.id,
+      parseInt(localStorage.getItem("userId")), "distributor")
+      .subscribe(response => {
+        if (response.length === 1) {
+          this.orderService.getOrder(this.id)
+          .subscribe(response => {
+            
+              this.order = response;
+              this.order.status="finished";
+              this.orderService.updateOrder(this.order.orderId,this.order,"getOrdersByDistributor",[parseInt(localStorage.getItem("userId"))])
+                .subscribe(x => console.log(x));
+            
+          });
+        }
+
+        this.orderDetail.status = "finished";
+        this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId, this.orderDetail,
+          "getOrderDetailsByOrderAndDistributorAndStatus", [this.id, parseInt(localStorage.getItem("userId")), "distributor"]).subscribe();
+        this.selectedRow = null;
+
+      });
+
+
+  }
 }
