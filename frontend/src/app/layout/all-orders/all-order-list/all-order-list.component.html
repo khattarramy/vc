@@ -7,19 +7,60 @@
         <div class="card-header">Orders</div>
         <div class="card-block table-responsive">
 
+                <table class="table">
+                        <thead class="thead-default">
+                        <tr>
+                            
+                            <th>Status</th>
+                            <th>Date Initialized</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let orderEl of orders | statusfilter:'cart' ; let i = index" style="cursor: pointer;"
+                                [routerLink]="[orderEl.orderId]"
+                                routerLinkActive="table-warning"                        >
+                                    
+                                    <td>{{ orderEl.status }}</td>
+                                    <td>{{orderEl.dateInitialized}}</td>
+                                </tr>
+        
+        
+                        </tbody>
+                    </table>
+
+                <table class="table">
+                        <thead class="thead-default">
+                        <tr>
+                           
+                            <th>Status</th>
+                            <th>Date Initialized</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let orderEl of orders | statusfilter:'sent' ; let i = index" style="cursor: pointer;"
+                                [routerLink]="[orderEl.orderId]"
+                                routerLinkActive="table-warning"                        >
+                                   
+                                    <td>{{ orderEl.status }}</td>
+                                    <td>{{orderEl.dateInitialized}}</td>
+                                </tr>
+        
+        
+                        </tbody>
+                    </table>
             <table class="table">
                 <thead class="thead-default">
                 <tr>
-                    <th>#</th>
+                    
                     <th>Status</th>
                     <th>Date Initialized</th>
                 </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let orderEl of orders; let i = index" style="cursor: pointer;"
+                        <tr *ngFor="let orderEl of orders | statusfilter:'finished' ; let i = index" style="cursor: pointer;"
                         [routerLink]="[orderEl.orderId]"
                         routerLinkActive="table-warning"                        >
-                            <th scope="row">1</th>
+                            
                             <td>{{ orderEl.status }}</td>
                             <td>{{orderEl.dateInitialized}}</td>
                         </tr>
@@ -27,6 +68,8 @@
 
                 </tbody>
             </table>
+
+
         </div>
     </div>
 

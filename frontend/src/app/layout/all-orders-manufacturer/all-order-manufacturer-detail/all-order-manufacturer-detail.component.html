@@ -19,7 +19,7 @@
               <table class="table">
                   <thead class="thead-default">
                   <tr>
-                      <th>#</th>
+                      
                       <th>Item Name</th>
                       <th>Needed Quantity</th>
                       
@@ -29,7 +29,7 @@
                           <tr *ngFor="let orderDetailEl of orderDetails; let i = index" style="cursor: pointer;"
                           (click)="onOrderDetailClick(orderDetailEl,i)"
                           [ngClass]="{'table-warning': i == selectedRow}"                       >
-                              <th scope="row">1</th>
+                              
                               <td>{{ orderDetailEl.itemName }}</td>
                               <td>{{ substract(orderDetailEl.quantity,orderDetailEl.quantityDistributor)}}</td>
                              

@@ -15,7 +15,7 @@
             <table class="table">
                 <thead class="thead-default">
                 <tr>
-                    <th>#</th>
+                    
                     <th>Item Name</th>
                     <th>Quantity</th>
                 </tr>
@@ -24,7 +24,7 @@
                         <tr *ngFor="let orderEl of orderDetails; let i = index" style="cursor: pointer;"
                         [routerLink]="[orderEl.orderDetailId]"
                         routerLinkActive="table-warning"                        >
-                            <th scope="row">1</th>
+                            
                             <td>{{ orderEl.itemName }}</td>
                             <td>{{ orderEl.quantity }}</td>
                         </tr>

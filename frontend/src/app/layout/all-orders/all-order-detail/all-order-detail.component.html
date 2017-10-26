@@ -9,7 +9,7 @@
               <table class="table">
                   <thead class="thead-default">
                   <tr>
-                      <th>#</th>
+                      
                       <th>Item Name</th>
                       <th>Quantity</th>
                       <th>Status</th>
@@ -19,7 +19,7 @@
                           <tr *ngFor="let orderDetailEl of orderDetails; let i = index" style="cursor: pointer;"
                           (click)="onOrderDetailClick(orderDetailEl)"
                           routerLinkActive="table-warning"                        >
-                              <th scope="row">1</th>
+                              
                               <td>{{ orderDetailEl.itemName }}</td>
                               <td>{{ orderDetailEl.quantity }}</td>
                               <td>{{orderDetailEl.status}}</td>

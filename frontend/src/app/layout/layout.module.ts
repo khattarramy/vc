@@ -59,6 +59,7 @@ import { AllOrderManufacturerDetailComponent } from 'app/layout/all-orders-manuf
 import { AllOrderManufacturerListComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-list/all-order-manufacturer-list.component';
 import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
 import { StatModule } from 'app/shared/modules';
+import { StatusFilterPipe } from 'app/shared/pipes/status-filter';
 
 
 @NgModule({
@@ -136,7 +137,8 @@ import { StatModule } from 'app/shared/modules';
 
         DashboardDistributorComponent,
 
-        DashboardManufacturerComponent
+        DashboardManufacturerComponent,
+        StatusFilterPipe
 
 
     ],
