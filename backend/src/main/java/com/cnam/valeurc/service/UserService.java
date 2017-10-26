@@ -59,6 +59,10 @@ public class UserService {
             user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
 
+<<<<<<< HEAD
+=======
+        dbConnect.close(mongo);
+>>>>>>> 87855771162d8071e5b120a7ba1b9398c88ce55b
         return user;
 
     }
