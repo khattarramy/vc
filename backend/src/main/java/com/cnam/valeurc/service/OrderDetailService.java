@@ -76,6 +76,7 @@ public class OrderDetailService {
             orderDetailsDto.add(new OrderDetailDto(o.getOrderDetailId(), o.getOrderId(), o.getItemId(), o.getItem().getName(), o.getStatus(), o.getQuantity(), o.getQuantityDistributor()));
 
         }
+        dbConnect.close(mongo);
         return orderDetailsDto;
 
     }
@@ -185,6 +186,8 @@ public class OrderDetailService {
         } finally {
             cursor.close();
         }
+        dbConnect.close(mongo);
+
         return orderDetail;
     }
 
@@ -258,6 +261,7 @@ public class OrderDetailService {
         while (cursor.hasNext()) {
             order = ((Order) AppUtils.fromDocument(cursor.next(), Order.class));
         }
+        dbConnect.close(mongo);
         return order;
     }
 

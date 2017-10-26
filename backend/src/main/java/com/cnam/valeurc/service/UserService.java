@@ -61,7 +61,7 @@ public class UserService {
             user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
         }
 
-        
+        dbConnect.close(mongo);
         return user;
 
     }

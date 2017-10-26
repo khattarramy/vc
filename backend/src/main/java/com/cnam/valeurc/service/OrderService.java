@@ -62,7 +62,7 @@ public class OrderService {
             orderDtos.add(new OrderDto(o.getOrderId(), o.getUser().getName(), o.getUserId(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
 
         }
-
+        dbConnect.close(mongo);
         return orderDtos;
 
     }
