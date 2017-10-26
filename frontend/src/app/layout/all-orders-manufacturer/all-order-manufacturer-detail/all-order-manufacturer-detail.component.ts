@@ -6,6 +6,7 @@ import { OrderDetailService } from 'app/layout/order-details/order-detail.servic
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
 import { OrderDetailDto } from 'app/layout/order-details/order-detail-dto.model';
 import { Subscription } from 'rxjs';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -17,13 +18,18 @@ export class AllOrderManufacturerDetailComponent implements OnInit , OnDestroy {
   orderDetails: OrderDetailDto[];
   id: Number;
   subscription: Subscription;
+  selectedRow : Number;
+  orderDetail : OrderDetail;
+  
   constructor(
     private orderDetailService: OrderDetailService,
     private orderService: OrderService,
     private route: ActivatedRoute,
     private router: Router) {
   }
-
+  orderDetailForm: FormGroup = new FormGroup({
+    enableButton: new FormControl('',Validators.required),
+  });
   ngOnInit() {
     this.route.params
       .subscribe(
@@ -42,14 +48,37 @@ export class AllOrderManufacturerDetailComponent implements OnInit , OnDestroy {
       );
   }
 
-  onOrderDetailClick(orderDetail:OrderDetail){
-    orderDetail.status="distributor";
-    this.orderDetailService.updateOrderDetail(orderDetail.orderDetailId,orderDetail,"getOrderDetailsByOrderAndManufacturerAndStatus",[this.id,
+  onOrderDetailClick(orderDetail:OrderDetail,index){
+   this.selectedRow = index;
+   this.orderDetail = orderDetail;
+   this.orderDetailForm.setValue({
+    enableButton: 1
+  });
+  }
+
+  onSave(){
+    this.orderDetail.status="distributor";
+    this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId,this.orderDetail,"getOrderDetailsByOrderAndManufacturerAndStatus",[this.id,
       parseInt(localStorage.getItem("userId")),"manufacturer"]).subscribe();
+  
+
+  }
+
+  onCancel(){
+    this.orderDetailForm.setValue({
+      enableButton: ""
+    });
+    this.selectedRow = null;
+
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  substract(Quantity : number, QuantityDistributor): Number{
+
+    return Quantity - QuantityDistributor;
   }
 
 }
