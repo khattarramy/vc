@@ -6,13 +6,13 @@
 package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.DbResource;
 import com.cnam.valeurc.model.Item;
 import com.cnam.valeurc.model.Order;
 import com.cnam.valeurc.model.OrderDetail;
 import com.cnam.valeurc.model.OrderDetailDto;
 import com.cnam.valeurc.model.OrderDto;
 import com.cnam.valeurc.model.User;
-import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBCursor;
@@ -38,27 +38,27 @@ import org.bson.conversions.Bson;
  */
 public class OrderDetailService {
 
-    DbConnect dbConnect = new DbConnect();
     MongoClient mongo;
     MongoCollection orderDetailCollection, orderCollection, counters;
     MongoDatabase db;
+    DbResource dbResource = new DbResource();
 
     public OrderDetailService() throws UnknownHostException {
-        mongo = dbConnect.init();
-        db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db, "orderDetail")) {
+        mongo = dbResource.getMongoClient();
+        db = mongo.getDatabase("valeurc");
+        if (!dbResource.collectionExists(db, "orderDetail")) {
             db.createCollection("orderDetail", new CreateCollectionOptions().capped(false));
         }
 
-        counters = AppUtils.checkCounters(dbConnect, db, "orderdetailid");
+        counters = AppUtils.checkCounters(db, "orderdetailid");
 
         orderDetailCollection = db.getCollection("orderDetail");
 
-        if (!dbConnect.collectionExists(db, "order")) {
+        if (!dbResource.collectionExists(db, "order")) {
             db.createCollection("order", new CreateCollectionOptions().capped(false));
         }
 
-        counters = AppUtils.checkCounters(dbConnect, db, "orderid");
+        counters = AppUtils.checkCounters(db, "orderid");
 
         orderCollection = db.getCollection("order");
 
@@ -155,8 +155,6 @@ public class OrderDetailService {
             }
         }
 
-        dbConnect.close(mongo);
-
         return orderDetails;
 
     }
@@ -198,8 +196,6 @@ public class OrderDetailService {
 
         orderCollection.updateOne(eq("_id", orderDetail.getOrderId()), Updates.addToSet("OrderDetails", AppUtils.toDocument(orderDetail)));
 
-        dbConnect.close(mongo);
-
         return orderDetail;
     }
 
@@ -235,7 +231,6 @@ public class OrderDetailService {
 
         orderCollection.updateOne(query, command);
 
-        dbConnect.close(mongo);
         return orderDetail;
     }
 
@@ -246,7 +241,6 @@ public class OrderDetailService {
         BasicDBObject update = new BasicDBObject("OrderDetails", new BasicDBObject("_id", orderDetailId));
         orderCollection.updateOne(match, new BasicDBObject("$pull", update));
 
-        dbConnect.close(mongo);
     }
 
     public Order getOrderByOrderDetailId(int orderDetailId) {
@@ -264,7 +258,6 @@ public class OrderDetailService {
     public void deleteAllOrderDetails() throws UnknownHostException {
         BasicDBObject searchQuery = new BasicDBObject();
         orderDetailCollection.deleteMany(searchQuery);
-        dbConnect.close(mongo);
         CounterService counterService = new CounterService();
         counterService.deleteCounter("orderdetailid");
     }

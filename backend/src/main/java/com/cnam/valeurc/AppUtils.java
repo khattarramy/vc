@@ -1,8 +1,5 @@
 package com.cnam.valeurc;
 
-
-import com.cnam.valeurc.service.DbConnect;
-
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -16,6 +13,7 @@ import org.bson.Document;
 import java.net.UnknownHostException;
 import com.cnam.valeurc.model.*;
 import com.cnam.valeurc.service.*;
+
 /**
  * @author Igor Baiborodine
  */
@@ -58,9 +56,11 @@ public class AppUtils {
         return myDoc.get("seq");
     }
 
-    public static MongoCollection checkCounters(DbConnect dbConnect, MongoDatabase db, String counter_id) {
+    public static MongoCollection checkCounters(MongoDatabase db, String counter_id) throws UnknownHostException {
+        DbResource dbResource = new DbResource();
+
         MongoCollection counters;
-        if (!dbConnect.collectionExists(db,"counters")) {
+        if (!dbResource.collectionExists(db, "counters")) {
             db.createCollection("counters", new CreateCollectionOptions().capped(false));
         }
         counters = db.getCollection("counters");

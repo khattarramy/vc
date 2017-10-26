@@ -6,11 +6,11 @@
 package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.DbResource;
 import com.cnam.valeurc.model.Order;
 import com.cnam.valeurc.model.OrderDetail;
 import com.cnam.valeurc.model.OrderDto;
 import com.cnam.valeurc.model.User;
-import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -28,18 +28,18 @@ import org.bson.Document;
  */
 public class OrderService {
 
-    DbConnect dbConnect = new DbConnect();
     MongoClient mongo;
     MongoCollection orderCollection, counters;
     MongoDatabase db;
+    DbResource dbResource = new DbResource();
 
     public OrderService() throws UnknownHostException {
-        mongo = dbConnect.init();
-        db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db, "order")) {
+        mongo = dbResource.getMongoClient();
+        db = mongo.getDatabase("valeurc");
+        if (!dbResource.collectionExists(db, "order")) {
             db.createCollection("order", new CreateCollectionOptions().capped(false));
         }
-        counters = AppUtils.checkCounters(dbConnect, db, "orderid");
+        counters = AppUtils.checkCounters(db, "orderid");
 
         orderCollection = db.getCollection("order");
 
@@ -58,7 +58,7 @@ public class OrderService {
         orders = getAllOrders(userId, status, distributorId, manufacturerId);
 
         for (Order o : orders) {
-            
+
             orderDtos.add(new OrderDto(o.getOrderId(), o.getUser().getName(), o.getUserId(), o.getStatus(), o.getDateInitialized(), o.getDateFinished()));
 
         }
@@ -112,8 +112,6 @@ public class OrderService {
             }
         }
 
-        dbConnect.close(mongo);
-
         return orders;
 
     }
@@ -128,7 +126,6 @@ public class OrderService {
             order = ((Order) AppUtils.fromDocument(cursor.next(), Order.class));
         }
 
-        dbConnect.close(mongo);
         return order;
 
     }
@@ -143,8 +140,6 @@ public class OrderService {
 
         orderCollection.insertOne(AppUtils.toDocument(order));
 
-        dbConnect.close(mongo);
-
         return order;
     }
 
@@ -158,8 +153,6 @@ public class OrderService {
 
         orderCollection.updateOne(eq("_id", orderId), new Document("$set", AppUtils.toDocument(order)));
 
-        dbConnect.close(mongo);
-
         return order;
     }
 
@@ -167,7 +160,6 @@ public class OrderService {
 
         orderCollection.deleteOne(eq("_id", orderId));
 
-        dbConnect.close(mongo);
     }
 
     public void deleteAllOrders() throws UnknownHostException {
@@ -175,8 +167,6 @@ public class OrderService {
         BasicDBObject searchQuery = new BasicDBObject();
 
         orderCollection.deleteMany(searchQuery);
-
-        dbConnect.close(mongo);
 
         CounterService counterService = new CounterService();
 

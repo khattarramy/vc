@@ -6,12 +6,12 @@
 package com.cnam.valeurc.service;
 
 import com.cnam.valeurc.AppUtils;
+import com.cnam.valeurc.DbResource;
 import com.cnam.valeurc.model.Login;
 import com.cnam.valeurc.model.OrderDetail;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
 import com.cnam.valeurc.model.User;
-import static com.cnam.valeurc.service.DbConnect.DB_NAME;
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -28,15 +28,15 @@ import org.bson.conversions.Bson;
  */
 public class LoginService {
 
-    DbConnect dbConnect = new DbConnect();
     MongoClient mongo;
     MongoCollection userCollection;
     MongoDatabase db;
+    DbResource dbResource = new DbResource();
 
     public LoginService() throws UnknownHostException {
-        mongo = dbConnect.init();
-        db = dbConnect.getDatabase(mongo, DB_NAME);
-        if (!dbConnect.collectionExists(db,"users")) {
+        mongo = dbResource.getMongoClient();
+        db = mongo.getDatabase("valeurc");
+        if (!dbResource.collectionExists(db, "users")) {
             db.createCollection("users", new CreateCollectionOptions().capped(false));
         }
 
@@ -46,25 +46,20 @@ public class LoginService {
     public User loginUser(Login login) {
 
         User user = new User();
-        
+
         BasicDBObject searchQuery = new BasicDBObject();
 
         searchQuery.put("Email", login.getEmail());
         searchQuery.put("Password", login.getPassword());
 
-       
         MongoCursor<Document> cursor = userCollection.find(searchQuery).iterator();
-        
-                
 
         while (cursor.hasNext()) {
-           user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
-     
-        }
-        
-        dbConnect.close(mongo);
-        return user;
+            user = ((User) AppUtils.fromDocument(cursor.next(), User.class));
 
+        }
+
+        return user;
 
     }
 
