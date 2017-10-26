@@ -76,8 +76,7 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   }
 
   finish() {
-    this.orderDetailService.getOrderDetailsByOrderAndDistributorAndStatus(this.id,
-      parseInt(localStorage.getItem("userId")), "distributor")
+    this.orderDetailService.getOrderDetailsByOrderAndStatus(this.id, "distributor")
       .subscribe(response => {
         if (response.length === 1) {
           this.orderService.getOrder(this.id)
