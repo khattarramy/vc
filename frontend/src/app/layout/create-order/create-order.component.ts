@@ -7,6 +7,7 @@ import { Item } from 'app/layout/items/item.model';
 import { ItemService } from 'app/layout/items/item.service';
 import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,15 +21,20 @@ export class CreateOrderComponent implements OnInit {
   items: Item[];
   orderDetail: OrderDetail;
   order:Order = new Order();
+  closeResult: string;
+  itemId:Number;
+  
+  
   createOrderForm: FormGroup = new FormGroup({
-    quantity: new FormControl(''),
-    itemId: new FormControl('')
+    quantity: new FormControl('')
+    
   });
   constructor(private route: ActivatedRoute,
     private orderDetailService: OrderDetailService,
     private itemService: ItemService,
     private orderService: OrderService,
-    private router: Router) {
+    private router: Router,
+    private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -38,9 +44,9 @@ export class CreateOrderComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(itemId:number) {
     this.orderDetail = this.createOrderForm.value;
-
+    this.orderDetail.itemId=itemId;
     this.orderDetail.status = "cart";
     this.orderDetail.quantityDistributor = 0;
 
@@ -70,6 +76,7 @@ export class CreateOrderComponent implements OnInit {
 
       });
 
+      this.clearQuantity();
   }
 
   onCancel() {
@@ -79,6 +86,27 @@ export class CreateOrderComponent implements OnInit {
 
 
   }
+
+  open(content,itemId:number) {
+    this.modalService.open(content).result.then();
+      this.itemId=itemId;
+}
+
+clearQuantity(){
+  this.createOrderForm.setValue({
+    quantity: null});
+}
+
+private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+    } else {
+        return  `with: ${reason}`;
+    }
+}
+
 
 }
 

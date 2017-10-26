@@ -86,7 +86,13 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
               this.order = response;
               this.order.status="finished";
               this.orderService.updateOrder(this.order.orderId,this.order,"getOrdersByDistributor",[parseInt(localStorage.getItem("userId"))])
-                .subscribe(x => console.log(x));
+                .subscribe(x => {
+                  this.orderDetail.status = "finished";
+                  this.orderDetailService.updateOrderDetail(this.orderDetail.orderDetailId, this.orderDetail,
+                    "getOrderDetailsByOrderAndDistributorAndStatus", [this.id, parseInt(localStorage.getItem("userId")), "distributor"]).subscribe();
+                  this.selectedRow = null;
+          
+                });
             
           });
         }

@@ -1,39 +1,55 @@
-<form [formGroup]="createOrderForm" (ngSubmit)="onSubmit()">
-        <div class="col-xs-12">
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  [disabled]="!createOrderForm.valid">Save</button>
-                <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-              </div>
+<fieldset class="form-group">
+    <label for="search">Search</label>
+    <input [(ngModel)]="query" class="form-control" id="search">
+
+</fieldset>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <h1>Items</h1>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" *ngFor="let itemEl of items | itemfilter:query; let i = index">
+                <div class="card mb-3">
+                    <div class="card-header card-warning" style="height: 80px;">
+                        {{itemEl.name}} </div>
+                    <!--<div class="card-block" style="height: 120px;">
+                        {{itemEl.description}}
+                    </div>-->
+                    <a (click)="open(content,itemEl.itemId)" class="btn btn-default">Add to cart</a>
+                </div>
+
+            </div>
 
 
-                <fieldset class="form-group">
-                        <label for="itemId">Item</label>
+        </div>
+    </div>
 
-                        <select class="form-control" id="itemId" formControlName="itemId">
-                                <option *ngFor="let itemEl of items; let i = index"
-                                value="{{itemEl.itemId}}">{{itemEl.name}}</option>
-                            </select>
-        
 
-                    </fieldset>
+</div>
 
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal title</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click');clearQuantity();">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    <form [formGroup]="createOrderForm">
+
+                        <fieldset class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input class="form-control" id="quantity" formControlName="quantity">
+                            <br>
+                            <button type="button"  class="btn btn-danger" (click)="onSubmit(itemId);d('Cross click');">Add to Cart</button>
+                        </fieldset>
+                           
                     
-            <fieldset class="form-group">
-                    <label for="quantity">Quantity</label>
-                    <input class="form-control"
-                    id="quantity"
-                    formControlName="quantity"
-                    >
-
-                </fieldset>
-  
 
 
-
-
-</form>
-
-
-
+                    </form>
+                </div>
+                </ng-template>
+            

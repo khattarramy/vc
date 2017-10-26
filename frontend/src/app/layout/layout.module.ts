@@ -60,6 +60,8 @@ import { AllOrderManufacturerListComponent } from 'app/layout/all-orders-manufac
 import { AllOrderManufacturerStartComponent } from 'app/layout/all-orders-manufacturer/all-order-manufacturer-start/all-order-manufacturer-start.component';
 import { StatModule } from 'app/shared/modules';
 import { StatusFilterPipe } from 'app/shared/pipes/status-filter';
+import { ItemFilterPipe } from 'app/shared/pipes/item-filter';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -72,7 +74,8 @@ import { StatusFilterPipe } from 'app/shared/pipes/status-filter';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        StatModule
+        StatModule,
+        NgbModule.forRoot()
     ],
     declarations: [
         LayoutComponent,
@@ -138,7 +141,8 @@ import { StatusFilterPipe } from 'app/shared/pipes/status-filter';
         DashboardDistributorComponent,
 
         DashboardManufacturerComponent,
-        StatusFilterPipe
+        StatusFilterPipe,
+        ItemFilterPipe
 
 
     ],
