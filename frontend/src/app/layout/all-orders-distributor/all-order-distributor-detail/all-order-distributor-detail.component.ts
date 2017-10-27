@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { OrderService } from 'app/layout/orders/order.service';
 import { Order } from 'app/layout/orders/order.model';
@@ -28,7 +28,8 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   constructor(private orderService: OrderService,
     private orderDetailService: OrderDetailService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+  private renderer:Renderer) {
   }
   onOrderDetailClick() {
     this.orderDetail.status = "manufacturer";
@@ -60,6 +61,8 @@ export class AllOrderDistributorDetailComponent implements OnInit, OnDestroy {
   initForm(orderDetail: OrderDetail, index) {
     this.orderDetail = orderDetail;
     this.selectedRow = index;
+    let onElement = this.renderer.selectRootElement('#quantityDistributor');
+    onElement.focus();
 
   }
 

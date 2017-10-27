@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { OrderDetail } from 'app/layout/order-details/order-detail.model';
@@ -34,13 +34,16 @@ export class CreateOrderComponent implements OnInit {
     private itemService: ItemService,
     private orderService: OrderService,
     private router: Router,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+  private renderer:Renderer) {
   }
 
   ngOnInit() {
     this.initForm();
     this.itemService.getItems()
       .subscribe(response => { this.items = response; });
+      let onElement = this.renderer.selectRootElement('#search');
+      onElement.focus();
 
   }
 
@@ -90,11 +93,15 @@ export class CreateOrderComponent implements OnInit {
   open(content,itemId:number) {
     this.modalService.open(content).result.then();
       this.itemId=itemId;
+      let onElement = this.renderer.selectRootElement('#quantity');
+      onElement.focus();
 }
 
 clearQuantity(){
   this.createOrderForm.setValue({
     quantity: null});
+    let onElement = this.renderer.selectRootElement('#search');
+    onElement.focus();
 }
 
 private getDismissReason(reason: any): string {

@@ -2,7 +2,7 @@ import { User } from "./user.model";
 import { LoginService } from "./login.service";
 
 import { Login } from "./login.model";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { routerTransition } from "../router.animations";
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
@@ -38,31 +38,35 @@ export class LoginComponent implements OnInit {
     private orderDetailService: OrderDetailService,
     private orderDetailHistoryService: OrderDetailHistoryService,
     private itemService: ItemService,
+    private renderer:Renderer
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    let onElement = this.renderer.selectRootElement('#email');
+    onElement.focus();
+   }
 
   addSampleData() {
     this.userService.deleteUsers().subscribe(response => {
-    /* id: 1  */    this.users.push(new User("retailer", "Khoury Home", "Beirut", "03000000", "khouryhome@isae.edu.lb", "khouryhome"));
-    /* id: 2  */    this.users.push(new User("retailer", "Abed Tahan", "Beirut", "03111111", "abedtahan@isae.edu.lb", "abedtahan"));
-    /* id: 3  */    this.users.push(new User("retailer", "Class", "Beirut", "03222222", "class@isae.edu.lb", "class"));
-    /* id: 4  */    this.users.push(new User("retailer", "CNAM", "Beirut", "03222222", "cnam@isae.edu.lb", "cnam"));
-    /* id: 5  */    this.users.push(new User("distributor", "Samsung Distributor", "Beirut", "03000000", "samsungdistributor@isae.edu.lb", "samsungdistributor"));
-    /* id: 6  */    this.users.push(new User("distributor", "LG Distributor", "Beirut", "03111111", "lgdistributor@isae.edu.lb", "lgdistributor"));
-    /* id: 7  */    this.users.push(new User("distributor", "Sony Distributor", "Beirut", "03222222", "sonydistributor@isae.edu.lb", "sonydistributor"));
-    /* id: 8  */    this.users.push(new User("distributor", "HP Distributor", "Beirut", "03000000", "hpdistributor@isae.edu.lb", "hpdistributor"));
-    /* id: 9  */    this.users.push(new User("distributor", "Lenovo Distributor", "Beirut", "03111111", "lenovodistributor@isae.edu.lb", "lenovodistributor"));
-    /* id: 10 */    this.users.push(new User("distributor", "Campomatic Distributor", "Beirut", "03222222", "campomaticdistributor@isae.edu.lb", "campomaticdistributor"));
-    /* id: 11 */    this.users.push(new User("distributor", "Dell Distributor", "Beirut", "03222222", "delldistributor@isae.edu.lb", "delldistributor"));
-    /* id: 12 */    this.users.push(new User("manufacturer", "Samsung Manufacturer", "Beirut", "03000000", "samsungmanufacturer@isae.edu.lb", "samsungmanufacturer"));
-    /* id: 13 */    this.users.push(new User("manufacturer", "LG Manufacturer", "Beirut", "03111111", "lgmanufacturer@isae.edu.lb", "lgmanufacturer"));
-    /* id: 14 */    this.users.push(new User("manufacturer", "Sony Manufacturer", "Beirut", "03222222", "sonymanufacturer@isae.edu.lb", "sonymanufacturer"));
-    /* id: 15 */    this.users.push(new User("manufacturer", "HP Manufacturer", "Beirut", "03000000", "hpmanufacturer@isae.edu.lb", "hpmanufacturer"));
-    /* id: 16 */    this.users.push(new User("manufacturer", "Lenovo Manufacturer", "Beirut", "03111111", "lenovomanufacturer@isae.edu.lb", "lenovomanufacturer"));
-    /* id: 17 */    this.users.push(new User("manufacturer", "Campomatic Manufacturer", "Beirut", "03222222", "campomaticmanufacturer@isae.edu.lb", "campomaticmanufacturer"));
-    /* id: 18 */    this.users.push(new User("manufacturer", "Dell Manufacturer", "Beirut", "03222222", "dellmanufacturer@isae.edu.lb", "dellmanufacturer"));
-    /* id: 19 */    this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "admin"));
+    /* id: 1  */    this.users.push(new User("retailer", "Khoury Home", "Beirut", "03000000", "khouryhome@isae.edu.lb", "12345"));
+    /* id: 2  */    this.users.push(new User("retailer", "Abed Tahan", "Beirut", "03111111", "abedtahan@isae.edu.lb", "12345"));
+    /* id: 3  */    this.users.push(new User("retailer", "Class", "Beirut", "03222222", "class@isae.edu.lb", "12345"));
+    /* id: 4  */    this.users.push(new User("retailer", "CNAM", "Beirut", "03222222", "cnam@isae.edu.lb", "12345"));
+    /* id: 5  */    this.users.push(new User("distributor", "Samsung Distributor", "Beirut", "03000000", "samsungdistributor@isae.edu.lb", "12345"));
+    /* id: 6  */    this.users.push(new User("distributor", "LG Distributor", "Beirut", "03111111", "lgdistributor@isae.edu.lb", "12345"));
+    /* id: 7  */    this.users.push(new User("distributor", "Sony Distributor", "Beirut", "03222222", "sonydistributor@isae.edu.lb", "12345"));
+    /* id: 8  */    this.users.push(new User("distributor", "HP Distributor", "Beirut", "03000000", "hpdistributor@isae.edu.lb", "12345"));
+    /* id: 9  */    this.users.push(new User("distributor", "Lenovo Distributor", "Beirut", "03111111", "lenovodistributor@isae.edu.lb", "12345"));
+    /* id: 10 */    this.users.push(new User("distributor", "Campomatic Distributor", "Beirut", "03222222", "campomaticdistributor@isae.edu.lb", "12345"));
+    /* id: 11 */    this.users.push(new User("distributor", "Dell Distributor", "Beirut", "03222222", "delldistributor@isae.edu.lb", "12345"));
+    /* id: 12 */    this.users.push(new User("manufacturer", "Samsung Manufacturer", "Beirut", "03000000", "samsungmanufacturer@isae.edu.lb", "12345"));
+    /* id: 13 */    this.users.push(new User("manufacturer", "LG Manufacturer", "Beirut", "03111111", "lgmanufacturer@isae.edu.lb", "12345"));
+    /* id: 14 */    this.users.push(new User("manufacturer", "Sony Manufacturer", "Beirut", "03222222", "sonymanufacturer@isae.edu.lb", "12345"));
+    /* id: 15 */    this.users.push(new User("manufacturer", "HP Manufacturer", "Beirut", "03000000", "hpmanufacturer@isae.edu.lb", "12345"));
+    /* id: 16 */    this.users.push(new User("manufacturer", "Lenovo Manufacturer", "Beirut", "03111111", "lenovomanufacturer@isae.edu.lb", "12345"));
+    /* id: 17 */    this.users.push(new User("manufacturer", "Campomatic Manufacturer", "Beirut", "03222222", "campomaticmanufacturer@isae.edu.lb", "12345"));
+    /* id: 18 */    this.users.push(new User("manufacturer", "Dell Manufacturer", "Beirut", "03222222", "dellmanufacturer@isae.edu.lb", "12345"));
+    /* id: 19 */    this.users.push(new User("admin", "admin User", "Beirut", "03222222", "admin@isae.edu.lb", "12345"));
 
     this.addUsers(0, this.users);
 
